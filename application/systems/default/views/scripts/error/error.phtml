@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript">
+    Interna = {
+        init : function(){
+        }
+    }
+    </script>
+    <title>Porto de Rio Grande</title>
+</head>
+<body>
+
+    <h1>Ocorreu um erro</h1>
+    <h2><?php echo $this->message ?></h2>
+    
+    <?php if (APPLICATION_ENV != 'producao'): ?>
+    
+    <h3>Descrição</h3>
+    <p>
+      <b>Mensagem:</b> <?php echo $this->exception->getMessage() ?>
+    </p>
+    
+    <h3>Local do erro:</h3>
+    <pre><?php echo $this->exception->getTraceAsString() ?>
+    </pre>
+    
+    <h3>Parametros enviados:</h3>
+    <pre><?php echo var_export($this->request->getParams(), true) ?>
+    </pre>
+    <?php endif ?>
+    
+    <br />
+    <h2 align="center"></center><a href="<?=$this->baseUrl();?>/menu/index">Tire-me daqui!</a></h2>
+
+</body>
+</html>

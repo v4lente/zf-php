@@ -1,0 +1,47 @@
+<?php
+// Seta o título
+$this->headTitle("Tabelas - Pesquisa");
+?>
+
+<form name="f1">
+	<input type="hidden" value="<?php echo $this->controleSalvar; ?>" name="controleSalvar" id="controleSalvar" />
+    <?php
+    // Seta as ligações entre as tabelas
+    echo "<select id='ligacao_tabelas_origem' style='display: none;'>";
+    echo "<option value='_null_' label='-- Selecione --' sigla=''>-- Selecione --</option>";
+    foreach($this->ligTabelas as $ligacaoTabela) {
+        $valor = trim($ligacaoTabela->SG_TABELA) . "." . $ligacaoTabela->CD_COLUNA;
+        $label = trim($ligacaoTabela->SG_TABELA) . "." . $ligacaoTabela->NO_COLUNA;
+        $sigla = trim($ligacaoTabela->SG_TABELA);
+        echo "<option value='{$valor}' sigla='{$sigla}' coluna='{$ligacaoTabela->CD_COLUNA}' tp_coluna='{$ligacaoTabela->TP_COLUNA}' label='{$label}'>{$label}</option>";
+    }
+    echo "</select>";
+    
+    // Seta os filtros das colunas das tabelas
+    echo "<select id='filtros_origem' style='display: none;'>";
+    foreach($this->filtros as $filtro) {
+        echo "<option value='{$filtro->CD_TP_FILTRO}' label='{$filtro->DS_TP_FILTRO}'>{$filtro->DS_TP_FILTRO}</option>";
+    }
+    echo "</select>";
+    ?>
+</form>
+
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <input type="hidden" value="<?php echo $this->pai_cd_consulta; ?>" name="pai_cd_consulta" id="pai_cd_consulta" />
+    <table class='tabela nao-ordenavel nao-selecionavel' id='tabelaConsulta'>
+        <thead>
+            <tr>
+                <th colspan="5" style='text-align: right;'><button id="lig_aut">Ligações Automáticas</button></th>
+            </tr>
+            <tr>
+                <th class='coluna_1'>Coluna que Referencia</th>
+                <th class='ligacao'>Ligação</th>
+                <th class='coluna_2'>Coluna Referenciada</th>
+                <th class='out'>Out</th>
+                <th class='add'><img class='add_lig_tabela' alt='Nova Ligação' src='<?php echo $this->baseUrl(); ?>/public/images/botoes/16x16_adicionar.png' class='del_linha' /></th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</form>

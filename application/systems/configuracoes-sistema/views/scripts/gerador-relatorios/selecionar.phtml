@@ -1,0 +1,67 @@
+<?php
+// Seta o título
+$this->headTitle("Filtro");
+?>
+
+<form id="form_pesquisar" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend><?php echo $this->titulo;?></legend>
+		<?php echo $this->formHidden("cd_consulta", $this->cd_consulta);?>
+		<?php echo $this->formHidden("cd_usuario", $this->cd_usuario);?>
+		<?php echo $this->formHidden("titulo", $this->titulo);?>
+
+		<?php	
+			$i=0;
+
+			if (count($this->dados) > 0) {
+			
+				foreach ($this->dados as $k => $v) { 
+
+					$i++;
+					$tp_coluna = strtolower($v->TP_COLUNA);
+
+					if ($tp_coluna == 'n' || $tp_coluna == 'numeric' || $tp_coluna == 'money' || $tp_coluna == 'smallint' || $tp_coluna == 'bigint' || $tp_coluna == 'tinyint') {
+						$tp_coluna = ' int';
+					}else if ($tp_coluna == 'd' || $tp_coluna == 'datetime' || $tp_coluna == 'smalldatetime' || $tp_coluna == 'timestamp') {
+						$tp_coluna = ' data';
+					}else{
+						$tp_coluna = '';
+                        
+                        // Troca o tipo de filtro caso o tipo de dado seja string
+                        if($v->NO_TP_FILTRO == "=") {
+                            $v->NO_TP_FILTRO = "LIKE";
+                        }
+					} 
+					
+					$maxLength = $v->TAMANHO;
+					
+					?>
+
+					
+					<div class="linha">
+						<div class="center">
+							<?php echo $this->formHidden("tp_coluna[]", strtolower($v->TP_COLUNA));?>
+							<?php echo $this->formHidden("parametro[]", strtolower($v->CD_COLUNA) . '_' . $v->CD_CONS_COLUNA . '_' . $v->CD_CONS_FILTRO);?>
+							<?php echo $this->formHidden("operador[]", $v->NO_TP_FILTRO);?>
+							<?php echo $this->formHidden("tabela_coluna[]", $v->ALIAS_TABELA.'.'.$v->CD_COLUNA);?>
+							<label class="label_direita" for="ds_filtro"><?php echo $v->DS_CABECALHO.': '.$v->DS_TP_FILTRO;?></label>
+							<?php echo $this->formText("ds_filtro[]", trim($v->DS_FILTRO), array('id'=>"ds_filtro_".$i, 'class'=>'filtro'.$tp_coluna, 'maxlength'=>$maxLength));?>
+						</div>
+					</div>
+
+		<?php
+				}
+			} else { ?>
+
+					<div class="linha">
+						<div class="full">
+							<label class="label_direita">Relatório criado sem a opção de filtrar as informações!</label>
+						</div>
+					</div>
+
+				<?php 
+			} ?>
+			
+    </fieldset>
+
+</form>

@@ -1,0 +1,110 @@
+<?php
+// Seta o título
+$this->headTitle("Mensagem - Pesquisa");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_pesquisar" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+	<fieldset>
+		<legend>Pesquisa</legend>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="cd_mensagem"><?php echo $this->traducao["LB_CODIGO"];?>:</label>
+                <?php echo $this->formText("cd_mensagem", $this->form['cd_mensagem'], array('class'=>'numero', 'maxlength'=>'5'));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="fl_urgente"><?php echo $this->traducao["LB_URGENTE"];?>:</label>
+                <?php echo $this->formRadio("fl_urgente", $this->form['fl_urgente'], array('class'=>'radio'), array("0"=>"Não", "1"=>"Sim"), "");?>
+            </div>
+        
+            
+        </div>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="titulo"><?php echo $this->traducao["LB_TITULO"];?>:</label>
+                <?php echo $this->formText("titulo", $this->form['titulo'], array());?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="descricao"><?php echo $this->traducao["LB_DESCRICAO"];?>:</label>
+                <?php echo $this->formText("descricao", $this->form['descricao'], array());?>
+            </div>
+            
+            
+        </div>
+        
+		<div class="linha">
+			<div class="left">
+				<label class="label_esquerda" for="dt_ini"><?php echo $this->traducao["LB_DT_INI"];?>:</label>
+				<?php echo $this->formText("dt_ini", $this->form['dt_ini'], array('class'=>'data'));?>
+			</div>
+			
+			<div class="right">
+                <label class="label_direita" for="dt_fim"><?php echo $this->traducao["LB_DT_FIM"];?>:</label>
+                <?php echo $this->formText("dt_fim", $this->form['dt_fim'], array('class'=>'data'));?>
+            </div>
+            
+			
+		</div>
+		
+	</fieldset>
+	
+</form>
+
+<table class='tabela' id='tabelaConsulta'>
+<?php
+// Se a consulta foi feita mostra os dados
+if(count($this->paginator)) {
+?>
+    <thead>
+      <tr>
+          <th class='cd_mensagem' column='wm.cd_mensagem'><?php echo $this->traducao["LB_CODIGO"];?><div class='img_seta'></div></th>
+          <th class='titulo'      column='wm.titulo'><?php echo $this->traducao["LB_TITULO"];?><div class='img_seta'></div></th>
+          <th class='descricao'   column='wm.descricao'><?php echo $this->traducao["LB_DESCRICAO"];?><div class='img_seta'></div></th>
+          <th class='dt_ini'      column='wm.dt_ini'><?php echo $this->traducao["LB_DT_INI"];?><div class='img_seta'></div></th>
+          <th class='dt_fim'      column='wm.dt_fim'><?php echo $this->traducao["LB_DT_FIM"];?><div class='img_seta'></div></th>
+          <th class='fl_urgente'  column='wm.fl_urgente'><?php echo $this->traducao["LB_URGENTE"];?><div class='img_seta'></div></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+          <td colspan='6'><?php echo $this->paginationControl($this->paginator, 'Sliding', 'controle_paginacao.phtml', array('extraParams' => $this->extraParams)); ?></td>
+      </tr>
+    </tfoot>
+    <tbody>
+    <?php
+    $i=0;
+    foreach($this->paginator as $linha)
+    {
+        $key = "cd_mensagem/{$linha->CD_MENSAGEM}";
+
+    ?>
+        <tr class='linha' key='<?php echo $key; ?>'>
+          <td class=''><?php echo $linha->CD_MENSAGEM; ?></td>
+          <td class=''><?php echo $linha->TITULO; ?></td>
+          <td class=''><?php echo $linha->DESCRICAO;?></td>
+          <td class=''><?php echo $linha->DT_INI;?></td>
+          <td class=''><?php echo $linha->DT_FIM;?></td>
+          <td class=''><?php echo $linha->FL_URGENTE;?></td>
+        </tr>
+   <?php
+        $i++;
+    }
+    ?>
+	</tbody>
+
+    <?php
+} else {
+   ?>
+    <tfoot>
+      <tr>
+          <td colspan='6' class='paginacaoLinhaTabela' style='padding: 5px;'>Nenhum registo encontrado.</td>
+      </tr>
+    </tfoot>
+<?php
+}
+?>
+</table>

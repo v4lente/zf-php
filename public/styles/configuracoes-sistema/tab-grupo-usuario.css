@@ -1,0 +1,36 @@
+#botao-ajuda {
+   	display: none;
+}
+
+th.cd_usuario {
+    width: 15%;
+}
+
+th.no_usuario {
+    width: 55%;
+}
+
+th.tp_usuario {
+    width: 10%;
+}
+
+
+th.dt_acesso_ini {
+	width: 15%;
+    text-align: center;
+}
+
+td.dt_acesso_ini {
+    width: 6%;
+    text-align: center;
+}
+
+td.dt_acesso_fim {
+    width: 6%;
+    text-align: center;
+}
+
+
+textarea {
+    height: 50px !important;
+}

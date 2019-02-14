@@ -1,0 +1,91 @@
+<?php
+// Seta o título
+$this->headTitle("Tabelas Web - Novo");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+    
+        <legend>Tabela</legend>
+
+        <div class="linha">
+        
+			<div class="left">
+				<label class="label_esquerda" for="cd_tabela">Código:</label>
+				<?php echo $this->formText("cd_tabela", "", array('class'=>'required stru', 'maxlength'=>'30'));?>
+			</div>
+			
+			<div class="right">
+				<label class="label_esquerda" for="sg_tabela">Sigla:</label>
+				<?php echo $this->formText("sg_tabela", $this->form['sg_tabela'], array('class'=>'required stru', 'maxlength'=>'5'));?>
+			</div>
+		</div>
+
+		<div class="linha">
+			<div class="left">
+				<label class="label_esquerda" for="no_tabela">Nome:</label>
+				<?php echo $this->formText("no_tabela", $this->form['no_tabela'], array('class'=>'required stru', 'maxlength'=>'50'));?>
+			</div>
+		</div>
+        
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="ds_tabela">Descrição:</label>
+                <?php echo $this->formTextarea("ds_tabela", $this->form['ds_tabela'], array('class'=>'required stru', 'height'=>'120px;' , 'maxlength'=>'500'));?>
+            </div>
+            
+            
+        </div>
+        
+        <div class="linha">			
+			<div class="left">
+				<label class="label_esquerda">&nbsp;</label>
+				<?php echo $this->formCheckbox('fl_completa',
+                        					   "S",
+                         					   null,
+                         					   array('S', 'N')); 
+				
+				?>
+				<label for="fl_completa" style="margin-left:4px;">Completa</label>				
+			</div>
+		
+			<div class="right">
+				<label class="label_direita">&nbsp;</label>
+				<?php echo $this->formCheckbox('fl_reduzida',
+                        					   "S",
+                         					   null,
+                         					   array('S', 'N')); 
+				
+				?>
+				<label for="fl_reduzida" style="margin-left:4px;">Reduzida</label>				
+			</div>
+		</div>
+		
+		<div class="linha">			
+			<div class="left">
+				<label class="label_esquerda">&nbsp;</label>
+				<?php echo $this->formCheckbox('fl_relatorio',
+                        					   "1",
+                         					   null,
+                         					   array('1', '0')); 
+				
+				?>
+				<label for="fl_relatorio" style="margin-left:4px;">Utilizada pelo Gerador de Relatórios</label>				
+			</div>
+		
+			<div class="right">
+				<label class="label_direita">&nbsp;</label>
+				<?php echo $this->formCheckbox('fl_cons_nao_estrut',
+                        					   "0",
+                         					   null,
+                         					   array('1', '0')); 
+				
+				?>
+				<label for="fl_relatorio" style="margin-left:4px;">Utilizada para execução de consultas não estruturadas</label>				
+			</div>
+		</div>
+		
+    </fieldset>
+    
+</form>

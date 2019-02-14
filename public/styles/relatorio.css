@@ -1,0 +1,87 @@
+/*
+ * Estilo padrão para as views de relatórios
+ */
+#container #palhetaEsquerda {
+	display: block;
+}
+
+#container #palhetaEsquerda #botao-tela-pesquisa {
+	display: block;
+}
+
+#container #palhetaControle #botao-ajuda {
+	display: block;
+}
+
+/* Controle das Abas */
+#container #palhetaEsquerdaAba {
+	display: block;
+}
+
+#container #palhetaEsquerdaAba #botao-tela-pesquisa {
+	display: block;
+}
+
+.tabelaConsulta {
+	width: 100%;
+	margin: 15px auto;
+	border: 0px solid #449;
+	border-collapse: collapse;
+}
+
+.tabelaConsulta thead {
+	font-weight: bold;
+	border: 1px solid #DFDFDF;
+	background: #FFFFFF;
+	text-transform: uppercase;
+	text-align: left;
+}
+
+.tabelaConsulta thead tr th.sem_borda {
+	border-right: 0px;
+}
+
+.tabelaConsulta thead tr th {	
+	padding: 2px;
+	text-align: left;
+}
+
+.tabelaConsulta tbody tr td {
+	border: 1px solid #DFDFDF;
+	padding: 3px;
+}
+
+.par {
+	background: #EFEFEF;
+	border: 1px solid #DFDFDF;
+}
+
+.impar {
+	background: #FFFFFF;
+	border: 1px solid #DFDFDF;
+}
+
+table td {
+	border: 1px solid;
+	vertical-align: top;
+}
+
+.tabelaConsulta tfoot {
+	padding: 2px;
+	text-align: left;
+	text-transform: uppercase;
+}
+
+.tabelaConsulta tfoot tr td {
+	background: #EFEFEF;
+	font-weight: bold;
+	padding-left: 2px;
+	border: 1px solid #DFDFDF;
+}
+
+.tit_coluna_rel {
+	color: #000000;
+	background-color: #FFFFFF;
+	text-decoration: underline;
+	font-weight: bold;
+}

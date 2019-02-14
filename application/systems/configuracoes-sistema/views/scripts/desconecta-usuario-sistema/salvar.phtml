@@ -1,0 +1,49 @@
+<?php
+// Seta o título
+$this->headTitle("Acesso - Desconectar Usuários");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+
+        <legend>Usuários Conectados</legend>
+        
+        <table id="tusuarios" class="tabela nao-selecionavel nao-ordenavel">
+            <thead>
+                <tr>
+                    <th class="seleciona">Seleciona</th>
+                    <th class="usuario">Usuário</th>
+                    <th class="estacao">Estação</th>
+                    <th class="executavel">Executável</th>
+                    <th class="hora_conexao">Hora de Conexão</th>
+                    <th class="usuario_sistema">Usuário do Sistema</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php 
+                    if(count($this->usuarios) > 0) {
+                        $cont = 0;
+                        foreach($this->usuarios as $usuario) {
+                ?>
+                    <tr>
+                        <td class="seleciona">
+                            <input type="checkbox" name="sel[]" id="sel_<?php echo $cont; ?>" class="cbsel" value="0" sid="<?php echo $usuario->SID; ?>" serial="<?php echo $usuario->SERIAL; ?>">
+                        </td>
+                        <td class="usuario"><?php echo $usuario->USERNAME; ?></td>
+                        <td class="estacao"><?php echo $usuario->MACHINE; ?></td>
+                        <td class="executavel"><?php echo $usuario->PROGRAM; ?></td>
+                        <td class="hora_conexao"><?php echo $usuario->LOGON_TIME; ?></td>
+                        <td class="usuario_sistema"><?php echo $usuario->OSUSER; ?></td>
+                    </tr>
+                <?php
+                        $cont++;
+                        }
+                    }
+                ?>
+            </tbody>
+        </table>
+
+    </fieldset>
+	
+</form>

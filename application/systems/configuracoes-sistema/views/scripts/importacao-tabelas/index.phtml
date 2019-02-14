@@ -1,0 +1,269 @@
+<?php
+// Seta o título
+$this->headTitle("Importação de Tabelas/Colunas - Pesquisa");
+?>
+
+<script type="text/javascript" language="javascript">
+	Base.mostraTelaCarregando();
+</script>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+<fieldset>
+	<legend>Tabelas</legend>
+	<input type='hidden' name='teste' value='1' />
+	<?php
+	// Seta o atributo que conterá a tabela corrente
+	$tabelaCorrente = "";
+	
+	// Remove a quebra e o retrocesso
+	$ar = array("\r", "\n", "\\", "  ");
+	
+	// Se a consulta foi feita mostra os dados
+	if(count($this->arrayDifsTotais)) {
+		
+		echo "<table id='tabela-importacao' class='nao-selecionavel' style='width: 100% !important; float: left; min-width: 300px !important; margin: 0px; padding: 0px;'>";
+		echo "<tr>";
+		echo "	<td style='font-weight: bold; padding-top: 10px; padding-bottom: 10px; width: 48%; background-color: #ccc;'>Banco de Dados - {$this->nomeBanco}</td>";
+		echo "	<td style='font-weight: bold; padding-top: 10px; padding-bottom: 10px; width: 4%; text-align: center; background-color: #ccc;'>";
+		echo "      <input type='checkbox' name='controle' id='controle' value='1' title='Marca/Desmarca todos os itens' />";
+		echo "  </td>";
+		echo "	<td style='font-weight: bold; padding-top: 10px; padding-bottom: 10px; width: 48%; background-color: #ccc;'>Sistema Porto - Superintendência do Porto de Rio Grande</td>";
+		echo "</tr>";
+		
+		$z = 0;
+		$x = 0;
+		$y = 0;
+		// Percorre todas as tabelas
+		foreach($this->arrayDifsTotais as $indiceNomeTabela => $tabela) {
+			
+			// Percorre todas as colunas da tabela
+			foreach($tabela as $indiceNomeColuna => $coluna) {
+				
+				// Percorre os campos da coluna
+				foreach($coluna as $indiceNomeCampo => $campo) {
+					
+					if($indiceNomeCampo == "TABLE_NAME" && $campo[0] != $tabelaCorrente) {
+						
+						$no_coluna = "";
+						if(isset($coluna['NO_COLUNA'][0]) && !is_array($coluna['NO_COLUNA'][0]) && trim($coluna['NO_COLUNA'][0]) != "") {
+							$no_coluna = trim($coluna['NO_COLUNA'][0]);
+						}
+						
+						if($campo[1] == "_") {
+							echo "<tr tabela='{$indiceNomeTabela}'>";
+							echo "	<td style='font-weight: bold; padding-top: 15px;'>" . htmlspecialchars($campo[0], ENT_QUOTES) . "</td>";
+							echo "	<td style='border-left: 1px solid #444; border-right: 1px solid #444; text-align: center; padding-top: 10px; padding-bottom: 10px;'>";
+							echo "      <input type='checkbox' name='marca[]' value='0' class='marca' checked='checked' eh-tabela='1' eh-coluna='0' eh-campo='0' tabela='{$indiceNomeTabela}' />";
+							echo "      <input type='hidden' name='tipo[]' value='" . htmlspecialchars($indiceNomeCampo, ENT_QUOTES) . "' />";
+							echo "      <input type='hidden' name='valor[]' value='" . htmlspecialchars($campo[0], ENT_QUOTES) . "' />";
+							echo "      <input type='hidden' name='tipo2[]' value='NO_TABELA' />";
+							echo "      <input type='hidden' name='valor2[]' value='{$no_coluna}' />";
+							echo "      <input type='hidden' name='acao[]' value='_' />";
+							echo "  </td>";
+							echo "	<td style='font-weight: bold; padding-top: 15px;'>" . htmlspecialchars($campo[0], ENT_QUOTES) . "</td>";
+							echo "</tr>";
+							$x++;
+							$y++;
+							
+						} else if($campo[1] == "I") {
+							echo "<tr tabela='{$indiceNomeTabela}'>";
+							echo "	<td style='font-weight: bold; padding-top: 15px;'>" . htmlspecialchars($campo[0], ENT_QUOTES) . "</td>";
+							echo "	<td style='border-left: 1px solid #444; border-right: 1px solid #444; text-align: center; padding-top: 10px; padding-bottom: 10px; background-color: #0066ff;'>";
+							echo "      <input type='checkbox' name='marca[]' value='1' class='marca' checked='checked' title='Incluir' eh-tabela='1' eh-coluna='0' eh-campo='0' tabela='{$indiceNomeTabela}' />";
+							echo "      <input type='hidden' name='tipo[]' value='" . htmlspecialchars($indiceNomeCampo, ENT_QUOTES) . "' />";
+							echo "      <input type='hidden' name='valor[]' value='" . htmlspecialchars($campo[0], ENT_QUOTES) . "' />";
+							echo "      <input type='hidden' name='tipo2[]' value='NO_TABELA' />";
+							echo "      <input type='hidden' name='valor2[]' value='{$no_coluna}' />";
+							echo "      <input type='hidden' name='acao[]' value='I' />";
+							echo "  </td>";
+							echo "	<td style='font-weight: bold; padding-top: 15px;'>---</td>";
+							echo "</tr>";
+							$x++;
+							$y++;
+							
+						} else if($campo[1] == "E") {
+							echo "<tr tabela='{$indiceNomeTabela}'>";
+							echo "	<td style='font-weight: bold; padding-top: 15px;'>---</td>";
+							echo "	<td style='border-left: 1px solid #444; border-right: 1px solid #444; text-align: center; padding-top: 10px; padding-bottom: 10px; background-color: #cc0033;'>";
+							echo "      <input type='checkbox' name='marca[]' value='1' class='marca' title='Excluir' />";
+							echo "      <input type='hidden' name='tipo[]' value='" . htmlspecialchars($indiceNomeCampo, ENT_QUOTES) . "' />";
+							echo "      <input type='hidden' name='valor[]' value='" . htmlspecialchars($campo[0], ENT_QUOTES) . "' />";
+							echo "      <input type='hidden' name='tipo2[]' value='NO_TABELA' />";
+							echo "      <input type='hidden' name='valor2[]' value='{$no_coluna}' />";
+							echo "      <input type='hidden' name='acao[]' value='E' />";
+							echo "  </td>";
+							echo "	<td style='font-weight: bold; padding-top: 15px;'>" . htmlspecialchars($campo[0], ENT_QUOTES) . "</td>";
+							echo "</tr>";
+							$x++;
+							$y++;
+						}
+						
+						// Define a tabela corrente
+						$tabelaCorrente = $campo[0];
+						
+					} else if($indiceNomeCampo == "COLUMN_NAME") { 
+						
+						$no_coluna = "";
+						if(isset($coluna['NO_COLUNA'][0]) && !is_array($coluna['NO_COLUNA'][0]) && trim($coluna['NO_COLUNA'][0]) != "") {
+							$no_coluna = trim($coluna['NO_COLUNA'][0]);
+						}
+						
+						
+						if($campo[1] == "_") {
+							echo "<tr tabela='{$indiceNomeTabela}' coluna='{$indiceNomeColuna}'>";
+							echo "	<td style='padding-left: 15px; padding-top: 8px; text-decoration: underline;'>" . htmlspecialchars($campo[0], ENT_QUOTES) . "</td>";
+							echo "	<td style='border-left: 1px solid #444; border-right: 1px solid #444; text-align: center; padding-top: 8px;'>";
+							echo "      <input type='checkbox' name='marca[]' value='0' class='marca' checked='checked' eh-tabela='0' eh-coluna='1' eh-campo='0' tabela='{$indiceNomeTabela}' coluna='{$indiceNomeColuna}' />";
+							echo "      <input type='hidden' name='tipo[]' value='" . htmlspecialchars($indiceNomeCampo, ENT_QUOTES) . "' />";
+							echo "      <input type='hidden' name='valor[]' value='" . htmlspecialchars($campo[0], ENT_QUOTES) . "' />";
+							echo "      <input type='hidden' name='tipo2[]' value='NO_COLUNA' />";
+							echo "      <input type='hidden' name='valor2[]' value='{$no_coluna}' />";
+							echo "      <input type='hidden' name='acao[]' value='_' />";
+							echo "  </td>";
+							echo "	<td style='padding-left: 15px; padding-top: 8px; text-decoration: underline;'>" . htmlspecialchars($campo[0], ENT_QUOTES) . "</td>";
+							echo "</tr>";
+							$x++;
+							$y++;
+							
+						} else if($campo[1] == "I") {
+							echo "<tr tabela='{$indiceNomeTabela}' coluna='{$indiceNomeColuna}'>";
+							echo "	<td style='padding-left: 15px; padding-top: 8px; text-decoration: underline;'>" . htmlspecialchars($campo[0], ENT_QUOTES) . "</td>";
+							echo "	<td style='border-left: 1px solid #444; border-right: 1px solid #444; text-align: center; padding-top: 8px; background-color: #0066ff;'>";
+							echo "      <input type='checkbox' name='marca[]' value='1' class='marca' checked='checked' title='Incluir' eh-tabela='0' eh-coluna='1' eh-campo='0' tabela='{$indiceNomeTabela}' coluna='{$indiceNomeColuna}' />";
+							echo "      <input type='hidden' name='tipo[]' value='" . htmlspecialchars($indiceNomeCampo, ENT_QUOTES) . "' />";
+							echo "      <input type='hidden' name='valor[]' value='" . htmlspecialchars($campo[0], ENT_QUOTES) . "' />";
+							echo "      <input type='hidden' name='tipo2[]' value='NO_COLUNA' />";
+							echo "      <input type='hidden' name='valor2[]' value='{$no_coluna}' />";
+							echo "      <input type='hidden' name='acao[]' value='I' />";
+							echo "  </td>";
+							echo "	<td style='padding-left: 15px; padding-top: 8px;'>---</td>";
+							echo "</tr>";
+							$x++;
+							$y++;
+							
+						} else if($campo[1] == "E") {
+							echo "<tr tabela='{$indiceNomeTabela}' coluna='{$indiceNomeColuna}'>";
+							echo "	<td style='padding-left: 15px; padding-top: 8px;'>---</td>";
+							echo "	<td style='border-left: 1px solid #444; border-right: 1px solid #444; text-align: center; padding-top: 8px; background-color: #cc0033;'>";
+							echo "      <input type='checkbox' name='marca[]' value='1' class='marca' title='Excluir' eh-tabela='0' eh-coluna='1' eh-campo='0' tabela='{$indiceNomeTabela}' coluna='{$indiceNomeColuna}' />";
+							echo "      <input type='hidden' name='tipo[]' value='" . htmlspecialchars($indiceNomeCampo, ENT_QUOTES) . "' />";
+							echo "      <input type='hidden' name='valor[]' value='" . htmlspecialchars($campo[0], ENT_QUOTES) . "' />";
+							echo "      <input type='hidden' name='tipo2[]' value='NO_COLUNA' />";
+							echo "      <input type='hidden' name='valor2[]' value='{$no_coluna}' />";
+							echo "      <input type='hidden' name='acao[]' value='E' />";
+							echo "  </td>";
+							echo "	<td style='padding-left: 15px; padding-top: 8px; text-decoration: underline;'>" . htmlspecialchars($campo[0], ENT_QUOTES) . "</td>";
+							echo "</tr>";
+							$x++;
+							$y++;
+						}
+						
+					} else if($indiceNomeCampo == "CONSTRAINT_NAME" || 
+							  $indiceNomeCampo == "TABELA_PAI") { 
+						
+						if($indiceNomeCampo == "CONSTRAINT_NAME") {
+							
+							for($i=0; $i < count($campo); $i++) {
+								
+								// Percorre o array das constrainst
+								$campoConstraint = $this->arrayDifsTotais[$indiceNomeTabela][$indiceNomeColuna]["CONSTRAINT_NAME"][$i];
+								$campoTabelaPai  = $this->arrayDifsTotais[$indiceNomeTabela][$indiceNomeColuna]["TABELA_PAI"][$i];
+								
+								if($campoConstraint[1] == "I") {
+									echo "<tr tabela='{$indiceNomeTabela}' coluna='{$indiceNomeColuna}'>";
+									echo "	<td style='padding-left: 30px;'>" . htmlspecialchars($campoConstraint[0], ENT_QUOTES) . "</td>";
+									echo "	<td style='border-left: 1px solid #444; border-right: 1px solid #444; text-align: center; background-color: #0066ff;'>";
+									echo "      <input type='checkbox' name='marca[]' value='1' class='marca' checked='checked' title='Incluir' eh-tabela='0' eh-coluna='0' eh-campo='1' tabela='{$indiceNomeTabela}' coluna='{$indiceNomeColuna}' />";
+									echo "      <input type='hidden' name='tipo[]' value='" . htmlspecialchars("CONSTRAINT_NAME", ENT_QUOTES) . "' />";
+									echo "      <input type='hidden' name='valor[]' value='" . htmlspecialchars($campoConstraint[0], ENT_QUOTES) . "' />";
+									echo "      <input type='hidden' name='acao[]' value='I' />";
+									echo "  </td>";
+									echo "	<td style='padding-left: 30px;'>---</td>";
+									echo "</tr>";
+									$x++;
+									
+									echo "<tr tabela='{$indiceNomeTabela}' coluna='{$indiceNomeColuna}'>";
+									echo "	<td style='padding-left: 30px;'>" . htmlspecialchars($campoTabelaPai[0], ENT_QUOTES) . "</td>";
+									echo "	<td style='border-left: 1px solid #444; border-right: 1px solid #444; text-align: center; background-color: #0066ff;'>";
+									echo "      <input type='checkbox' name='marca[]' value='1' class='marca' checked='checked' title='Incluir' eh-tabela='0' eh-coluna='0' eh-campo='1' tabela='{$indiceNomeTabela}' coluna='{$indiceNomeColuna}' />";
+									echo "      <input type='hidden' name='tipo[]' value='" . htmlspecialchars("TABELA_PAI", ENT_QUOTES) . "' />";
+									echo "      <input type='hidden' name='valor[]' value='" . htmlspecialchars($campoTabelaPai[0], ENT_QUOTES) . "' />";
+									echo "      <input type='hidden' name='acao[]' value='I' />";
+									echo "  </td>";
+									echo "	<td style='padding-left: 30px;'>---</td>";
+									echo "</tr>";
+									$x++;
+								}
+								
+							}
+							
+						}
+					
+					} else if($indiceNomeCampo == "PK" || 
+							  $indiceNomeCampo == "TIPO" || 
+							  $indiceNomeCampo == "TAMANHO" || 
+							  $indiceNomeCampo == "NULLABLE" || 
+							  $indiceNomeCampo == "DATA_DEFAULT" || 
+							  $indiceNomeCampo == "SEARCH_CONDITION") {
+						
+						// Remove a quebra e o retrocesso
+				        $campo[0] = str_replace($ar, "", trim($campo[0]));
+				        
+						if($campo[1] == "I") {
+							echo "<tr tabela='{$indiceNomeTabela}' coluna='{$indiceNomeColuna}'>";
+							echo "	<td style='padding-left: 30px;'>" . htmlspecialchars($campo[0], ENT_QUOTES) . "</td>";
+							echo "	<td style='border-left: 1px solid #444; border-right: 1px solid #444; text-align: center; background-color: #0066ff;'>";
+							echo "      <input type='checkbox' name='marca[]' value='1' class='marca' checked='checked' title='Incluir' eh-tabela='0' eh-coluna='0' eh-campo='1' tabela='{$indiceNomeTabela}' coluna='{$indiceNomeColuna}' />";
+							echo "      <input type='hidden' name='tipo[]' value='" . htmlspecialchars($indiceNomeCampo, ENT_QUOTES) . "' />";
+							echo "      <input type='hidden' name='valor[]' value='" . htmlspecialchars($campo[0], ENT_QUOTES) . "' />";
+							echo "      <input type='hidden' name='acao[]' value='I' />";
+							echo "  </td>";
+							echo "	<td style='padding-left: 30px;'>---</td>";
+							echo "</tr>";
+							$x++;
+							
+						} else if ($campo[1] == "A") {
+							echo "<tr tabela='{$indiceNomeTabela}' coluna='{$indiceNomeColuna}'>";
+							echo "	<td style='padding-left: 30px;'>" . htmlspecialchars($campo[0], ENT_QUOTES) . "</td>";
+							echo "	<td style='border-left: 1px solid #444; border-right: 1px solid #444; text-align: center; background-color: #339900;'>";
+							echo "      <input type='checkbox' name='marca[]' value='1' class='marca' checked='checked' title='Alterar' eh-tabela='0' eh-coluna='0' eh-campo='1' tabela='{$indiceNomeTabela}' coluna='{$indiceNomeColuna}' />";
+							echo "      <input type='hidden' name='tipo[]' value='" . htmlspecialchars($indiceNomeCampo, ENT_QUOTES) . "' />";
+							echo "      <input type='hidden' name='valor[]' value='" . htmlspecialchars($campo[0], ENT_QUOTES) . "' />";
+							echo "      <input type='hidden' name='acao[]' value='A' />";
+							echo "  </td>";
+							echo "	<td style='padding-left: 30px;'>{$this->resTabelasR[$indiceNomeTabela][$indiceNomeColuna][$indiceNomeCampo]}</td>";
+							echo "</tr>";
+							$x++;
+							
+						}
+						
+					}
+					
+					$z++;
+					
+				}
+				
+			}
+		     
+		}
+		
+		echo "</table>";
+	}
+	?>
+</fieldset>
+</form>
+<br />
+<?php 
+// Captura a sessão
+$sessao = new Zend_Session_Namespace('portoweb');
+if($sessao->indiceLetra != -1) {
+?>
+<script type="text/javascript">
+	$(document).ready(function() {
+		//window.setTimeout("$('#botao-salvar').click();", 1000);
+	});
+</script>
+<?php 
+}
+?>

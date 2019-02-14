@@ -1,0 +1,119 @@
+<?php echo $this->doctype() . "\n"; ?>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <link href="<?php echo $this->baseUrl(); ?>/public/styles/base.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo $this->baseUrl(); ?>/public/styles/default/gera-rel.css" rel="stylesheet" type="text/css" />
+    <title><?php echo $this->no_relatorio; ?></title>
+</head>
+
+<body>
+
+    <table id="outrosBotoesRel">
+        <tr>
+            <td>
+                <a href="#" class="links-rel" onClick="submitForm('pdf')">
+                    <img src="<?php echo $this->baseUrl(); ?>/public/images/pdf.gif" width="19" height="20" vspace="2" border="0"> {lb_acao_imprimir}
+                </a>
+                <input name="acao" type="hidden" id="acao">
+            </td>
+        </tr>
+        <!-- START BLOCK : grafico -->
+        <tr>
+            <td>
+                <a href="analise_frameset.php" class="links-rel">
+                    <img src="<?php echo $this->baseUrl(); ?>/public/images/analise.gif" width="20" height="20" vspace="2" border="0"> {lb_acao_analise}
+                </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="grafico_frameset.php" class="links-rel">
+                    <img src="<?php echo $this->baseUrl(); ?>/public/images/grafico.gif" width="20" height="20" vspace="2" border="0"> {lb_acao_grafico}
+                </a>
+            </td>
+        </tr>
+        <!-- END BLOCK : grafico -->
+        <tr>
+            <td>
+                <a href="#" class="links-rel" onClick="submitForm('xls')">
+                    <img src="<?php echo $this->baseUrl(); ?>/public/images/excel.gif" width="20" height="20" vspace="2" border="0"> {lb_acao_xls}
+                </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="#" class="links-rel" onClick="submitForm('txt')">
+                    <img src="<?php echo $this->baseUrl(); ?>/public/images/txt.gif" width="14" height="20" vspace="2" border="0"> {lb_acao_txt}
+                </a>
+            </td>
+        </tr>
+    </table>
+    <br>
+    
+    <table id="tituloRel">
+        <tbody>
+            <tr>
+                <td rowspan="2" style="text-align: left; width: 50px;">
+                    <img src="<?php echo $this->baseUrl(); ?>/public/images/logo_porto.jpg" width="49px" height="47px">
+                </td>
+                <td>
+                    <strong><?php echo $this->no_porto; ?></strong>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?php echo $this->no_relatorio; ?>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    
+    <table id="listaRel">
+        <thead>
+            <tr>
+            <?php 
+            foreach($this->cabecalho as $indice => $valor) {
+            ?>
+                <th><?php echo $valor; ?></th>
+            <?php 
+            }
+            ?>
+            </tr>
+        </thead>
+        <tbody>
+            <?php 
+            foreach($this->resultado as $dados) {
+            ?>
+            <tr>
+                <?php 
+                $fundo = "";
+                $s1    = "";
+                $s2    = "";
+                if(in_array('TOTAL', $dados) !== false || in_array('SUBTOTAL', $dados) !== false) {
+                    $fundo = "style='background-color: #ccc;'";
+                    $s1    = "<strong>";
+                    $s2    = "</strong>";
+                }
+                
+                foreach($dados as $indice => $valor) {
+                ?>
+                <td <?php echo $fundo; ?>>
+                    <?php echo $s1 . $valor . $s2; ?>
+                </td>
+                <?php 
+                }
+                ?>
+            </tr>
+            <?php 
+            }
+            ?>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="6">&nbsp;</td>
+            </tr>
+        </tfoot>
+    </table>
+    
+    <!-- START BLOCK : notfound -->
+    <script language="javascript">
+        //alert('{msg_nenhum_reg}');
+    </script>
+    <!-- START BLOCK : notfound -->
+    
+</body>
+</html>

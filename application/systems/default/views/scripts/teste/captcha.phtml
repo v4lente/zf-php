@@ -1,0 +1,17 @@
+<?php 
+$id = $this->captcha->generate();
+?>
+
+<form method="post" action="<?=$this->baseUrl();?>/teste/index">
+<?php
+
+echo $_SERVER['REMOTE_ADDR']."<br />";
+
+echo $this->captcha->render($this);
+?>
+
+<input type="text" name="captcha[input]" />
+<input type="hidden" name="captcha[id]" value="<?=$id?>" />
+
+<input type="submit" name="submit" value="Submit" />
+</form>

@@ -1,0 +1,42 @@
+#botao-ajuda {
+   	display: none;
+}
+
+th._cd_transacao {
+    width: 4%;
+}
+
+th.cd_sistema {
+    width: 20%;
+}
+
+th.cd_menu {
+    width: 20%;
+}
+
+th.cd_transacao {
+    width: 19%;
+}
+
+th.fl_permissao {
+    width: 20%;
+}
+
+th.dt_acesso_ini {
+	width: 22%;
+    text-align: center;
+}
+
+td.dt_acesso_ini {
+    width: 8%;
+    text-align: center;
+}
+
+td.dt_acesso_fim {
+    width: 8%;
+    text-align: center;
+}
+
+textarea {
+    height: 50px !important;
+}

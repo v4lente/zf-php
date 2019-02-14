@@ -1,0 +1,51 @@
+#botao-limpar {
+    display: none !important;
+}
+
+th.cd_acao {
+    width: 10%;
+}
+
+th.no_acao {
+    width: 30%;
+}
+
+th.ord_acao {
+    width: 10%;
+}
+
+th.ds_acao {
+    width: 20%;
+}
+
+th.lnk_img_acao {
+    width: 15%;
+}
+
+th.fl_menu {
+    width: 15%;
+}
+
+input {
+    width: 88%;
+}
+
+input.i_cd_acao {
+    width: 99% !important;
+}
+
+input.i_ord_acao {
+    width: 99% !important;
+}
+
+input.i_ds_acao {
+    width: 99% !important;
+}
+
+input.i_lnk_img_acao {
+    width: 99% !important;
+}
+
+input.i_fl_menu {
+    width: 99% !important;
+}

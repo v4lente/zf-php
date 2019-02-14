@@ -1,0 +1,93 @@
+#botao-novo {
+	display: none !important;
+}
+
+#botao-salvar {
+	display: none !important;
+}
+
+#botao-excluir {
+	display: none !important;
+}
+
+#botao-relatorio{
+	display: none !important;
+}
+
+#botao-voltar{
+	display: none !important;
+}
+
+input {
+	width: 100px;
+}
+
+.abre_par {
+    width: 4%;
+    text-align: center !important;
+}
+
+.coluna {
+    width: 30%;
+    text-align: left !important;
+}
+
+.tp_ligacao {
+    width: 15%;
+    text-align: left !important;
+}
+
+.ds_complemento {
+    width: 25%;
+    text-align: left !important;
+}
+
+.lig_int_par {
+    width: 10%;
+    text-align: center !important;
+}
+
+.fecha_par {
+    width: 4%;
+    text-align: center !important;
+}
+
+.lig_ext_par {
+    width: 10%;
+    text-align: center !important;
+}
+
+.coluna input {
+    width: 97%;
+    text-align: left;
+}
+
+.ds_complemento input {
+    width: 97%;
+    text-align: left;
+}
+
+.tp_ligacao input {
+    width: 97%;
+    text-align: left;
+}
+
+.lig_int_par input {
+    width: 85%;
+    text-align: left;
+}
+
+.lig_ext_par input {
+    width: 85%;
+    text-align: left;
+}
+
+.abre_par input {
+    width: 95%;
+    text-align: center !important;
+}
+
+.fecha_par input {
+    width: 95%;
+    text-align: center !important;
+}

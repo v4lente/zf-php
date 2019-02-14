@@ -1,0 +1,21 @@
+<?php 
+
+// Define o título
+$titulo = "Eventos do Usuário";
+
+// Converte o resultado para array
+$resultado = $this->resConsulta->toArray();
+
+// Monta o array com os campos da consulta que serão mostrados no relatório. -> (Obrigatório)
+// Total 190 mm somando todos os campos para A4 tipo Retrato (P: Portrait)
+// ou 277 mm somando todos os campos para A4 tipo Paisagem (L: Landscape)
+// No WIDTH colocar a porcentagem de cada campo, máximo 100% de todos os campos juntos.
+$campos = array("USUARIO"      => array("width"=>00, "text-align"=>"left",   "title"=>"Usuários", "group" => true),
+				"DTHR_ACESSO"  => array("width"=>15, "text-align"=>"center", "title"=>"Data/Hora Acesso"),
+                "NO_TRANSACAO" => array("width"=>35, "text-align"=>"left",   "title"=>"Transação"),
+                "NO_SISTEMA"   => array("width"=>35, "text-align"=>"left",   "title"=>"Sistema"),
+                "TIPO_SISTEMA" => array("width"=>15, "text-align"=>"left",   "title"=>"Tipo"));
+
+// Chama o view helper que gerará o relatório
+$this->geraRelatorio($resultado, $titulo, $campos, $this->extraParams["_rel_metodo"]);
+?>

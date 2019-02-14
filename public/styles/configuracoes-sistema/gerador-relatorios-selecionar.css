@@ -1,0 +1,24 @@
+#botao-novo {
+	display: none !important;
+}
+
+#botao-salvar {
+	display: none !important;
+}
+
+#botao-excluir {
+	display: none !important;
+}
+
+#botao-relatorio{
+	display: block !important;
+}
+
+#botao-voltar{
+	display: none !important;
+}
+
+input {
+	width: 150px !important;
+}
+

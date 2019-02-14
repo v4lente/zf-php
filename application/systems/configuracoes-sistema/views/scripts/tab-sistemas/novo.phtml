@@ -1,0 +1,26 @@
+<?php
+// Seta o título
+$this->headTitle("Sistemas - Novo");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Novo</legend>
+        
+        <table class='tabela nao-selecionavel' >                  
+            <thead>
+                <tr>
+                    <th style='width:20%;'>Código</th>
+                    <th style='width:80%;'>Sistema</th>                    
+                </tr>
+            </thead>
+            <tbody>
+				<tr class=''>                          
+	                <td><?php echo $this->formText("cd_sistema", null, array('class'=>'auto-complete-x required stru', 'alt'=>'Código', 'maxlength'=>'3' ,'style'=>'width:98%;'));?></td>                                                   
+	                <td><?php echo $this->formText("no_sistema", null, array('class'=>'auto-complete-x required stru', 'alt'=>'Sistema',   'maxlength'=>'20', 'style'=>'width:70%;'));?></td>                
+                </tr>                    
+            </tbody>
+        </table>        
+    </fieldset>    
+</form>

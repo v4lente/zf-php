@@ -1,0 +1,55 @@
+<?php
+// Seta o título
+$this->headTitle("Relatório de Grupos de Acesso");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_pesquisar" method="post" accept-submit="false" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Pesquisa</legend>
+
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="grupos">Grupo:</label>
+                <?php
+                echo "<select id='cd_grupo' name='cd_grupo'>";
+                echo "<option label=' -- Selecione -- ' value='_null_'> -- Selecione -- </option>"; 
+                foreach($this->grupos as $grupo) {
+                    echo "<option label='{$grupo->NO_GRUPO}' value='{$grupo->CD_GRUPO}' ambiente='{$grupo->AMBIENTE}'>{$grupo->NO_GRUPO}</option>";
+                }
+                echo "</select>";
+                ?>
+            </div>
+
+            <div class="right">
+                <label class="label_direita">Ambiente:</label>
+                <span id="ambiente"></span>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="usuario">Usuário:</label>
+                <?php echo $this->formText("no_usuario", "", array('class'=>'auto-complete-x'));?>
+                <?php echo $this->formHidden("cd_usuario", "");?>
+            </div>
+        </div>
+
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="dt_acesso_ini">Período:</label>
+                <?php echo $this->formText("dt_acesso_ini", "", array('class'=>'data', 'alt'=>'Período Inicial'));?> à 
+                <?php echo $this->formText("dt_acesso_fim", "", array('class'=>'data', 'alt'=>'Período Final'));?> 
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="agrupamento">Agrupamento:</label>
+                <?php echo $this->formRadio("agrupamento", "G", array('alt'=>'Período Inicial'), array("G"=>"Grupo", "U"=>"Usuário"), "");?> 
+            </div>
+        </div>
+        
+    </fieldset>
+    
+</form>

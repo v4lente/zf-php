@@ -1,0 +1,22 @@
+th.cd_consulta {
+    width: 10%;
+    text-align: right !important;
+}
+
+th.titulo {
+    width: 60%;
+    text-align: left !important;
+}
+
+th.dthr_cadastro {
+    width: 10%;
+}
+
+th.fl_ativo {
+    width: 5%;
+}
+
+th.tabs_vinc {
+    width: 15%;
+    text-align: left !important;
+}

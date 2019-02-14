@@ -1,0 +1,42 @@
+<?php
+// Seta o título
+$this->headTitle("Grupos - Editar");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Editar</legend>
+        
+        <?php echo $this->formHidden("cd_usuario", $this->form['cd_usuario']);?>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="cd_grupo1">Código do Grupo:</label>
+                <?php echo $this->formText("cd_grupo", $this->form['cd_grupo'], array('readonly'=>'readonly', 'maxlength'=>'5'));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="no_grupo">Nome do Grupo:</label>
+                <?php echo $this->formText("no_grupo", $this->form['no_grupo'], array('readonly'=>'readonly', 'maxlength'=>'45')); ?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="ds_grupo">Descrição do Grupo:</label>
+                <?php echo $this->formTextarea("ds_grupo", $this->form['ds_grupo'], array('readonly'=>'readonly', 'maxlength'=>'300'));?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="dt_acesso_ini">Período de acesso:</label>
+                <?php echo $this->formText("dt_acesso_ini", $this->form['dt_acesso_ini'], array('disabled'=>'disabled', 'maxlength'=>'10', 'class'=>'data required', 'alt'=>'Período Inicial'));?>
+                <?php echo $this->formText("dt_acesso_fim", $this->form['dt_acesso_fim'], array('maxlength'=>'10', 'class'=>'data', 'alt'=>'Período Final'));?>
+            </div>
+        </div>
+        
+    </fieldset>
+    
+</form>

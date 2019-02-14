@@ -1,0 +1,23 @@
+#botao-ajuda {
+   	display: none;
+}
+
+th.no_acao {
+    width: 20%;
+}
+
+th.ds_acao {
+    width: 56%;
+}
+
+th.fl_menu {
+    width: 12%;
+}
+
+th.ord_acao {
+    width: 12%;
+}
+
+textarea {
+    height: 50px !important;
+}

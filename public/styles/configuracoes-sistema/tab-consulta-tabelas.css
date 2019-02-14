@@ -1,0 +1,23 @@
+#botao-ajuda {
+   	display: none;
+}
+
+input.noColuna {
+    width: 98%;
+}
+
+input.noCabecalho {
+    width: 98%;
+}
+
+input.nrPosicao {
+    width: 98%;
+}
+
+input.tamLargura {
+    width: 98%;
+}
+
+input.nrOrdenacao {
+    width: 98%;
+}

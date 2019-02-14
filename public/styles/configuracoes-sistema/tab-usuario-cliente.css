@@ -1,0 +1,23 @@
+#botao-ajuda {
+   	display: none;
+}
+
+#botao-limpar {
+   	display: none !important;
+}
+
+th.cd_cliente {
+    width: 10%;
+}
+
+th.razao_social {
+    width: 75%;
+}
+
+th.fl_principal {
+    width: 15%;
+}
+
+textarea {
+    height: 50px !important;
+}

@@ -1,0 +1,53 @@
+<?php
+// Seta o título
+$this->headTitle("Colunas - Pesquisa");
+?>
+
+<table class='tabela nao-selecionavel' id='tabelaConsulta'>
+<?php
+// Se a consulta foi feita mostra os dados
+if(count($this->paginator)) {
+?>
+    <thead>
+      <tr>
+          <th class='cd_sistema' column='cd_sistema'>Código<div class='img_seta'></div></th>
+          <th class='no_sistema' column='no_sistema'>Sistema<div class='img_seta'></div></th>
+          <th>&nbsp;</th>                    
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+          <td colspan='3'><?php echo $this->paginationControl($this->paginator, 'Sliding', 'controle_paginacao.phtml', array('extraParams' => $this->extraParams)); ?></td>
+      </tr>
+    </tfoot>
+    <tbody>
+    <?php
+    $i=0;
+    foreach($this->paginator as $linha)
+    {
+        $key = "cd_sistema/{$linha->CD_SISTEMA}";
+
+    ?>
+        <tr class='linha' key='<?php echo $key; ?>'>
+          <td class='cd_sistema stru'> <?php echo $linha->CD_SISTEMA;?></td>
+          <td class='no_sistema stru'> <?php echo $linha->NO_SISTEMA;?></td>
+          <td align="right"><div class="excluirLinha"><img alt="Excluir o registro" src="<?php echo $this->baseUrl("public/images/botoes/16x16_deletar.png");?>"/></div></td>
+        </tr>
+   <?php
+        $i++;
+    }
+    ?>
+	</tbody>
+
+    <?php
+} else {
+   ?>
+    <tfoot>
+      <tr>
+          <td colspan='3' class='paginacaoLinhaTabela' style='padding: 5px;'>Nenhum registo encontrado.</td>
+      </tr>
+    </tfoot>
+<?php
+}
+?>
+</table>

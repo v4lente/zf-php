@@ -1,0 +1,58 @@
+<div style='text-align: center;'>
+    <h1>Atualização das tabelas da Receita federal</h1>
+    <br />
+    <h2>Primeiramente, desabilitar as triguers antes de começar os processos.</h2>
+    <br />
+    <a onclick='Base.mostraTelaCarregando();' href="<?php echo $this->baseUrl(); ?>/default/rfb/index">Início.</a>
+    <br /><br /><br />
+    <a onclick='Base.mostraTelaCarregando();' href="<?php echo $this->baseUrl(); ?>/default/rfb/mostra-tabelas-sem-chave-primaria">Mostra as tabelas sem chave primária.</a>
+    <br /><br /><br />
+    <a onclick='Base.mostraTelaCarregando();' href="<?php echo $this->baseUrl(); ?>/default/rfb/cria-colunas-tabelas-rfb">Gerar script para criação das colunas especiais nas tabelas. Este script<br /> 
+    deverá ser colado no Toad e executado com um f5.</a>
+    <br /><br /><br />
+    <h3>Atualiza o código sequencial na coluna SEQ_VERSAO nas tabelas. Deve-se<br /> 
+    gerar tabela por tabela, pois muitas contém muitos registros,<br /> podendo travar caso tente gerar todas ao mesmo tempo.<br /> Outra coisa é prestar atenção nas 
+    tabelas sem chave primária,<br /> pois estas deverão ser geradas de outra forma.</h3>
+    <br />
+    <?php 
+        $db = Zend_Registry::get("db");    
+        $tempoTotal = 0;
+        foreach($this->tabelas as $tabela) {
+            
+        	if(strlen($tabela[0]) > 26) {
+        		$tempoTabela = 0;
+                
+                echo "<br /><br /><span style='color: red;'>{$tabela[0]}</span> | Nome da tabela muito grande, maior que 23 caracteres. | Tamanho nome: " . strlen($tabela[0]);
+                
+        	} else {
+        		 
+	            try {
+	                // Busca o tempo médio para cada tabela
+	                $select3 = $db->select()
+	                              ->from(array($tabela[0]), array("TOTAL" => new Zend_Db_Expr("COUNT(*)")));
+	                              
+	                // Busca o total de registros da tabela corrente
+	                $resultado3 = $db->fetchRow($select3);
+	                
+	                // Calcula o tempo médio de uma tabela
+	                $tempoTabela = ($resultado3->TOTAL / 25000) + 0.05;
+	                
+	                echo "<br /><br /><a onclick='Base.mostraTelaCarregando();' href='{$this->baseUrl()}/default/rfb/atualiza-colunas-tabelas-rfb/tabela/{$tabela[0]}'>{$tabela[0]}</a> | Total de registros: " . $resultado3->TOTAL ." | + ou - " . number_format($tempoTabela, 2, '.', '') . " minutos | Tamanho nome: " . strlen($tabela[0]);
+	                
+	            } catch (Exception $e) {
+	                $tempoTabela = 0;
+	                
+	                echo "<br /><br /><span style='color: red;'>{$tabela[0]}</span> | Tabela inexistente.";
+	            }
+				
+        	}
+            
+            // Incrementa o tempo total
+            $tempoTotal += $tempoTabela;
+            
+        }
+        
+        echo "<br /><br /><strong>Média total de tempo para atutalizar todas as tabelas: </strong>" . number_format($tempoTotal, 2, '.', '') . " minutos<br />";
+    ?>
+    <br /><br />
+</div>

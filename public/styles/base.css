@@ -1,0 +1,1160 @@
+/*
+ * Estilo padrão que será chamado no layout e 
+ * será utilizada em todas as views
+ */
+html, body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    border: 0px solid #f00;
+}
+
+body {
+    overflow-x: hidden;
+    border: 0px solid #f00;
+    text-align: center;
+    font-family: Arial;
+    font-size: 12px;
+    background-color: #fff;
+    color: #444444;
+}
+
+h4 {
+    font-size: 14px;
+}
+
+dl,dt,dd {
+    padding: 0px;
+    margin: 0px;
+    height: 0px;
+    width: 0px;
+}
+
+input[type='text'], input[type='password'] {
+    height: 19px;
+    padding-top: 2px;
+    padding-bottom: 1px;
+    border: 1px solid #aaa;
+    border-bottom-left-radius: 5px; 
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px; 
+    border-top-right-radius: 5px;
+    font-family: Arial;
+    font-size: 12px;
+}
+
+select {
+    height: 24px;
+    padding-top: 0px;
+    width: 254px;
+    border: 1px solid #aaa;
+    font-family: Arial;
+    font-size: 12px;
+}
+
+textarea {
+    font-family: Arial;
+    font-size: 12px;
+    min-height: 50px;
+    padding-top: 2px;
+    padding-bottom: 1px;
+    border: 1px solid #aaa;
+    border-bottom-left-radius: 5px; 
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px; 
+    border-top-right-radius: 5px;
+}
+
+#distancia {
+    margin: 0 auto;
+    width: 1px;
+    height: 50%;
+    margin-bottom: -9em;
+    /* Metade da altura do nosso box que ficará centralizado */
+    float: left;
+    border: 0px solid #00f;
+    display: none;
+}
+
+#container {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    /* Coloca o container frente ao elemento com o id distance */
+    text-align: left;
+    clear: left;
+    border: 0px solid #00f !important;
+}
+
+#container #tituloForm {
+    width: 100%;
+    height: 30px;   
+    color: #fff;    
+    text-align: center;
+    line-height: 30px;  
+    padding-top: 2px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+#container #palhetaControle {
+    width: 100%;
+    min-height: 38px;
+    color: #444;
+    font-size: 12px;
+    padding: 0px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #f1f3f5;
+    display: none;
+}
+
+#container #palhetaControle #palhetaEsquerda {
+    min-width: 55px;
+    min-height: 36px;
+    float: left;
+}
+
+#container #palhetaControle #palhetaDireita {
+    min-width: 55px;
+    min-height: 36px;
+    float: right;
+}
+
+#container #palhetaControle #palhetaDireita #botoesFixos {
+    min-width: 1px;
+    min-height: 36px;
+    float: right;
+    margin-right: 5px;
+}
+
+#container #palhetaControle #palhetaDireita #botoes {
+    min-width: 1px;
+    min-height: 36px;
+    float: right;
+    margin-right: 5px;
+}
+
+#container #palhetaControle #palhetaDireita #botoesAba {
+    min-width: 1px; 
+    margin-right: 5px; 
+    display: none; 
+    float: right;
+}
+
+#container #palhetaControle .palhetaBotoes {
+    width: 32px;
+    height: 32px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-left: 5px;
+    margin-right: 0px;
+    border: 0px solid #f1f3f5;
+    background-repeat: no-repeat;
+    float: right;
+    cursor: pointer;
+}
+
+/* Controla os botões das abas */
+#container #palhetaControleAba {
+    width: 100%;
+    height: 25px;
+    color: #444;
+    font-size: 12px;
+    padding: 0px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #f1f3f5;
+    background-color: #ccc;
+}
+
+#container #palhetaControleAba #palhetaEsquerdaAba {
+    min-width: 55px;
+    height: 18px;
+    float: left;
+    display: none;
+}
+
+#container #palhetaControleAba #palhetaDireitaAba {
+    min-width: 55px;
+    height: 18px;
+    margin: 2px;
+    float: right;
+    display: none;
+}
+
+#container #palhetaControleAba .palhetaBotoesAba {
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 0px;
+    border: 0px solid #f1f3f5;
+    background-repeat: no-repeat;
+    float: right;
+    cursor: pointer;
+}
+
+#tabs {
+    margin-top: 12px;
+}
+
+#tabs #tabs_ul {
+    -moz-border-radius: 5px 5px 0 0 !important;
+    background-color: #ccc !important;
+    background-image: none !important;
+    border: 0px solid #ccc !important;
+    float: left;
+    height: 20px;
+    padding-top: 3px;
+    position: absolute;
+    top: 4px;
+    width: 80% !important;
+}
+
+#tabs #tabs_ul li {
+	position: relative;	
+}
+
+#tabs #tabs_ul li.ui-state-active {
+	background: url("../js/jquery/jquery-ui/development-bundle/themes/marca/images/ui-bg_gloss-wave_55_4e639c_500x100.png") repeat-x scroll 50% 50% #4E639C !important;
+}
+
+#tabs #tabs_ul li.ui-state-active a {
+	color: #fff !important;
+}
+
+#tabs .grupo {
+	padding-top: 2px !important; 
+	padding-bottom: 2px !important;
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
+
+/******************************************** 
+ * INÍCIO dos botões da palheta
+ *  
+ */
+ 
+.palhetaBotoes {
+    display: none;
+}
+
+#container #botao-ajuda {   
+    display: block;
+}
+
+#container #botao-novo {   
+    display: none;
+}
+
+#container #botao-salvar {
+    display: none;
+}
+
+#container #botao-excluir {
+    display: none;
+}
+
+#container #botao-pesquisar {
+    display: none;
+}
+
+#container #botao-tela-pesquisa {
+    display: none;
+}
+
+#container #botao-enviar {
+    display: none;
+}
+
+#container #botao-receber {
+    display: none;
+}
+
+#container #botao-voltar {
+    display: none;
+}
+
+#container #botao-relatorio {
+    display: none;
+}
+
+#container #botao-limpar {
+    display: none;
+}
+
+#container #botao-download {
+    display: none;
+}
+
+#container #botao-calcular {
+    display: none;
+}
+
+#container #botao-ajuda {  
+}
+
+/*
+#container #botaoSair {
+    margin-right: 5px;
+}
+*/
+div#botao-configuracao span{
+    font-weight: bold;
+}
+div#botao-sair span{
+    font-weight: bold;
+}
+div#botao-configuracao span:hover{
+    text-decoration: underline; 
+    color: #1A379B;
+    cursor: pointer;
+}
+div#botao-configuracao img{ 
+    cursor: pointer;
+}
+div#botao-sair span:hover{  
+    text-decoration: underline; 
+    color: red;
+    cursor: pointer;
+}
+div#botao-sair img{
+    cursor: pointer;
+}
+
+/********* 18/08/2010 ********************
+ *      Formata a tabela da listagem
+ */
+
+.tabela {
+    width: 96%;
+    min-width: 990px;
+    margin: 8px auto;
+    border: 1px solid #aaa;
+    /*border-collapse: collapse;*/
+    border-spacing: 0px;
+}
+
+.tabela thead {
+    font-weight: bold;
+    color: #fff;
+    background-color: #005;
+}
+
+.tabela thead tr th {
+	border-bottom: 1px solid #ccc;
+	text-align: center;
+}
+
+.tabela thead tr th.sem_borda {
+    border-right: 0;
+}
+
+.tabela tbody tr td:nth-child(1n) {
+	border-right: 1px solid #e5e7e9;
+}
+
+.tabela tbody tr td:last-child {
+	border-right: 0px solid #e5e7e9;
+}
+
+.tabela tbody tr td {
+    border-bottom: 1px solid #ccc;
+    padding: 2px;
+    vertical-align: top;
+}
+
+.tabela tbody tr.par {
+    background-color: #ddd;
+}
+
+.tabela tbody tr.impar {
+    background-color: #fff;
+}
+
+.tabela tbody tr.hover {
+    background-color: #f7cd47 !important;
+    cursor: pointer;
+}
+
+.tabela tfoot tr td {
+    color: #005;
+    padding: 20px 0px 10px 0px;
+    text-align: center;
+    border-top: 1px solid #ccc;
+}
+
+.tabela tfoot tr td a:link {
+    color: #008;
+    text-decoration: none;
+}
+
+.tabela tfoot tr td a:visited {
+    color: #008;
+    text-decoration: none;
+}
+
+.tabela tfoot tr td a:hover {
+    color: #800;
+    text-decoration: none;
+}
+
+.tabela tfoot tr td a:active {
+    color: #008;
+    text-decoration: none;
+}
+
+.nao-selecionavel tbody tr:hover {
+    cursor: default;
+}
+/********* 25/08/2010 ********************
+ *      Formata a tabela dentro das abas
+ */
+.tabelaAbas {
+    width: 98%;
+    margin: 15px auto;
+    border: 1px solid #aaa;
+    /*border-collapse: collapse;*/
+    border-spacing: 0px;
+}
+
+.tabelaAbas thead {
+    font-weight: bold;
+    color: #444;
+    background-color: #ddd;
+    border-bottom: 1px solid #aaa;
+}
+
+.tabelaAbas thead tr th {
+	border-bottom: 1px solid #ccc;
+	text-align: center;
+}
+
+.tabelaAbas thead tr th.sem_borda {
+    border-right: 0;
+}
+
+.tabelaAbas tbody tr td:nth-child(1n) {
+	border-right: 1px solid #e5e7e9;
+}
+
+.tabelaAbas tbody tr td:last-child {
+	border-right: 0px solid #e5e7e9;
+}
+
+.tabelaAbas tbody tr td {
+    padding: 6px 6px 4px;
+    border-bottom: 1px solid #aaa;
+    padding: 2px;
+    vertical-align: top;
+}
+
+.tabelaAbas tbody tr.par {
+    background-color: #ddd;
+}
+
+.tabelaAbas tbody tr.impar {
+    background-color: #fff;
+}
+
+.tabelaAbas tbody tr.hover {
+    background-color: #f7cd47 !important;
+}
+
+.tabelaAbas tfoot tr td {
+    color: #900;
+    padding: 5px;
+    text-align: center;
+    border-top: 1px solid #ccc;
+}
+
+fieldset {
+    width: 95%;
+    min-width: 980px;
+    margin: 5px auto;
+    padding: 5px;
+    border: 1px solid #aaa;
+    display: block !important;
+    min-height: 33px;
+    -moz-border-radius: 5px 5px 5px 5px;
+}
+
+fieldset legend {
+    color: #444444;
+    font-weight:bold;
+    font-size: 13px;    
+}
+
+input {
+    background-color: #fff;
+}
+
+input.disabled {
+    background-color: #ccc;
+}
+
+input:FOCUS {
+    background-color: #ffff99;
+}
+
+input[readonly="readonly"] {
+    background-color: #ccc !important;
+}
+
+input[disabled="disabled"] {
+    background-color: #ccc !important;
+}
+
+input.disabled:FOCUS {
+    background-color: #ccc !important;
+}
+
+input[readonly="readonly"]:FOCUS {
+    background-color: #ccc !important;
+}
+
+input[disabled="disabled"]:FOCUS {
+    background-color: #ccc !important;
+}
+
+input[type="button"] {
+    background-color: #f8f5e4\9;
+}
+
+input[type="submit"] {
+    background-color: #f8f5e4\9;
+}
+
+textarea { 
+    background-color: #fff; 
+}
+
+textarea.disabled { 
+    background-color: #ccc; 
+}
+
+textarea:FOCUS { 
+    background-color: #ff9; 
+}
+
+textarea[readonly="readonly"] {
+    background-color: #ccc;
+}
+
+textarea[disabled="disabled"] {
+    background-color: #ccc;
+}
+
+textarea.disabled:FOCUS { 
+    background-color: #ccc !important; 
+}
+
+textarea[readonly="readonly"]:FOCUS {
+    background-color: #ccc !important;
+}
+
+textarea[disabled="disabled"]:FOCUS {
+    background-color: #ccc !important;
+}
+
+.ui-datepicker-trigger {
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-bottom: -5px;
+}
+
+.telaCheia {
+    display: none;
+    opacity: 0.65;
+    -moz-opacity: 0.65;
+    filter: alpha(opacity = 65);
+}
+
+/***************** Bruno -> 13/07/2010 ***********
+ *        Definições do layout dos formulários
+ */
+
+div.formulario {
+    width: 100%;
+    margin: 15px auto;
+    border-collapse: collapse;
+}
+
+div.formulario label {
+    float: left;
+    width: 30%;
+    margin-right: 10px;
+}
+
+form fieldset div.linha {
+    display: block;
+    margin-bottom: 6px;
+    min-height: 25px;
+}
+
+form fieldset div.linha .ano {
+    width: 50px !important;
+    
+}
+
+form fieldset div.linha textarea {
+    height: 30px; 
+    width: 82%;
+}
+
+form fieldset div.center {
+    width: 99%;
+    float: left;
+}
+
+form fieldset div.center in {
+    width: 99%;        
+}
+
+form fieldset div.left {
+    width: 49%;
+    float: left;
+    min-height: 22px;
+}
+
+.linha_grid .left {
+    width: 80px;
+}
+
+form fieldset div.full {
+    width: 99.8%;
+    float: left;
+    min-height: 22px;
+}
+
+form fieldset div.right {
+    width: 49%;
+    float: right;
+    min-height: 22px;
+}
+
+form fieldset div.clear {
+    clear: both;
+}
+
+div fieldset .label_direita {    
+    width: 30%;
+    line-height: 21px;
+}
+
+div fieldset .label_esquerda {    
+    width: 30%;
+    line-height: 21px;    
+}
+
+div fieldset label{
+    float: left; 
+    display: block;
+    text-align: right;
+    margin-right: 5px;    
+}
+
+/************* center */
+div.linha > div.center > input[type='text'] {
+    width: 30%;
+}
+
+div.linha > div.center > input[type='password'] {
+    width: 30%;
+}
+
+div.linha > div.center > textarea {
+    width: 30%;
+}
+
+div.linha > div.center > select {
+    width: 30%;
+}
+
+div.linha > div.center > .label_esquerda {
+    width: 30%;
+}
+
+div.linha > div.center > textarea {
+    width: 30%;
+}
+
+div.linha > div.center > input.picklist {
+    width: 30%;
+    margin-right: -2px;
+}
+
+div.linha > div.center > input.picklistDb {
+    width: 30%;
+}
+/************/
+
+
+
+div.linha > div.left > input[type='text'] {
+    width: 60%;
+}
+
+div.linha > div.left > input[type='password']  {
+    width: 60%;
+}
+
+
+div.linha > div.left > textarea {
+    width: 60%;
+}
+
+div.linha > div.left > select {
+    width: 60%;
+}
+
+div.linha > div.left > input.picklistDb {
+    width: 60%;
+}
+
+div.linha > div.left > input.picklist {
+    width: 32.5%;
+    margin-right: -2px;
+}
+
+div.linha > div.left > input[type="checkbox"] {
+    float: left;
+    margin: 0px 2px 0px 0px;
+}
+
+div.linha > div.left > input[type="radio"] {
+    float: left;
+    margin: 0px 2px 0px 0px;    
+}
+
+div.linha > div.right > input[type='text'] {
+    width: 60%;
+}
+
+div.linha > div.right > input[type='password']  {
+    width: 60%;
+}
+
+div.linha > div.right > textarea {
+    width: 62%;
+}
+
+div.linha > div.right > select {
+    width: 62%;
+}
+
+div.linha > div.right > input.picklistDb {
+    width: 60%;
+}
+
+div.linha > div.right > input.picklist {
+    width: 32.5%;
+    margin-right: -2px;
+}
+
+div.linha > div.right > input[type="checkbox"] {
+    float: left;
+    margin: 0px 2px 0px 0px;
+}
+
+div.linha > div.right > input[type="radio"] {
+    float: left;
+    margin: 0px 2px 0px 0px;    
+}
+
+div fieldset input[type="button"]{
+    height: 24px;
+    padding-top: 1px;
+}
+
+div.linha > div.full > .label_esquerda {
+    width: 14.8%;
+}
+
+div.linha > div.full > input[type='text'] {
+    width: 80.5%;
+}
+
+div.linha > div.full > input[type='password'] {
+    width: 80.5%;
+}
+
+div.linha > div.full > select {
+    width: 80.5%;
+}
+
+div.linha > div.full > textarea {
+    width: 80.5%;
+}
+
+div.linha > div.full > input.picklistDb {
+    width: 78.0% !important;
+}
+
+.img_seta {
+    float: right;
+    width: 15px;
+    height: 15px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.seta-baixo .img_seta {
+    background-image: url('../../images/seta_baixo.png');
+    background-repeat: no-repeat;
+}
+
+.seta-cima .img_seta {
+    background-image: url('../../images/seta_cima.png');
+    background-repeat: no-repeat;
+}
+
+.picklistDb {
+    background-image: url('../../images/lupa.gif');
+    background-repeat: no-repeat;
+    background-position: right;
+    padding-right: 20px;
+}
+
+.auto-complete-x {
+    background-image: url('../../images/lupa.gif');
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+.auto-complete-x2 {
+    background-color: #cccccc !important;
+}
+
+/***********************************/
+
+/* Seta os cursores para os botões nas abas */
+.confirmarLinha {
+    cursor: pointer;
+}
+
+.editarLinha {
+    cursor: pointer;
+}
+
+.deletarLinha {
+    cursor: pointer;
+}
+
+/* Estilo para os dados das abas */
+.tabs {
+    width: 95.5%;
+    min-width: 985px;
+    margin: 5px auto;
+}
+
+.tabs .liBotaoAba {
+    float: right !important; 
+    padding-top: 5px; 
+    padding-right: 2px;
+}
+
+.tabs .botaoAba {
+    cursor: pointer;
+}
+
+.tabs .barra_rolagem {
+    height: 236px;
+    overflow: auto;
+}
+
+.tabs .palhetaInterna {
+    min-height: 16px;
+    text-align: right;
+    padding: 2px;
+}
+
+.tabs .palhetaInterna img {
+    margin-right: 3px;
+}
+
+.tabs fieldset {
+    width: 100%;
+}
+
+form .tabs fieldset div.linha textarea {
+    width: 82.5% !important;
+}
+
+div .tabs fieldset .right .label_direita {
+    width: 56.6% !important;
+}
+
+div .tabs fieldset div.linha input.picklist {
+    width: 31% !important;
+}
+
+.tabs #tabelaConsulta .campoTabela {
+    height: 22px;
+    border: 0px solid #444;
+    background-color: #fff;
+}
+
+.tabelaAbas tbody tr {
+    cursor: pointer;
+    vertical-align:top;
+}
+
+.tabelaAbas thead tr td {
+    height: 20px;
+}
+
+.fs-central {
+    border: 1px solid #ccc;
+    background-color: #f1f3f5;
+    width: 95%;
+}
+
+.fs-interna {
+    float: left;
+    width: 420px;
+    padding-left: 10px;
+    padding-right: 10px;
+    paddign-top: 2px;
+    padding-bottom: 2px;
+    border: 1px solid #ccc;
+}
+
+.fs-central legend {
+    padding: 2px 5px;
+    border: 1px solid #ccc;
+    color: #ccc;
+    text-align: right;
+}
+
+.fs-central p {
+    float: left;
+    width: 99%;
+    margin-top: 2px;
+    margin-bottom: 0px;
+    padding: 1px;
+    border: 0px solid red;
+}
+
+.fs-central p label.optional {
+    float: left;
+    border: 0px solid #ccc;
+    width: 30%;
+    line-height: 24px;
+}
+
+.fs-central p input[type='text']  {
+    width: 39%;
+}
+
+.fs-central p input[type='password']  {
+    width: 39%;
+}
+
+.fs-central p textarea {
+    width: 39%;
+}
+
+.fs-central p select {
+    width: 39%;
+}
+
+.fs-central p .picklistDb {
+	width: 39%;
+}
+
+.sem_registro {
+    width: 95%;
+    margin: 0px auto;
+    padding: 5px;
+    border: 1px #ccc solid;
+    text-align: center;
+    font-weight: bold;
+    display: none;
+}
+
+/* FieldSet Filho */
+fieldset.fieldset-filho div.left label.label_esquerda {
+	width: 26.2%;
+}
+
+fieldset.fieldset-filho div.left input {
+	width: 63% !important;	
+}
+
+fieldset.fieldset-filho div.right label.label_direita {
+	width: 31.5%;
+}
+
+fieldset.fieldset-filho div.right input {
+	width: 63.5% !important;	
+}
+
+fieldset.fieldset-filho > div.linha > div.full > label.label_esquerda {
+	width: 12.8% !important;
+}
+
+fieldset.fieldset-filho > div.linha > div.full > input {
+	width: 85% !important;
+}
+
+fieldset.fieldset-filho > div.linha > div.full > textarea {
+	width: 85% !important;
+}
+
+/* CSS mensagem confirm */
+a.ui-dialog-titlebar-close {
+	display:none;
+}
+
+tr.par {
+    background-color: #eee;
+}
+
+tr.impar {
+    background-color: #fff;
+}
+
+tr.hover {
+    background-color: #f7cd47 !important;
+    cursor: pointer;
+}
+
+li.par {
+    background-color: #eee;
+}
+
+li.impar {
+    background-color: #fff;
+}
+
+li.hover {
+    background-color: #f7cd47 !important;
+    cursor: pointer;
+}
+
+#carregando {
+    width: 100%; 
+    height: 100%; 
+    opacity:0.0; 
+    -moz-opacity: 0.0; 
+    filter: alpha(opacity=0); 
+    background-color: #000; 
+    top: 0px; 
+    left: 0px; 
+    z-index: 999; 
+    position: absolute; 
+    display: none;
+}
+
+#protecao_tela {
+    width: 100%; 
+    height: 100%; 
+    opacity:0.1; 
+    -moz-opacity: 0.1; 
+    filter: alpha(opacity=0.1); 
+    background-color: #000; 
+    top: 0px; 
+    left: 0px; 
+    z-index: 500; 
+    position: absolute; 
+    display: none;
+}
+
+/* Define o tamanho dos iframes das abas */
+iframe {
+    width: 100%; 
+    min-height: 100px; 
+    border: 0px;
+}
+
+/* Paginação */
+span.disabled {
+    color: #aaa;
+}
+
+/*Criadas para funcionar no IE7 o "focus" em algum campo, ver Base.js para complemento*/
+input[type="text"].ieFocusHack {
+	background-color: #ff9;
+}
+
+input[type="password"].ieFocusHack {
+	background-color: #ff9;
+}
+
+textarea.ieFocusHack {
+	background-color: #ff9;
+}
+
+/* Janela Flutuante */
+#janela-flutuante {
+	width: 1100px; 
+	height: 600px; 
+	display: none; 
+	position: fixed; 
+	top: 10px; 
+	left: 50%;
+	margin-left: -550px; 
+	border: 1px solid #444; 
+	overflow: scroll; 
+	background-color: #fff; 
+	z-index: 1000;
+}
+
+#jfHeader {
+	width: 100%;
+	height: 20px;
+	border-bottom: 1px solid #ccc;
+	background: url("../js/jquery/jquery-ui/development-bundle/themes/marca/images/ui-bg_gloss-wave_55_4e639c_500x100.png") repeat-x scroll 50% 50% #4E639C !important;
+	cursor: move;
+}
+
+#jfImgHeader {
+	float: right; 
+	margin-top: 2px; 
+	margin-right: 5px;
+	cursor: pointer;
+}
+
+#jfBody {
+	width: 100%;
+	height: 550px;
+}
+
+#jfIframeBody {
+	width: 100%;
+	height: 550px;
+}
+
+#jfFooter {
+	width: 100%;
+	height: 10px;
+}
+
+/* CSS para os combobox */ 
+.ui-button { margin-left: -2.4em; height: 24px; border: 1px solid #7C8CB6 !important; float: left; }
+.ui-button-text { padding-top: 0px !important; }
+.ui-button-icon-only .ui-button-text { padding: 0.25em; }
+.ui-autocomplete-input { margin-top: 0px; height: 18px; padding-top: 3px; padding-right: 0px; float: left;}
+#tabs.ui-widget-content { border: 1px solid #aaa !important; }
+input.ui-widget-content { background: #fff none no-repeat !important; }
+input.ui-widget-content:focus { background-color: #ff9 !important; border: 1px solid #aaa; }
+.ui-autocomplete { overflow-y: scroll; float: left; }
+* html .ui-autocomplete { height: expression( this.scrollHeight > 200 ? "200px" : "auto" ); }
+.ui-autocomplete { 
+	max-height: 117px; 
+	min-height: 60px\9;
+}
+.ui-autocomplete li a { text-align: left; }
+
+
+/* CSS para as mensagens do menu */
+#mensSis {position: fixed; bottom: 10px; width: 30%; right: 10px;}
+#overflow {max-height: 500px; overflow: auto;}
+#mensSis span.ui-icon { display: none !important;}
+.portlet { margin: 0 1em 1em 0; }
+.portlet-header { margin: 0.3em; padding-bottom: 4px; padding-left: 0.2em; }
+.portlet-header .ui-icon { float: right; }
+.portlet-content { padding: 0.4em; min-height: 100px;}
+.ui-sortable-placeholder { border: 1px dotted black; visibility: visible !important; height: 50px !important; }
+.ui-sortable-placeholder * { visibility: hidden; }

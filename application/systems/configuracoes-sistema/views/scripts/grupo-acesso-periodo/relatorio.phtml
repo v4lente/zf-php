@@ -1,0 +1,63 @@
+<?php 
+
+// Converte o resultado para array
+$resultado = $this->resConsulta->toArray();
+
+// Espaços para concatenação
+$espacos = "          ";
+
+// Verifica o tipo de relatório
+if($this->agrupamento == "G") {
+    
+    // Define o título
+    $titulo = "Grupos de Acesso por Usuário";
+    
+    // Necessário para manipular alguma coluna individualmente
+    foreach($resultado as $indice => $valor) {
+    	$resultado[$indice]['CD_GRUPO']    = $resultado[$indice]['CD_GRUPO']              . " | Ambiente: " . $resultado[$indice]['AMBIENTE'];
+    	$resultado[$indice]['NO_USUARIO']  = $espacos . $resultado[$indice]['NO_USUARIO'] . " - "           . $resultado[$indice]['CD_USUARIO'];
+    	if($resultado[$indice]['DT_ACESSO_FIM'] != "") {
+    	    $resultado[$indice]['PERIODO'] = $resultado[$indice]['DT_ACESSO_INI']         . " à "           . $resultado[$indice]['DT_ACESSO_FIM'];
+    	} else {
+    	    $resultado[$indice]['PERIODO'] = $resultado[$indice]['DT_ACESSO_INI']         . " à "           . "----------------";
+    	}
+    }
+    
+    // Monta o array com os campos da consulta que serão mostrados no relatório. -> (Obrigatório)
+    // Total 190 mm somando todos os campos para A4 tipo Retrato (P: Portrait)
+    // ou 277 mm somando todos os campos para A4 tipo Paisagem (L: Landscape)
+    // No WIDTH colocar a porcentagem de cada campo, máximo 100% de todos os campos juntos.
+    $campos = array("CD_GRUPO"   => array("width"=>00, "text-align"=>'left',   "title"=>"Grupo de Acesso", "group" => true),
+                    "NO_USUARIO" => array("width"=>80, "text-align"=>'left',   "title"=>"Usuário"),
+                    "PERIODO"    => array("width"=>20, "text-align"=>'center', "title"=>"Período de Acesso"));
+    
+} else {
+    
+    // Define o título
+    $titulo = "Usuários por Grupos de Acesso";
+    
+    // Necessário para manipular alguma coluna individualmente
+    foreach($resultado as $indice => $valor) {
+    	$resultado[$indice]['NO_USUARIO']  = $resultado[$indice]['NO_USUARIO']    . " - " . $resultado[$indice]['CD_USUARIO'];
+    	$resultado[$indice]['NO_GRUPO']    = $espacos . $resultado[$indice]['NO_GRUPO'];
+    	if($resultado[$indice]['DT_ACESSO_FIM'] != "") {
+    	    $resultado[$indice]['PERIODO'] = $resultado[$indice]['DT_ACESSO_INI'] . " à " . $resultado[$indice]['DT_ACESSO_FIM'];
+    	} else {
+    	    $resultado[$indice]['PERIODO'] = $resultado[$indice]['DT_ACESSO_INI'] . " à " . "----------------";
+    	}
+    }
+    
+    // Monta o array com os campos da consulta que serão mostrados no relatório. -> (Obrigatório)
+    // Total 190 mm somando todos os campos para A4 tipo Retrato (P: Portrait)
+    // ou 277 mm somando todos os campos para A4 tipo Paisagem (L: Landscape)
+    // No WIDTH colocar a porcentagem de cada campo, máximo 100% de todos os campos juntos.
+    $campos = array("NO_USUARIO" => array("width"=>00, "text-align"=>'left',   "title"=>"Usuário", "group" => true),
+                    "NO_GRUPO"   => array("width"=>65, "text-align"=>'left',   "title"=>"Grupo de Acesso"),
+                    "AMBIENTE"   => array("width"=>15, "text-align"=>'left',   "title"=>"Ambiente"),
+                    "PERIODO"    => array("width"=>20, "text-align"=>'center', "title"=>"Período de Acesso"));
+    
+}
+
+// Chama o view helper que gerará o relatório
+$this->geraRelatorio($resultado, $titulo, $campos, $this->extraParams["_rel_metodo"]);
+?>

@@ -1,0 +1,71 @@
+body {
+    font-color: #444444;
+    background: #fff url('../../images/bg_azul.png') center center no-repeat;
+}
+
+#container #palhetaControle {
+    display: none;
+}
+
+#distancia {
+    display: block;
+}
+
+#container {
+    height: 250px;
+    width: 500px;
+    border: 5px solid #555 !important; 
+    border-radius: 15px 15px 15px 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    background-color: #fff;
+    box-shadow: 7px 7px 3px #222;
+   -webkit-box-shadow: 7px 7px 3px #222;
+   -moz-box-shadow: 7px 7px 3px #222;
+    background: #fff url('../../images/logo_porto.jpg') 30px 10px no-repeat;
+}
+
+#img_login {
+    width: 280px;
+    height: 60px;
+    margin: 5px auto;
+    padding:0;
+    text-align: center;
+}
+
+fieldset {
+    width: 460px;
+    margin: 0px auto;
+    min-height: 150px;
+}
+
+#cd_usuario {
+    width: 162px;
+    text-transform: uppercase;  
+}
+
+#senha {
+    width: 162px;
+}
+
+#conectar {
+    width:120px; 
+    height:30px; 
+    font-size:12px;    
+}
+
+/********* FORMATAÇÃO CAPTCHA  *********/
+.captcha {
+    color: white;
+}
+
+.captcha  a:VISITED {
+    text-decoration: underline;
+    color: white;
+}
+
+.captcha  a {
+    font-weight: bold;
+    margin-right: 3px;
+}
+/****************************************/

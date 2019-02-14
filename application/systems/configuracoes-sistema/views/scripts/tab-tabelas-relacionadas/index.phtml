@@ -1,0 +1,49 @@
+<?php
+// Seta o título
+$this->headTitle("Tabelas Relacionadas - Pesquisa");
+?>
+
+<table class='tabela nao-selecionavel' id='tabelaConsulta'>
+<?php
+// Se a consulta foi feita mostra os dados
+if(count($this->paginator)) {
+?>
+    <thead>
+      <tr>
+          <th class='cd_tabela' column='cd_tabela'>Tabela<div class='img_seta'></div></th>
+          <th class='cd_coluna' column='cd_coluna'>Coluna<div class='img_seta'></div></th>                
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+          <td colspan='2'><?php echo $this->paginationControl($this->paginator, 'Sliding', 'controle_paginacao.phtml', array('extraParams' => $this->extraParams)); ?></td>
+      </tr>
+    </tfoot>
+    <tbody>
+    <?php
+    $i=0;
+    foreach($this->paginator as $linha)
+    {       
+    ?>
+        <tr class='linha' key=''>
+          <td class='cd_tabela stru'> <?php echo $linha->CD_TABELA;?></td>
+          <td class='cd_coluna stru'> <?php echo $linha->CD_COLUNA;?></td>          
+        </tr>
+   <?php
+        $i++;
+    }
+    ?>
+	</tbody>
+
+    <?php
+} else {
+   ?>
+    <tfoot>
+      <tr>
+          <td colspan='2' class='paginacaoLinhaTabela' style='padding: 5px;'>Nenhum registo encontrado.</td>
+      </tr>
+    </tfoot>
+<?php
+}
+?>
+</table>

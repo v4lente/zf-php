@@ -1,0 +1,11 @@
+<?php
+
+// Define o título
+$titulo = "Transações";
+
+// Captura a sessão
+$sessao = new Zend_Session_Namespace('portoweb');
+
+$this->geraRelatorio($sessao->dadosPesquisaRel, $titulo, $sessao->cabecalhoPesquisa, $this->extraParams["_rel_metodo"]);
+
+?>

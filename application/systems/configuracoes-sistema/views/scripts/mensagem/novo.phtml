@@ -1,0 +1,59 @@
+<?php
+// Seta o título
+$this->headTitle("Mensagem - Novo");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+	<fieldset>
+		<legend>Mensagem</legend>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="cd_mensagem"><?php echo $this->traducao["LB_CODIGO"];?>:</label>
+                <?php echo $this->formText("cd_mensagem", "", array('readonly'=>'readonly', 'class'=>'numero', 'maxlength'=>'5'));?>
+            </div>
+        
+            <div class="right">
+                <label class="label_direita" for="titulo"><?php echo $this->traducao["LB_TITULO"];?>:</label>
+                <?php echo $this->formText("titulo", "", array());?>
+            </div>
+            
+            
+        </div>
+        
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="descricao"><?php echo $this->traducao["LB_DESCRICAO"];?>:</label>
+                <?php echo $this->formTextarea("descricao", "", array());?>
+            </div>
+            
+            
+        </div>
+        
+		<div class="linha">
+			<div class="left">
+				<label class="label_esquerda" for="dt_ini"><?php echo $this->traducao["LB_DT_INI"];?>:</label>
+				<?php echo $this->formText("dt_ini", "", array('class'=>'data'));?>
+			</div>
+			
+			<div class="right">
+                <label class="label_direita" for="dt_fim"><?php echo $this->traducao["LB_DT_FIM"];?>:</label>
+                <?php echo $this->formText("dt_fim", "", array('class'=>'data'));?>
+            </div>
+            
+			
+		</div>
+		
+		<div class="linha">
+			<div class="left">
+				<label class="label_esquerda" for="fl_urgente"><?php echo $this->traducao["LB_URGENTE"];?>:</label>
+				<?php echo $this->formRadio("fl_urgente", "0", array('class'=>'radio'), array("0"=>"Não", "1"=>"Sim"), "");?>
+			</div>
+			
+            
+		</div>
+        
+	</fieldset>
+	
+</form>

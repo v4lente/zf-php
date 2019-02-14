@@ -1,0 +1,17 @@
+#container #palhetaControle #botao-novo {
+    display: none;
+}
+
+#container #palhetaControle #botao-relatorio {
+    display: none;
+}
+
+#form_pesquisar label {
+    width: 150px;
+    float: left;
+    margin-right: 10px; 
+}
+
+#form_pesquisar .left {
+    margin-bottom: 2px;
+}

@@ -1,0 +1,45 @@
+#container #palhetaControle {
+	display: block;
+}
+
+#container #palhetaControle #botao-novo {
+	display: block;
+}
+
+#container #palhetaControle #botao-pesquisar {
+	display: block;
+}
+
+#container #palhetaControle #botao-limpar {
+    display: block;
+}
+
+#container #palhetaControle #botao-relatorio {
+    display: block;
+}
+
+#container #palhetaControle #botao-ajuda {
+	display: block;
+}
+
+
+/* Controle das Abas */
+#container #palhetaControleAba {
+    display: block;
+}
+
+#container #palhetaControleAba #botao-novo {
+    display: block;
+}
+
+#container #palhetaControleAba #botao-pesquisar {
+    display: block;
+}
+
+#container #palhetaControleAba #botao-limpar {
+    display: block;
+}
+
+#container #palhetaControleAba #botao-relatorio {
+    display: block;
+}

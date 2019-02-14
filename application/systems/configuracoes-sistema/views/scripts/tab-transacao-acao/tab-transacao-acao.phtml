@@ -1,0 +1,94 @@
+            <?php 
+                // A variável "grupo" define o agrupamento dos dados de uma aba.
+                // Ela vai definir qual aba o usuário está manipulando.
+                // o caracter sublinha ajuda a separar o grupo dos nomes dos campos
+                // para uma posterior manipulação.
+                // Exemplo: (aditivo_)no_praca
+            ?>
+            <!-- ##### Inicializa a aba transacao_acao ##### -->
+            <div id="<?php echo $grupo = "transacao_acao_"; ?>" class="grupo">
+                
+                <!-- Formulario de cadastro -->
+                <div class="camposTabs" style="display: none;">
+                
+                    <form id="<?php echo $grupo . "form"; ?>" >
+                    
+                        <fieldset style="border: 0px solid #444;">
+                            <?php
+                                // Seta os campos hidden do formulário
+                                // Obs.: campos com classe "fixo" não terão seus dados apagados,
+                                // neste caso o código(chave primária) do formulário principal não será alterado, 
+                                // mantendo assim seu valor igual ao do formulário mestre. 
+                                echo $this->formHidden($grupo . 'indice_linha');
+                                echo $this->formHidden($grupo . 'cd_transacao', $this->form['cd_transacao'], array('class' => 'fixo chave'));
+                            ?>
+                            <div class="linha">
+                                <div class="left">
+                                    <label class="label_esquerda" for="<?php echo $grupo . "cd_acao"; ?>"><?php echo $this->traducao["LB_NO_ACAO"];?></label>
+                                    <?php echo $this->formSelect($grupo . "cd_acao", "", array(), $this->adicionaValorPadraoCombo($this->acoes));?>
+                                </div>
+                                
+                                <div class="right">
+                                    <label class="label_direita" for="<?php echo $grupo . "ord_acao"; ?>"><?php echo $this->traducao["LB_ORDEM"];?></label>
+                                    <?php echo $this->formText($grupo . "ord_acao", "", array('class'=>'numero', 'maxlength'=>'5'));?>
+                                </div>
+                                
+                                <div class="clear"></div>
+                            </div>
+                            
+                        </fieldset>
+                        
+                    </form>
+                    
+                </div>
+                
+                <div class="barra_rolagem"  id='<?php echo $grupo . "barra_rolagem"; ?>'>
+                    <?php
+                    // Um ponto importante na aplicação são os atributos "reference",
+                    // ao qual definem qual campo input eles estão referenciando.
+                    // Outra coisa a ser frizada é que cada campo de cadastro dentro 
+                    // da aba, deverá ter um campo hidden na listagem.
+                    ?>
+                    <!-- Lista de Agências -->
+                    <table class='tabelaAbas' id='<?php echo $grupo . "tabela"; ?>'>
+                        <thead>
+                          <tr>
+                              <th reference="<?php echo $grupo . "cd_transacao"; ?>"><?php echo $this->traducao["LB_COD_TRANSACAO"];?></th>
+                              <th reference="<?php echo $grupo . "no_transacao"; ?>"><?php echo $this->traducao["LB_NO_TRANSACAO"];?></th>
+                              <th reference="<?php echo $grupo . "cd_acao"; ?>"><?php echo $this->traducao["LB_COD_ACAO"];?></th>
+                              <th reference="<?php echo $grupo . "no_acao"; ?>"><?php echo $this->traducao["LB_NO_ACAO"];?></th>
+                              <th reference="<?php echo $grupo . "ord_acao"; ?>"><?php echo $this->traducao["LB_ORDEM"];?></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        // Se a consulta foi feita mostra os dados
+                        if(count($this->transacaoAcao) > 0) {
+                            // Deve-se criar um contador para definir em qual linha o usuário irá manipular
+                            $i = 0;
+                            foreach($this->transacaoAcao as $linha) {
+                                $indice = $grupo . $i;
+                                $chave  = "{$grupo}cd_transacao=" . $linha->CD_TRANSACAO . "&{$grupo}cd_acao=" . $linha->CD_ACAO;
+                        ?>
+                            <tr class='linha' indice='<?php echo $grupo . $i; ?>' onclick="Abas.selecionar('<?php echo $grupo; ?>', '<?php echo $i; ?>', '<?php echo $chave; ?>');">
+                              <td indice="<?php echo $indice; ?>" reference="<?php echo $grupo . "cd_transacao"; ?>"><?php echo $linha->CD_TRANSACAO; ?></td>
+                              <td indice="<?php echo $indice; ?>" reference="<?php echo $grupo . "no_transacao"; ?>"><?php echo $linha->NO_TRANSACAO; ?></td>
+                              <td indice="<?php echo $indice; ?>" reference="<?php echo $grupo . "cd_acao"; ?>"><?php echo $linha->CD_ACAO; ?></td>
+                              <td indice="<?php echo $indice; ?>" reference="<?php echo $grupo . "no_acao"; ?>"><?php echo $linha->NO_ACAO; ?></td>
+                              <td indice="<?php echo $indice; ?>" reference="<?php echo $grupo . "ord_acao"; ?>"><?php echo $linha->ORD_ACAO; ?></td>
+                            </tr>
+                       <?php
+                            $i++;
+                            }
+                        }
+                        ?>
+                        </tbody>
+                        <tfoot></tfoot>
+                    </table>
+                    
+                    <div id="<?php echo $grupo . "sem_registro"; ?>" class="sem_registro">Nenhum registo encontrado.</div>
+                    
+                </div>
+        
+            </div> 
+            <!-- Finaliza a aba aditivo -->

@@ -1,0 +1,24 @@
+
+th.cd_cliente {
+    width: 10%;
+}
+
+th.razao_social {
+    width: 75%;
+}
+
+th.fl_principal {
+    width: 15%;
+}
+
+.i_razao_social {
+	width: 96%;
+}
+
+.ui-autocomplete-input {
+    width: 70% !important;
+}
+
+.auto-complete-x {
+	width: 99% !important;
+}

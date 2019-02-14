@@ -1,0 +1,60 @@
+<?php
+// Seta o título
+$this->headTitle("Grupo - Editar");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+	<fieldset>
+		<legend>Grupo</legend>
+
+		<div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="cd_grupo">Código do Grupo:</label>
+                <?php echo $this->formText("cd_grupo", $this->form['cd_grupo'], array('maxlength'=>'5', 'readonly'=>'readonly'));?>
+            </div>
+
+            <div class="right">
+                <label class="label_direita" for="no_grupo">Nome do Grupo:</label>
+                <?php echo $this->formText("no_grupo", $this->form['no_grupo'], array('maxlength'=>'40'));?>
+            </div>
+        </div>
+
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="ds_grupo">Descrição do Grupo:</label>
+                <?php echo $this->formTextarea("ds_grupo", $this->form['ds_grupo'], array('maxlength'=>'300'));?>
+            </div>
+        </div>
+        
+        <div class="linha">
+           <div class="full"> 
+				<label class="label_esquerda">&nbsp;</label>			
+				<?php echo $this->formCheckbox('fl_ativo',
+                        					   $this->form['fl_ativo'],
+                         					   array('checked' => false, 'class'=>'checkbox'),
+                         					   array('1', '0')); 				
+					 
+				?> Ativo
+          </div>      
+	    </div>
+        
+	</fieldset>
+	
+</form>
+
+<!-- Insere as Abas -->
+<?php 
+    // Define o código do contrato da transação pai
+    $cd_grupo = "pai_cd_grupo/" . $this->form['cd_grupo'];
+
+    // Define os atributos de cada aba
+    $titulos        = array("Transacão/Ação", "Usuários", "Consultas");
+    $sistemas       = array("configuracoes-sistema", "configuracoes-sistema", "configuracoes-sistema");
+    $controladores  = array("tab-grupo-transacao-acao", "tab-grupo-usuario", "tab-grupo-consulta");
+    $parametros     = array($cd_grupo, $cd_grupo, $cd_grupo);
+    $estilos        = array();
+    
+    // Gera as abas
+    echo $this->geraAbas($titulos, $sistemas, $controladores, $parametros, $estilos);
+?>

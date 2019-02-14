@@ -1,0 +1,53 @@
+<?php
+// Seta o título
+$this->headTitle("Transação/Ação - Novo");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Novo</legend>
+        
+        <?php echo $this->formHidden("cd_transacao", $this->pai_cd_transacao);?>
+        
+        <table class='tabela nao-selecionavel'>                  
+            <thead>
+                <tr>
+                    <th class='cd_acao'>Código da ação</th>
+                    <th class='no_acao'>Nome da Ação</th>
+                    <th class='ord_acao'>Ordem da Ação</th>
+                    <th class='ds_acao'>Descrição da Ação</th>
+                    <th class='lnk_img_acao'>Imagem da Ação</th>
+                    <th class='fl_menu'>Ação da Barra de Tarefas</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <?php 
+                    // Captura o valor da ordem de ação
+                    $ultimaOrdemAcao = $this->ultimaOrdemAcao;
+                    for($i = 0; $i < 10; $i++) {
+                        // Joga no campo ord_acao os valores que 
+                        // estão liberados para cadastro
+                        if($i > 0) {
+                            $ultimaOrdemAcao += 1;
+                        }
+                        
+                        $classe = (($i%2)==0) ? "par" : "impar";
+                    ?>  
+                        <tr class='<?php echo $classe; ?>' indice='<?php echo $i; ?>'>
+                          <td><?php echo $this->formText("cd_acao[]",      null, array('id'=>'cd_acao_' . $i, 'class'=>'i_cd_acao', 'title'=>'Código da ação', 'readonly'=>'readonly'));?></td>
+                          <td><?php echo $this->formSelect("no_acao[]",    null, array('id'=>'no_acao_' . $i, 'class'=>'i_no_acao', 'title'=>'Nome da Ação'), $this->adicionaValorPadraoCombo($this->acoes));?></td>
+                          <td><?php echo $this->formText("ord_acao[]",     $ultimaOrdemAcao, array('id'=>'ord_acao_' . $i, 'class'=>'numero i_ord_acao', 'maxlength'=>'2', 'title'=>'Ordem da Ação', 'readonly'=>'readonly'));?></td>
+                          <td><?php echo $this->formText("ds_acao[]",      null, array('id'=>'ds_acao_' . $i, 'class'=>'i_ds_acao','maxlength'=>'300', 'title'=>'Descrição da Ação', 'readonly'=>'readonly'));?></td>
+                          <td><?php echo $this->formText("lnk_img_acao[]", null, array('id'=>'lnk_img_acao_' . $i, 'class'=>'i_lnk_img_acao','maxlength'=>'300', 'title'=>'Imagem da Ação', 'readonly'=>'readonly'));?></td>
+                          <td><?php echo $this->formText("fl_menu[]",      null, array('id'=>'fl_menu_' . $i, 'class'=>'i_fl_menu','title'=>'Ação da Barra de Tarefas', 'readonly'=>'readonly'));?></td>
+                        </tr>
+                    <?php
+                    }
+                ?>
+            </tbody>
+        </table>
+        
+    </fieldset>
+    
+</form>

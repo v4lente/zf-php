@@ -1,0 +1,43 @@
+<?php
+// Seta o título
+$this->headTitle("Usuários - Editar");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Editar</legend>
+        
+        <?php echo $this->formHidden("cd_grupo", $this->form['cd_grupo']);?>        
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="cd_usuario">Username:</label>
+                <?php echo $this->formText("cd_usuario", $this->form['cd_usuario'], array('readonly'=>'readonly', 'maxlength'=>'20'));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="tp_usuario">Tipo de Usuário:</label>
+                <?php echo $this->formText("tp_usuario", $this->form['tp_usuario'], array('readonly'=>'readonly', 'maxlength'=>'40'));?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="no_usuario">Nome do Usuário:</label>
+                <?php echo $this->formText("no_usuario", $this->form['no_usuario'], array('readonly'=>'readonly'));?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="dt_acesso_ini">Período de acesso:</label>                
+                <?php echo $this->formText("dt_acesso_ini", $this->form['dt_acesso_ini'], array('maxlength'=>'10', 'class'=>'data required', 'readonly'=>'readonly','alt'=>'Período Inicial'));?>
+                &nbsp;à&nbsp;
+                <?php echo $this->formText("dt_acesso_fim", $this->form['dt_acesso_fim'], array('maxlength'=>'10', 'class'=>'data', 'alt'=>'Período Final'));?>
+            </div>
+        </div>
+        
+    </fieldset>
+    
+</form>

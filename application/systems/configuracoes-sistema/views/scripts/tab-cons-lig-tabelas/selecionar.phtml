@@ -1,0 +1,99 @@
+<?php
+// Seta o título
+$this->headTitle("Tabelas- Editar");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="" style='min-height: 400px;'>
+	<table id="tabs-vinculadas">
+		<thead>
+			<tr>
+				<th style='width: 75%; text-align: left;'>Tabelas Vinculadas</th>
+                <th style='width: 20%; text-align: left;'>Código da Tabela</th>
+                <th style='width:  5%; text-align: left;'>Álias</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php
+				$no_tabela    = $this->form['no_tabela'];
+                $cd_tabela    = $this->form['cd_tabela'];
+                $alias_tabela = $this->form['alias_tabela'];
+				$i=0;
+				foreach ($this->tabsVinculadas as $k=>$v){;
+					$selecionado = '';
+					if ($no_tabela == $v['NO_TABELA'] && $alias_tabela == $v['ALIAS_TABELA']) {
+						$selecionado = ' class=hover';
+					}
+					$i++;
+					echo '<tr'.$selecionado.' id="'.$i.'">'
+							.'<td>' . $v['NO_TABELA']
+								    . '<input type="hidden" id="ds_tabela_vinc_'    . $i . '" value="' . $v['DS_TABELA'] . '">'
+								    . '<input type="hidden" id="cd_tabela_vinc_'    . $i . '" value="' . $v['CD_TABELA'] . '">'
+                                    . '<input type="hidden" id="alias_tabela_vinc_' . $i . '" value="' . $v['ALIAS_TABELA'] . '">'
+							.'</td>'
+                            .'<td>' . $v['CD_TABELA']    . '</td>'
+                            .'<td>' . $v['ALIAS_TABELA'] . '</td>'
+						.'</tr>';
+				}
+			?>
+		</tbody>
+	</table>
+
+    <fieldset>
+
+        <legend>Editar</legend>
+
+        <?php echo $this->formHidden("cd_consulta",       $this->pai_cd_consulta);?>
+		<?php echo $this->formHidden("fl_possui_tabs",    $this->fl_possui_tabs);?>
+		<?php echo $this->formHidden("perc_colunas",      $this->perc_colunas);?>
+        <?php echo $this->formHidden("perc_colunas_tela", 0);?>
+        <?php echo $this->formHidden("alias_tabela_nova", $this->form['alias_tabela_nova']);?>
+        <?php echo $this->formHidden("alias_tabela_ref",  $this->form['alias_tabela_ref']);?>
+		<?php echo $this->formHidden("posicoes_ja_cads",  "");?>
+
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="no_tabela">Nome da Tabela:</label>
+                <?php echo $this->formText("no_tabela", $this->form['no_tabela'], array('class'=>'required auto-complete-x', 'target'=>'cd_tabela', 'maxlength'=>'50'));?>
+            </div>
+
+            <div class="right">
+                <label class="label_direita" for="cd_tabela">C&oacute;digo da Tabela:</label>
+                <?php echo $this->formText("cd_tabela", $this->form['cd_tabela'], array('class'=>'required', 'disabled'=>'disabled'));?>
+            </div>
+        </div>
+
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="fk_tabela">Conexão entre Tabelas:</label>
+                <?php echo $this->formSelect("fk_tabela", $this->form['fk_tabela'], array(), $this->adicionaValorPadraoCombo($this->conexoesTabelas)); ?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="ds_tabela">Descri&ccedil;&atilde;o da Tabela:</label>
+                <?php echo $this->formText("ds_tabela", $this->form['ds_tabela'], array('disabled'=>'disabled'));?>
+            </div>
+        </div>
+		
+        <table class='tabela nao-selecionavel'>                  
+            <thead>
+                <tr>
+                    <th class='ativo'>Ativa</th>
+                    <th class='colunas'>Colunas para visualiza&ccedil;&atilde;o</th>
+                    <th class='texto'>Texto do Cabe&ccedil;alho</th>
+                    <th class='posiao'>Posi&ccedil;&atilde;o</th>
+                    <th class='largura'>Largura %</th>
+                    <th class='ordenacao'>Ordena&ccedil;&atilde;o</th>
+                    <th class='soma'>Soma</th>
+                    <th class='filtro'>Filtro</th>
+                    <th class='visivel'>Vis&iacute;vel</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+    </fieldset>
+    
+</form>

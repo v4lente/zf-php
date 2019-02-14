@@ -1,0 +1,16 @@
+#container #header {
+    position: fixed;
+    top: 0px;
+    z-index: 500;
+    background-color: white;
+}
+
+#container #palhetaControle {
+    position: fixed;
+    top: 56px;
+    z-index: 99;
+}
+
+#container #content {
+    margin-top: 100px;
+}

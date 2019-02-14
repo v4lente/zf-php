@@ -1,0 +1,43 @@
+#outrosBotoesRel {
+    margin: 0px auto;
+    width: 90%;
+    border: 0px solid #aaa;
+    border-collapse: separate; 
+    border-spacing: 0px;
+    display: none;
+}
+
+#tituloRel {
+    margin: 0px auto;
+    width: 90%;
+    border: 1px solid #aaa;
+    border-collapse: separate; 
+    border-spacing: 0px;
+}
+
+#listaRel {
+	margin: 0px auto;
+	width: 90%;
+    border: 0px solid #ccc;
+    border-collapse: separate; 
+    border-spacing: 0px;
+}
+
+#listaRel > thead > tr > th {
+    height: 28px;
+    background-color: #ccc;
+    text-align: left;
+    padding: 2px;
+}
+
+#listaRel > tbody > tr > td {
+	border-bottom: 1px solid #ccc;
+	padding-top: 5px;
+	text-align: left;
+	padding: 2px;
+}
+
+#listaRel > tfoot > tr > td {
+    background-color: #eee;
+    padding: 2px;
+}

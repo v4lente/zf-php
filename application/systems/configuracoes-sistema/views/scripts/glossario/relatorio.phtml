@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="<?php echo dirname($_SERVER['SCRIPT_FILENAME']);?>/styles/dompdf/print_static.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo dirname($_SERVER['SCRIPT_FILENAME']);?>/styles/relatorio.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo dirname($_SERVER['SCRIPT_FILENAME']);?>/styles/<?php echo $this->no_module;?>/<?php echo $this->no_controller;?>.css" />
+
+<title>Glossário - Sistema Porto - RS</title>
+
+</head>
+<body>
+
+<script type="text/php">
+// Abre o objeto
+$header  = $pdf->open_object();
+
+// Pega a largura e altura da pagina
+$wpagina = $pdf->get_width();
+$hpagina = $pdf->get_height();
+
+// Retorna a fonte
+$font     = Font_Metrics::get_font("verdana", "bold");
+
+// Converte de iso para utf
+$titulo_1 = iconv("iso-8859-1", "utf-8", "Superintendência do Porto de Rio Grande");
+$titulo_2 = iconv("iso-8859-1", "utf-8", "GLOSSÁRIO - SISTEMA PORTO - RS");
+
+// Retorna o tamanha dos textos
+$width_1  = Font_Metrics::get_text_width($titulo_1 , $font, 14);
+$width_2  = Font_Metrics::get_text_width($titulo_2 , $font, 14);
+
+// Insere uma imagem na esquerda no topo de cada pagina 
+$pdf->image(dirname($_SERVER['SCRIPT_FILENAME'])."/images/logo_porto.jpg", "jpg", 20, 20, 50, 50);
+
+// Insere o texto centralisado no topo de cada pagina
+$pdf->page_text($wpagina/2 - $width_1/2, 30, $titulo_1, $font , 12, array(0,0,0));
+$pdf->page_text($wpagina/2 - $width_2/2, 45, $titulo_2, $font , 12, array(0,0,0));
+
+// Desenha o retangulo de definição do cabeçalho de cada pagina
+$pdf->rectangle(20 , 20, 556, 50, array(0.5,0.5,0.5), 0.5);
+
+// Insere a numeração no final de cada pagina na direita
+$pdf->page_text($wpagina-50 , $hpagina-35, "{PAGE_NUM}/{PAGE_NUM}" , $font, 6, array(0,0,255));
+
+// Insere a data e hora no final de cada pagina na esquerda
+$pdf->page_text(21 , $hpagina-35, date("d/m/Y") , $font, 6, array(0,0,255));
+$pdf->page_text(58 , $hpagina-35, date("h:i:s") , $font, 6, array(0,0,255));
+
+// Fecha o objeto
+$pdf->close_object();
+
+// Adiciona o objeto ("all"  => todas as paginas
+//                    "odd"  => paginas impares
+//                    "even" => paginas pares)
+$pdf->add_object($header, "all");
+</script>
+
+
+<div id="body"> 
+    <div id="content">
+        <div class="page">
+			   <table  id='tabelaConsulta'>			       
+			    	<thead>
+			    		<tr>
+                            <td style="width:160px; height: 25px; vertical-align: top; " class="tit_coluna_rel" >Palavra/Termo </td>
+			        		<td style="width:560px; " class="tit_coluna_rel" >Descrição</td>
+			        	</tr>
+			        </thead>
+			        <tbody>
+			        <?php 
+			        $i=0;
+			        foreach($this->resConsulta as $linha) 
+			        {	
+			        ?>	
+			            <tr class='linha' >
+			            	<td ><?=$linha->PALAVRA;?></td>
+			            	<td ><?=$linha->DS_PALAVRA;?></td>
+			            </tr>
+			        <?php     
+			            $i++;            
+			        }                
+			    ?>
+                 <tr class='linha' >
+                     <td style="color: white;">---</td>
+                     <td style="color: white;" >---</td>
+			    </tr>
+                </tbody>
+                <tfoot>
+                    
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td style="text-align: right;">Total Registros: <?=$i;?></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>  
+</body>
+</html>

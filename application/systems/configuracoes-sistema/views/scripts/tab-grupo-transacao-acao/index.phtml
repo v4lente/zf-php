@@ -1,0 +1,63 @@
+<?php
+// Seta o título
+$this->headTitle("Transação/Ação - Pesquisa");
+?>
+
+<table class='tabela' id='tabelaConsulta'>
+<?php
+// Se a consulta foi feita mostra os dados
+if(count($this->paginator)) {
+?>
+    <thead>
+      <tr>
+          <th class='cd_grupo'  column='wgt.cd_grupo'>Cód.Grupo<div class='img_seta'></div></th>
+          <th class='no_sistema'  column='ws.no_sistema'>Sistema<div class='img_seta'></div></th>
+          <th class='no_menu'  column='wms.no_menu'>Aba/Menu<div class='img_seta'></div></th>
+          <th class='cd_transacao' column='wgt.cd_transacao'>Cód.Transação<div class='img_seta'></div></th>
+          <th class='no_transacao' column='wt.no_transacao'>Nome da Transação<div class='img_seta'></div></th>
+          <th class='fl_permissao' column='wt.fl_permissao'>Tipo de Acesso<div class='img_seta'></div></th>
+          <th align="center" colspan="3" column='wgt.dt_acesso_ini'>Período de Acesso<div class='img_seta'></div></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+          <td colspan='8'><?php echo $this->paginationControl($this->paginator, 'Sliding', 'controle_paginacao.phtml', array('extraParams' => $this->extraParams)); ?></td>
+      </tr>
+    </tfoot>
+    <tbody>
+    <?php
+    $i=0;
+    foreach($this->paginator as $linha)
+    {
+    	$data = str_replace("/", "_barra_", $linha->DT_ACESSO_INI);
+    	
+        $key = "cd_gupo/{$linha->CD_GRUPO}/cd_transacao/{$linha->CD_TRANSACAO}/dt_acesso_ini/{$data}";
+    ?>
+        <tr class='linha' key='<?php echo $key; ?>'>
+          <td><?php echo $linha->CD_GRUPO; ?></td>
+          <td><?php echo $linha->NO_SISTEMA; ?></td>
+          <td><?php echo $linha->NO_MENU; ?></td>
+          <td><?php echo $linha->CD_TRANSACAO; ?></td>
+          <td><?php echo $linha->NO_TRANSACAO; ?></td>
+          <td><?php echo $linha->FL_PERMISSAO == "C" ? "Consulta" : "Manutenção"; ?></td>
+          <td><?php echo $linha->DT_ACESSO_INI; ?></td>
+          <td><?php echo $linha->DT_ACESSO_FIM; ?></td>
+        </tr>
+   <?php
+        $i++;
+    }
+    ?>
+	</tbody>
+
+    <?php
+} else {
+   ?>
+    <tfoot>
+      <tr>
+          <td colspan='8' class='paginacaoLinhaTabela' style='padding: 5px;'>Nenhum registo encontrado.</td>
+      </tr>
+    </tfoot>
+<?php
+}
+?>
+</table>

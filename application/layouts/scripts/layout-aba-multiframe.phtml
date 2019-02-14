@@ -1,0 +1,162 @@
+<?php echo $this->doctype();
+	// Captura os dados da requisição
+	$no_module          = $this->no_module;
+	$no_controller      = $this->no_controller;
+	$no_action          = $this->no_action;
+    $cd_transacao       = $_SESSION["portoweb"][$no_module][$no_controller]["_cd_transacao"];
+    
+    if($this->extraParams["_fl_tipo_transacao"] != "") {
+        $_SESSION["portoweb"][$no_module][$no_controller]["_fl_tipo_transacao"] = $this->extraParams["_fl_tipo_transacao"];
+    }
+    if($this->extraParams["_fl_permissao"] != "") {
+        $_SESSION["portoweb"][$no_module][$no_controller]["_fl_permissao"] = $this->extraParams["_fl_permissao"];
+    }
+        
+    Zend_Controller_Front::getInstance()
+        ->getRequest()
+        ->setParam("_fl_tipo_transacao",  $_SESSION["portoweb"][$no_module][$no_controller]["_fl_tipo_transacao"])
+        ->setParam("_fl_permissao",       $_SESSION["portoweb"][$no_module][$no_controller]["_fl_permissao"]);
+    
+    $fl_permissao = $_SESSION["portoweb"][$no_module][$no_controller]["_fl_permissao"];
+    $jasperUrl    = JASPER_URL;
+	
+	// Captura o local de origem do servidor onde estão os arquivos
+	$documentRoot = substr($_SERVER["DOCUMENT_ROOT"], 0, -1);
+?>
+<html>
+<head>
+	<?php echo $this->headTitle()."\n";?>
+	<?php echo $this->headMeta()."\n";?>
+	
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->baseUrl();?>/public/styles/base-multiframe.css" />
+	<style type="text/css">
+		<?php	
+			// Lê os arquivos CSS
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/jquery/jquery-ui/development-bundle/themes/marca/jquery.ui.core.css"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/jquery/jquery-ui/development-bundle/themes/marca/jquery.ui.resizable.css"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/jquery/jquery-ui/development-bundle/themes/marca/jquery.ui.selectable.css"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/jquery/jquery-ui/development-bundle/themes/marca/jquery.ui.accordion.css"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/jquery/jquery-ui/development-bundle/themes/marca/jquery.ui.autocomplete.css"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/jquery/jquery-ui/development-bundle/themes/marca/jquery.ui.button.css"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/jquery/jquery-ui/development-bundle/themes/marca/jquery.ui.dialog.css"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/jquery/jquery-ui/development-bundle/themes/marca/jquery.ui.slider.css"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/jquery/jquery-ui/development-bundle/themes/marca/jquery.ui.tabs.css"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/jquery/jquery-ui/development-bundle/themes/marca/jquery.ui.datepicker.css"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/jquery/jquery-ui/development-bundle/themes/marca/jquery.ui.progressbar.css"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/styles/mascara.css"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/styles/drag_ajuda.css"); echo "\n";
+		?>
+	</style>
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->baseUrl();?>/public/styles/<?php echo $no_action;?>.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->baseUrl();?>/public/styles/<?php echo $no_module;?>/<?php echo $no_controller;?>.css" />
+	<?php 
+	$documentRoot     = substr($_SERVER["DOCUMENT_ROOT"], 0, -1);
+	$caminhoCssAction = "{$documentRoot}{$this->baseUrl()}/public/styles/{$no_module}/{$no_controller}-{$no_action}.css";
+	// Verifica se o arquivo existe
+	if(is_file($caminhoCssAction)) {
+	?>
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->baseUrl();?>/public/styles/<?php echo $no_module;?>/<?php echo $no_controller;?>-<?php echo $no_action;?>.css" />
+	<?php
+	} 
+	?>
+	
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->baseUrl();?>/public/styles/imagens.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->baseUrl();?>/public/js/jquery/jquery-ui/development-bundle/themes/marca/jquery.ui.all.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->baseUrl();?>/public/js/jquery/plugins/facebox/facebox.css" />	
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->baseUrl();?>/public/js/jquery/plugins/jquery.loading.1.6.css" />	
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->baseUrl();?>/public/js/jquery/plugins/jquery-tooltip/jquery.tooltip.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->baseUrl();?>/public/js/jquery/plugins/jquery.ui.datetime.css" />
+	
+	<?php echo $this->headLink(); ?>
+	<?php echo $this->headStyle(); ?>
+    
+	<script type="text/javascript">
+		var site			  = "<?php echo "http://" . $_SERVER["SERVER_NAME"]; ?>";
+		var baseUrl           = "<?php echo $this->baseUrl(); ?>";
+		var acoesUsuario      = Array(<?php echo $this->acoesUsuario(); ?>);
+		var no_module         = "<?php echo $no_module; ?>";
+		var no_controller     = "<?php echo $no_controller; ?>";
+		var no_action         = "<?php echo $no_action; ?>";
+        var cd_transacao      = "<?php echo $cd_transacao; ?>";
+		var column  	      = "<?php echo $this->column; ?>";
+		var orderby 	      = "<?php echo $this->orderby; ?>";
+		var operacao 	      = "<?php echo $this->operacao; ?>";
+		var paginaAtual       = "<?php echo $this->paginaAtual; ?>";
+		var paginaAnterior    = "<?php echo $this->CriptAHref($this->paginaAnterior[0], $this->paginaAnterior[1], "", array(), 3); ?>";
+        var jasperUrl 	      = "<?php echo $jasperUrl; ?>";
+        var fl_tp_tran        = "<?php echo $fl_tipo_transacao; ?>";
+        var fl_perm           = "<?php echo $fl_permissao; ?>";
+		var baseUrlController = site + baseUrl + "/" + no_module + "/" + no_controller;
+		<?php 
+			// Lê os arquivos JavaScript
+			//Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/jquery/jquery-1.4.2.min.js"); echo "\n";			
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/jquery/jquery-1.7.min.js"); echo "\n";			
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/jquery/jquery-ui/js/jquery-ui-1.8.4.custom.min.js"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/jquery/jquery-ui/development-bundle/ui/i18n/ui.datepicker-pt-BR.js"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/jquery/plugins/jquery.ui.datetime.src.js"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/jquery/plugins/jquery.loading.1.6.4.js"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/jquery/plugins/jquery.price_format.js"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/jquery/plugins/jquery.masked_input.js"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/jquery/plugins/jquery.masked_money.js"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/jquery/plugins/facebox/facebox.js"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/jquery/plugins/jquery.base64.min.js"); echo "\n";
+            Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/jquery/plugins/jquery.cookie.js"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/jquery/plugins/jquery.shortcut.js"); echo "\n";
+            Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/jquery/plugins/jquery.blockUI.js"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/drag_ajuda.js"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/sessao.js"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/form.js"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/tabela.js"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/abas-multiframe.js"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/mascara.js"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/data.js"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/valida.js"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/calcula.js"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/evento-multiframe.js"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/base-multiframe.js"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/jquery/plugins/jquery-tooltip/jquery.tooltip.js"); echo "\n";
+			Zend_Loader::loadFile($documentRoot . $this->baseUrl() . "/public/js/{$no_module}/$no_controller.js"); echo "\n";
+		?>
+	</script>
+    
+    <?php echo $this->headScript(); ?>
+</head>
+<body>
+    <div id="distancia"></div>
+
+    <div id="container" style="margin-top: 0px;">
+
+		<div id="palhetaControleAba" class="ui-widget-header" style="top: 0px; position: fixed; z-index:100;">
+
+			<div id="palhetaEsquerdaAba">
+				
+			</div>
+
+			<div id="palhetaDireitaAba">
+				<!-- menu de ações -->
+				<?php echo $this->menuAcaoAba(); ?>
+			</div>
+		</div>
+		
+		<div id="ajusta-altura" style="height: 30px;"></div>
+		
+		<!-- Mostra retorno(carregando...) nas requisições Ajax -->
+		<div id="ajax"></div>
+
+		<div id="content">
+		<?php 
+		    // Mostra mensagem na tela
+		    if(isset($this->mensagemSistema)) {
+		        echo $this->mensagemSistema;
+		    }
+
+		    // Mostra o conteudo das views(action) dos controllers
+		    echo $this->layout()->content;
+		?>
+		</div>
+		
+		<div class="clear"></div>
+	</div>
+	
+</body>
+</html>

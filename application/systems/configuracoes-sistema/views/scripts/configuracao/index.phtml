@@ -1,0 +1,64 @@
+<?php
+// Seta o título
+$this->headTitle("Configuração");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Trocar Senha</legend>
+
+        <div class="linha">
+            <div class="center">
+                <label class="label_esquerda" for="asenha"><?php echo $this->traducao["LB_SENHA_ATUAL"];?>:</label>
+                <?php echo $this->formPassword("asenha", "", array());?>
+            </div>
+
+            
+        </div>
+        
+        <div class="linha">
+            <div class="center">
+                <label class="label_esquerda" for="senha"><?php echo $this->traducao["LB_SENHA_NOVA"];?>:</label>
+                <?php echo $this->formPassword("senha", "", array());?>
+            </div>
+
+            
+        </div>
+        
+        <div class="linha">
+            <div class="center">
+                <label class="label_esquerda" for="rsenha"><?php echo $this->traducao["LB_SENHA_CONF"];?>:</label>
+                <?php echo $this->formPassword("rsenha", "", array());?>
+            </div>
+
+            
+        </div>
+        
+    </fieldset>
+    
+    <fieldset>
+        <legend>Perfil</legend>
+
+       
+        <div class="linha">
+            <div class="center">
+                <label class="label_esquerda" for="no_usuario"> Nome Completo:</label>
+                <?php echo $this->formText("no_usuario", $this->no_usuario, array('class'=>'stru'));?>
+            </div>    
+        </div>
+        <div class="linha">
+            <div class="center">
+                <label class="label_esquerda" for="email"> E-mail:</label>
+                <?php echo $this->formText("email", $this->email, array('class'=>''));?>
+            </div>    
+        </div>
+         <div class="linha">
+            <div class="center">
+                <label class="label_esquerda" for="qt_linhas"><?php echo $this->traducao["LB_QT_LINHAS"];?>:</label>
+                <?php echo $this->formText("qt_linhas", $this->qt_linhas, array('class'=>'numero'));?>
+            </div>    
+        </div>
+    </fieldset>
+    
+</form>

@@ -1,0 +1,49 @@
+<?php
+// Seta o título
+$this->headTitle("Solicatação de Nova Senha");
+?>
+
+<br />
+
+<div id="img_login" style="border:0px solid #f00;">
+	<img src="<?php echo $this->baseUrl();?>/public/images/logo_porto_web.png" alt="">
+</div>
+
+<br />
+
+<form id="form_base" method="post" accept-charset="iso-8859-1" onsubmit="return false;" action="<?php echo $this->baseUrl();?>/login/logar">
+
+	<fieldset style="border: 0px solid #fff; width: 400px !important; min-width: 400px !important;">
+		
+		<div class="linha">
+			<div class="left" style="width:420;">
+				<label style="width:320px;" class="label_esquerda" for="label1">Informe pelo menos um dos campos</label><br/>
+				<label style="width:320px;" class="label_centro" for="label2">abaixo para receber a nova senha.</label>			
+			</div>
+		</div>
+		
+		<div class="linha">
+			<div class="left" style="width:400px;">
+				<label style="width:140px;" class="label_direita" for="cd_usuario">Usuário:</label>
+			    <?php echo $this->formText("cd_usuario", $this->form['cd_usuario'], array("class"=>"stru"));?>
+			</div>
+		</div>
+		
+		<div class="linha">
+			<div class="left" style="width:400px;">
+				<label style="width:140px;" class="label_direita" for="cpf">CPF:</label>
+			    <?php echo $this->formText("cpf", null, array("class"=>"cpf",  "style"=>"width: 41% !important;"));?>
+			</div>
+		</div>
+		
+		<div class="linha" style="margin-top:10px;">
+			<div class="left" style="width:400px;">
+				<label style="width:195px;" class="label_direita">&nbsp;</label>
+				<input type="button" name="enviar" id="enviar" value="Enviar" />
+               <!-- <input type="button" name="voltar" id="voltar" value="Voltar" />-->
+			</div>
+		</div>
+		
+	</fieldset>
+</form>
+

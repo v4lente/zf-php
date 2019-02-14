@@ -1,0 +1,49 @@
+<?php
+// Seta o título
+$this->headTitle("Transação/Ação - Novo");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Novo</legend>
+        
+        <?php echo $this->formHidden("cd_grupo", $this->pai_cd_grupo);?>
+        
+        <table class='tabela nao-selecionavel' id="tabelaCadastro">                  
+            <thead>
+                <tr>
+                    <th class='_cd_transacao'>Cód.Transação</th>
+                    <th class='cd_sistema'>Nome do Sistema</th>
+                    <th class='cd_menu'>Nome da Aba/Menu</th>
+                    <th class='cd_transacao'>Nome da Transação</th>
+                    <th class='cd_acao'>Tipo de Acesso</th>
+                    <th class='dt_acesso_ini' colspan='2'>Período de Acesso</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <?php
+                    // Captura a data atual
+                    $dtAtual = date("d/m/Y");
+                    
+                    for($i = 0; $i < 10; $i++) {
+                        $classe = (($i%2)==0) ? "par" : "impar";
+                    ?>  
+                        <tr class='<?php echo $classe; ?>' indice='<?php echo $i; ?>'>
+                          <td><?php echo $this->formText("_cd_transacao[]",   null, array('id'=>'_cd_transacao_'  . $i, 'class'=>'i__cd_transacao', 'title'=>'Cód.Transação'));?></td>
+                          <td><?php echo $this->formSelect("cd_sistema[]",    null, array('id'=>'cd_sistema_'     . $i, 'class'=>'i_cd_sistema',    'title'=>'Nome do Sistema'), $this->adicionaValorPadraoCombo($this->sistemas));?></td>
+                          <td><?php echo $this->formSelect("cd_menu[]",       null, array('id'=>'cd_menu_'        . $i, 'class'=>'i_cd_menu',       'title'=>'Nome da Aba/Menu'), $this->adicionaValorPadraoCombo(array()));?></td>
+                          <td><?php echo $this->formSelect("cd_transacao[]",  null, array('id'=>'cd_transacao_'   . $i, 'class'=>'i_cd_transacao',  'title'=>'Nome da Transação'), $this->adicionaValorPadraoCombo(array()));?></td>
+                          <td><?php echo $this->formSelect("fl_permissao[]",  null, array('id'=>'fl_permissao_'   . $i, 'class'=>'i_fl_permissao',  'title'=>'Tipo de Acesso'),  $this->adicionaValorPadraoCombo(array("C"=>"Consulta", "M"=>"Manutenção")));?></td>
+                          <td style='width: 10%;'><?php echo $this->formText("dt_acesso_ini[]", $dtAtual, array('id'=>'dt_acesso_ini_' . $i, 'class'=>'dt_acesso_ini', 'maxlength'=>'10' , 'title'=>'Período de acesso inicial'));?></td>
+                          <td style='width: 10%;'><?php echo $this->formText("dt_acesso_fim[]", null,     array('id'=>'dt_acesso_fim_' . $i, 'class'=>'dt_acesso_fim', 'maxlength'=>'10' , 'title'=>'Período de acesso final'));?></td>
+                        </tr>
+                    <?php
+                    }
+                ?>
+            </tbody>
+        </table>
+        
+    </fieldset>
+    
+</form>

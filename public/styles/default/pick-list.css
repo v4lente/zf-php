@@ -1,0 +1,41 @@
+#container #tituloForm {
+	display: none;
+}
+
+#container #menu-direita {
+    display: none;
+}
+
+#container #palhetaControle {
+	display: block;
+}
+
+#container #palhetaControle #botao-novo {
+	display: none;
+}
+
+#container #palhetaControle #botao-relatorio {
+	display: none;
+}
+
+#container #palhetaControle #botao-limpar {
+	display: block;
+}
+
+#container #palhetaControle #botao-pesquisar {
+    display: block;
+}
+
+#container #palhetaControle #botao-voltar {
+    display: none;
+}
+
+#container #menu-sistemas {
+    display: none;
+}
+
+p>label.radio {
+    float: left;
+    margin: 0px 2px 0px 0px;
+    width: 50px !important;   
+}

@@ -1,0 +1,42 @@
+<?php
+//Inclui o cabeçalho antigo
+include("cabecalho_antigo.phtml");
+?>
+
+
+<form name="form_pesquisar" id="form_pesquisar" action="" onsubmit="return false;">
+    <table class="table_form">
+        <tr>
+            <td class="lb_form">
+                <?=$this->cd_masc;?>:
+            </td>
+            <td class="cp_form" colspan="3">
+                <?=$this->formText("cd_mascara", "", array("class"=>"required textUpper","style"=>"width:100px;margin:0px; padding:0px;", "maxlength"=>"6"));?>
+            </td>
+        </tr>
+        <tr>
+            <td class="lb_form">
+                <?=$this->ds_masc;?>:
+            </td>
+            <td class="cp_form" colspan="3">
+                <?=$this->formTextarea("ds_mascara", "", array("class"=>"required","maxlength"=>"1024"));?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="lb_form">
+
+            </td>
+            <td class="cp_form" colspan="3">
+                <input type="button" id="buscar" name="buscar" value="Buscar" class="botoes_ant" /> &nbsp;
+                <input type="button" id="limpar" name="limpar" value="Limpar" class="botoes_ant" /> &nbsp;
+                <input type="button" id="imprime" name="imprime" value="Imprimir" class="botoes_ant" /> &nbsp;
+                <input type="button" id="fechar" name="fechar" value="Fechar" class="botoes_ant" /> &nbsp;
+            </td>
+        </tr>
+    </table>
+</form>
+
+

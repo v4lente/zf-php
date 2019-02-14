@@ -1,0 +1,99 @@
+<?php
+// Seta o título
+$this->headTitle("Filtro");
+?>
+
+<form id="form_pesquisar" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend><?php echo $this->titulo;?></legend>
+		<?php echo $this->formHidden("cd_consulta", $this->cd_consulta);?>
+		<?php echo $this->formHidden("cd_usuario", $this->cd_usuario);?>
+		<?php echo $this->formHidden("titulo", $this->titulo);?>
+        
+        <?php
+        if (count($this->dados) > 0) {
+        ?>
+        
+        <table class='tabela nao-ordenavel nao-selecionavel' id='tabelaConsulta'>
+            <thead>
+                <tr>
+                    <th class='abre_par'> ( </th>
+                    <th class='coluna'>Coluna</th>
+                    <th class='tp_ligacao'>Ligação</th>
+                    <th class='ds_complemento'>Complemento</th>
+                    <th class='lig_int_par'> e/ou </th>
+                    <th class='fecha_par'> ) </th>
+                    <th class='lig_ext_par'> e/ou </th>
+                </tr>
+            </thead>
+            <tbody>
+		<?php	
+			$i=0;
+            foreach ($this->dados as $k => $v) { 
+
+                $i++;
+                
+                ?>
+
+                <tr indice='<?php echo $i; ?>'>
+                    <td class='abre_par'><input class='imp_abre_par' type='text' name='abre_par[]' id='abre_par_<?php echo $i; ?>' maxlength='5' value='<?php echo $v->ABRE_PAR; ?>' />
+                        <input class='imp_cd_cond_col' type='hidden' name='cd_cond_col[]' id='cd_cond_col_<?php echo $i; ?>' value='<?php echo $v->CD_COND_COL; ?>' /></td>
+                    <td class='coluna'><?php echo $v->NO_COLUNA; ?>
+                        <input class='imp_sg_tabela' type='hidden' name='sg_tabela[]' id='sg_tabela_<?php echo $i; ?>' value='<?php echo $v->SG_TABELA; ?>' />
+                        <input class='imp_cd_coluna' type='hidden' name='cd_coluna[]' id='cd_coluna_<?php echo $i; ?>' value='<?php echo $v->CD_COLUNA; ?>' />
+                        <input class='imp_tp_coluna' type='hidden' name='tp_coluna[]' id='tp_coluna_<?php echo $i; ?>' value='<?php echo $v->TP_COLUNA; ?>' />
+                    </td>
+                    <td class='tp_ligacao'>
+                        <select class='imp_no_tp_filtro' id='no_tp_filtro_<?php echo $i; ?>' name='no_tp_filtro[]' value=''>
+                            <option value='_null_' label='-- Selecione --' sigla=''>-- Selecione --</option>
+                            <?php
+                                foreach($this->filtros as $filtro) {
+                                    
+                                    $selected = "";
+                                    if($filtro->NO_TP_FILTRO == $v->NO_TP_FILTRO) {
+                                        $selected = "selected='selected'";
+                                    }
+                                    
+                                    echo "<option label='{$filtro->DS_TP_FILTRO}' value='$filtro->NO_TP_FILTRO' {$selected}>{$filtro->DS_TP_FILTRO}</option>";
+                                    
+                                }
+                            ?>
+                        </select>
+                    </td>
+                    <td class='ds_complemento'><input class='imp_ds_complemento' type='text' name='ds_complemento[]' id='ds_complemento_<?php echo $i; ?>' value='<?php echo $v->DS_COMPLEMENTO; ?>' /></td>
+                    <td class='lig_int_par'>
+                        <select class='imp_lig_int_par' id='lig_int_par_<?php echo $i; ?>' name='lig_int_par[]' value=''>
+                            <option value='_null_' label='-- Selecione --' sigla=''>-- Selecione --</option>
+                            <option label='E' value='AND' <?php echo trim($v->LIG_INT_PAR) == "AND" ? "selected='selected'" : ""; ?>>E</option>
+                            <option label='ou' value='OR' <?php echo trim($v->LIG_INT_PAR) == "OR" ? "selected='selected'" : ""; ?>>OU</option>
+                        </select>
+                    <td class='fecha_par'><input class='imp_fecha_par' type='text' name='fecha_par[]' id='fecha_par_<?php echo $i; ?>' maxlength='5' value='<?php echo $v->FECHA_PAR; ?>' /></td>
+                    <td class='lig_ext_par'>
+                        <select class='imp_lig_ext_par' id='lig_ext_par_<?php echo $i; ?>' name='lig_ext_par[]' value=''>
+                            <option value='_null_' label='-- Selecione --' sigla=''>-- Selecione --</option>
+                            <option label='E' value='AND' <?php echo trim($v->LIG_EXT_PAR) == "AND" ? "selected='selected'" : ""; ?>>E</option>
+                            <option label='ou' value='OR' <?php echo trim($v->LIG_EXT_PAR) == "OR" ? "selected='selected'" : ""; ?>>OU</option>
+                        </select>
+                     </td>
+                </tr>
+
+		<?php } ?>
+            
+            </tbody>
+        </table>
+        
+        <?php
+        } else { ?>
+
+                <div class="linha">
+                    <div class="full">
+                        <label class="label_direita">Relatório criado sem a opção de filtrar as informações!</label>
+                    </div>
+                </div>
+
+            <?php 
+        } ?>
+        
+    </fieldset>
+
+</form>

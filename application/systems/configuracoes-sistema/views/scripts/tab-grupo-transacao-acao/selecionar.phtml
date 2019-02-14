@@ -1,0 +1,51 @@
+<?php
+// Seta o título
+$this->headTitle("Grupo/Transação - Editar");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Editar</legend>
+        
+        <?php echo $this->formHidden("cd_grupo", $this->form['cd_grupo']);?>
+        <?php echo $this->formHidden("cd_transacao", $this->form['cd_transacao']);?>
+        <?php echo $this->formHidden("cd_acao", $this->form['cd_acao']);?>
+        
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="no_sistema">Nome do Sistema:</label>
+                <?php echo $this->formText("no_sistema", $this->form['no_sistema'], array('readonly'=>'readonly'));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="no_menu">Nome da Aba/Menu:</label>
+                <?php echo $this->formText("no_menu", $this->form['no_menu'], array('readonly'=>'readonly'));?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="no_transacao">Nome da Transação:</label>
+                <?php echo $this->formText("no_transacao", $this->form['no_transacao'], array('readonly'=>'readonly'));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="fl_permissao">Tipo de Acesso:</label>
+                <?php echo $this->formSelect("fl_permissao", $this->form['fl_permissao'], array(), $this->adicionaValorPadraoCombo(array("C"=>"Consulta", "M"=>"Manutenção")));?>
+            </div>
+        </div>
+        
+         <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="dt_acesso_ini">Período de acesso:</label>
+                <?php echo $this->formText("dt_acesso_ini", $this->form['dt_acesso_ini'], array('maxlength'=>'10', 'class'=>'data required','disabled'=>'disabled' ,'alt'=>'Período Inicial'));?>
+                &nbsp;à&nbsp;
+                <?php echo $this->formText("dt_acesso_fim", $this->form['dt_acesso_fim'], array('maxlength'=>'10', 'class'=>'data', 'alt'=>'Período Final'));?>
+            </div>
+        </div>
+        
+    </fieldset>
+    
+</form>

@@ -1,0 +1,85 @@
+<?php
+// Seta o título
+$this->headTitle("Sistemas - Pesquisa");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_pesquisar" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Pesquisa</legend>
+
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="no_sistema"><?php echo $this->traducao["LB_NO_SISTEMA"];?>:</label>
+                <?php echo $this->formText("no_sistema", $this->form['no_sistema'], array('maxlength'=>'25'));?>
+            </div>
+			
+            <div class="right">
+                <label class="label_direita" for="no_pasta_zend">Nome da pasta do zend:</label>
+                <?php echo $this->formText("no_pasta_zend", $this->form['no_pasta_zend'], array('maxlength'=>'25'));?>
+            </div>
+        </div>
+
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="ds_sistema"><?php echo $this->traducao["LB_DS_SISTEMA"];?>:</label>
+                <?php echo $this->formText("ds_sistema", $this->form['ds_sistema'], array('maxlength'=>'300'));?>
+            </div>
+        </div>
+        
+    </fieldset>
+    
+</form>
+
+<table class='tabela' id='tabelaConsulta'>
+<?php
+// Se a consulta foi feita mostra os dados
+if(count($this->paginator)) {
+?>
+    <thead>
+      <tr>
+          <th class='cd_sistema' 	column='cd_sistema'><?php echo $this->traducao["LB_COD_SISTEMA"];?><div class='img_seta'></div></th>
+          <th class='no_sistema' 	column='no_sistema'><?php echo $this->traducao["LB_NO_SISTEMA"];?><div class='img_seta'></div></th>
+          <th class='no_pasta_zend' column='no_pasta_zend'>Nome Pasta Zend<div class='img_seta'></div></th>
+          <th class='ds_sistema' 	column='ds_sistema'><?php echo $this->traducao["LB_DS_SISTEMA"];?><div class='img_seta'></div></th>
+          <th class='ord_sistema' 	column='ord_sistema'><?php echo $this->traducao["LB_ORDENACAO"];?><div class='img_seta'></div></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+          <td colspan='5'><?php echo $this->paginationControl($this->paginator, 'Sliding', 'controle_paginacao.phtml', array('extraParams' => $this->extraParams)); ?></td>
+      </tr>
+    </tfoot>
+    <tbody>
+    <?php
+    $i=0;
+    foreach($this->paginator as $linha)
+    {
+        $key = "cd_sistema/{$linha->CD_SISTEMA}";
+
+    ?>
+        <tr class='linha' key='<?php echo $key; ?>'>
+          <td class=''><?php echo $linha->CD_SISTEMA; ?></td>
+          <td class=''><?php echo $linha->NO_SISTEMA;?></td>
+          <td class=''><?php echo $linha->NO_PASTA_ZEND;?></td>
+          <td class=''><?php echo $linha->DS_SISTEMA; ?></td>
+          <td class=''><?php echo $linha->ORD_SISTEMA;?></td>
+        </tr>
+   <?php
+        $i++;
+    }
+    ?>
+    </tbody>
+
+    <?php
+} else {
+   ?>
+    <tfoot>
+      <tr>
+          <td colspan='5' class='paginacaoLinhaTabela' style='padding: 5px;'>Nenhum registo encontrado.</td>
+      </tr>
+    </tfoot>
+<?php
+}
+?>
+</table>

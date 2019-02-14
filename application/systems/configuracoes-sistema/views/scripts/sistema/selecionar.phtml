@@ -1,0 +1,62 @@
+<?php
+// Seta o título
+$this->headTitle("Sistemas - Seleção");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+	<fieldset>
+		<legend>Sistema</legend>
+
+		<div class="linha">
+			<div class="left">
+				<label class="label_esquerda" for="cd_sistema"><?php echo $this->traducao["LB_COD_SISTEMA"];?>:</label>
+				<?php echo $this->formText("cd_sistema", $this->form['cd_sistema'], array('readonly'=>'readonly', 'maxlength'=>'3'));?>
+			</div>
+
+			<div class="right">
+                <label class="label_direita" for="ord_sistema"><?php echo $this->traducao["LB_ORDEM_EXIBICAO_MENU"];?>:</label>
+                <?php echo $this->formText("ord_sistema", $this->form['ord_sistema'], array('class'=>'numero', 'maxlength'=>'2'));?>
+            </div>
+		</div>
+		
+		<div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="no_sistema"><?php echo $this->traducao["LB_NO_SISTEMA"];?>:</label>
+                <?php echo $this->formText("no_sistema", $this->form['no_sistema'], array('class'=>'required', 'maxlength'=>'25'));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="no_pasta_zend">Nome da Pasta do Zend:</label>
+                <?php echo $this->formText("no_pasta_zend", $this->form['no_pasta_zend'], array('maxlength'=>'25'));?>
+            </div>
+        </div>
+
+		<div class="linha">
+			<div class="full">
+				<label class="label_esquerda" for="ds_sistema"><?php echo $this->traducao["LB_DS_SISTEMA"];?>:</label>
+				<?php echo $this->formTextarea("ds_sistema", $this->form['ds_sistema'], array('maxlength'=>'300'));?>
+			</div>
+			
+            
+		</div>
+        
+	</fieldset>
+	
+</form>
+
+<!-- Insere as Abas -->
+<?php 
+    // Define o código do contrato da transação pai
+    $cd_sistema = "pai_cd_sistema/" . $this->form['cd_sistema'];
+
+    // Define os atributos de cada aba
+    $titulos        = array("Menus/Abas");
+    $sistemas       = array("configuracoes-sistema");
+    $controladores  = array("tab-menu-sistema");
+    $parametros     = array($cd_sistema);
+    $estilos        = array();
+    
+    // Gera as abas
+    echo $this->geraAbas($titulos, $sistemas, $controladores, $parametros, $estilos); 
+?>

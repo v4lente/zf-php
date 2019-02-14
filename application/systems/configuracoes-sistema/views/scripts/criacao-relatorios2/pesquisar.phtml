@@ -1,0 +1,89 @@
+<?php
+// Seta o título
+$this->headTitle("Transação - Pesquisa");
+?>
+
+<form id="form_pesquisar" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Pesquisa</legend>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="no_sistema">Código do Relatório:</label>
+                <?php echo $this->formText("cd_consulta", $this->form['cd_consulta'], array('class'=>'int', 'maxlength'=>'10'));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="amb_desenv">Título do Relatório:</label>
+                <?php echo $this->formText("titulo", $this->form['titulo'], array('class'=>'stru', 'maxlength'=>'50'));?>
+            </div>            
+            
+        </div>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_direita" for="fl_visivel">Relatório Ativo:</label>
+                <?php echo $this->formSelect("fl_ativo", $this->form['fl_ativo'], array(), $this->adicionaValorPadraoCombo(array("1"=>"SIM", "0"=>"NÃO")));?>
+            </div>
+
+            <div class="right">
+            </div>
+          
+        </div>
+                
+    </fieldset>
+    
+</form>
+
+<table class='tabela' id='tabelaConsulta'>
+<?php
+// Se a consulta foi feita mostra os dados
+if(count($this->paginator)) {
+?>
+    <thead>
+        <tr>
+          <th class='cd_consulta'   column='cd_consulta'>Cód. Relatório</th>
+          <th class='titulo'        column='titulo'>Título do Relatório</th>
+          <th class='dthr_cadastro' column='dthr_cadastro'>Data Criação</th>
+          <th class='fl_ativo'      column='fl_ativo'>Ativo</th>
+          <th class='tabs_vinc'     column='tabs_vinc'>Status</th>
+        </tr>
+    </thead>
+    <tfoot>
+      <tr>
+          <td colspan='5'><?php echo $this->paginationControl($this->paginator, 'Sliding', 'controle_paginacao.phtml', array('extraParams' => $this->extraParams)); ?></td>
+      </tr>
+    </tfoot>
+    <tbody>
+    <?php
+    $i=0;
+    foreach($this->paginator as $linha)
+    {
+        $key = "cd_consulta/{$linha->CD_CONSULTA}";
+
+    ?>
+        <tr class='linha' key='<?php echo $key; ?>'>
+          <td class="int"><?php echo $linha->CD_CONSULTA; ?></td>
+          <td><?php echo $linha->TITULO;?></td>
+          <td style="text-align: center;"><?php echo $linha->DTHR_CADASTRO; ?></td>
+          <td style="text-align: center;"><?php echo $linha->FL_ATIVO_DESC; ?></td>
+          <td><?php echo $linha->TABS_VINC > 0 ? "PRONTO PARA EXECUÇÃO" : "DADOS INCOMPLETOS"; ?></td>
+        </tr>
+   <?php
+        $i++;
+    }
+    ?>
+    </tbody>
+
+    <?php
+} else {
+   ?>
+    <tfoot>
+      <tr>
+          <td colspan='5' class='paginacaoLinhaTabela' style='padding: 5px;'>Nenhum registo encontrado.</td>
+      </tr>
+    </tfoot>
+<?php
+}
+?>
+</table>

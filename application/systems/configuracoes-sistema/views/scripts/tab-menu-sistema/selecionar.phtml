@@ -1,0 +1,47 @@
+<?php
+// Seta o título
+$this->headTitle("Menu - Novo");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Menu/Sistema</legend>
+        
+        <?php echo $this->formHidden("cd_sistema", $this->form['cd_sistema'], array('maxlength'=>'3'));?>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="cd_menu">Código do Menu/Aba:</label>
+                <?php echo $this->formText("cd_menu", $this->form['cd_menu'], array('maxlength'=>'5', 'readonly'=>'readonly'));?>
+            </div>
+            
+            
+        </div>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="no_menu">Nome do Menu/Aba:</label>
+                <?php echo $this->formText("no_menu", $this->form['no_menu'], array('maxlength'=>'30'));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="ord_menu">Ordem de Exibição:</label>
+                <?php echo $this->formText("ord_menu", $this->form['ord_menu'], array('maxlength'=>'2', 'class'=>'numero'));?>
+            </div>
+            
+            
+        </div>
+        
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="ds_menu">Descrição do Menu/Aba:</label>
+                <?php echo $this->formTextarea("ds_menu", $this->form['ds_menu'], array('maxlength'=>'300'));?>
+            </div>
+            
+            
+        </div>
+        
+    </fieldset>
+    
+</form>

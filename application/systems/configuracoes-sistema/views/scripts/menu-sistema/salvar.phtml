@@ -1,0 +1,50 @@
+<?php
+// Seta o título
+$this->headTitle("Menu - Novo");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Menu</legend>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="cd_menu"><?php echo $this->traducao["LB_COD_MENU"];?>:</label>
+                <?php echo $this->formText("cd_menu", $this->form['cd_menu'], array('readonly'=>'readonly', 'maxlength'=>'5'));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="cd_sistema"><?php echo $this->traducao["LB_NO_SISTEMA"];?>:</label>
+                <?php echo $this->formSelect("cd_sistema", "", array(), $this->adicionaValorPadraoCombo($this->sistemas));?>
+            </div>
+            
+            
+        </div>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="ord_menu"><?php echo $this->traducao["LB_ORDEM"];?>:</label>
+                <?php echo $this->formText("ord_menu", "", array('maxlength'=>'5'));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="no_menu"><?php echo $this->traducao["LB_NOME_NS"];?>:</label>
+                <?php echo $this->formText("no_menu", "", array());?>
+            </div>
+            
+            
+        </div>
+
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="ds_menu"><?php echo $this->traducao["LB_DESCRICAO"];?>:</label>
+                <?php echo $this->formText("ds_menu", "", array());?>
+            </div>
+            
+            
+        </div>
+        
+    </fieldset>
+    
+</form>

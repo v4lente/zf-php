@@ -1,0 +1,20 @@
+<?php 
+// Define o título
+$titulo = "Relatórios Criados";
+
+// Converte o resultado para array
+$resultado = $this->resConsulta;
+
+// Monta o array com os campos da consulta que serão mostrados no relatório. -> (Obrigatório)
+// Total 190 mm somando todos os campos para A4 tipo Retrato (P: Portrait)
+// ou 277 mm somando todos os campos para A4 tipo Paisagem (L: Landscape)
+// No WIDTH colocar a porcentagem de cada campo, máximo 100% de todos os campos juntos.
+$campos = array("CD_CONSULTA"   => array("width"=>10, "text-align"=>'left', "title"=>"Código"),
+			    "TITULO"        => array("width"=>70, "text-align"=>'left', "title"=>"Título"),
+                "DTHR_CADASTRO" => array("width"=>10, "text-align"=>'left', "title"=>"Data Cadastro"),
+                "FL_ATIVO_DESC" => array("width"=>10, "text-align"=>'left', "title"=>"Ativo")
+                );
+
+// Chama o view helper que gerará o relatório
+$this->geraRelatorio($resultado, $titulo, $campos, $this->extraParams["_rel_metodo"]);
+?>

@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="stylesheet" type="text/css" href="<?php echo dirname($_SERVER['SCRIPT_FILENAME']);?>/styles/dompdf/print_static.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo dirname($_SERVER['SCRIPT_FILENAME']);?>/styles/relatorio.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo dirname($_SERVER['SCRIPT_FILENAME']);?>/styles/<?php echo $this->no_module;?>/<?php echo $this->no_controller;?>.css" />
+
+<title>Sistemas Cadastrados</title>
+
+</head>
+<body>
+
+<script type="text/php">
+<?php 
+// Gera o script do DomPDF que montará o cabeçalho e o rodapé
+echo $this->scriptDomPDF("Cadastro de Sistemas"); 
+?>
+</script>
+
+
+<div id="body"> 
+    <div id="content">
+        <div class="page">
+			   <table class='tabelaConsulta' id='tabelaConsulta'>			       
+			    	<thead>
+			    		<tr>
+                            <th class='cd_sistema'><?php echo $this->traducao["LB_COD_SISTEMA"];?></th>
+                            <th class='no_sistema'><?php echo $this->traducao["LB_NO_SISTEMA"];?></th>
+                            <th class='ds_sistema'><?php echo $this->traducao["LB_DS_SISTEMA"];?></th>
+                            <th class='ord_sistema'><?php echo $this->traducao["LB_ORDENACAO"];?></th>
+			        	</tr>
+			        </thead>
+			        <tbody>
+			        <?php 
+			        $i=0;
+			        foreach($this->resConsulta as $linha) 
+			        {	
+			            $classe = (($i%2)==0) ? "par" : "impar";
+			        ?>	
+			            <tr class='<?php echo $classe; ?>' key='<?php echo $key; ?>'>
+                          <td class=''><?php echo $linha->CD_SISTEMA; ?></td>
+                          <td class=''><?php echo $linha->NO_SISTEMA;?></td>
+                          <td class=''><?php echo $linha->DS_SISTEMA; ?></td>
+                          <td class=''><?php echo $linha->ORD_SISTEMA;?></td>
+                        </tr>
+			        <?php     
+			            $i++;            
+			        }                
+			    ?>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan='4'>Total. <?php echo $i; ?> registros</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>  
+</body>
+</html>

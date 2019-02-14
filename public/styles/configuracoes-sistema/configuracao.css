@@ -1,0 +1,47 @@
+#container {
+   	border: 0px solid #c93;
+}
+
+#container #tituloForm {
+	display: block;
+}
+
+#container #palhetaControle {
+	display: block;
+}
+
+#container #botao-novo {   
+    display: none !important;
+}
+
+#container #botao-salvar {
+    display: block !important;
+}
+
+#container #botao-excluir {
+    display: none !important;
+}
+
+#container #botao-pesquisar {
+    display: none !important;
+}
+
+#container #botao-tela-pesquisa {
+    display: none !important;
+}
+
+#container #botao-enviar {
+    display: none !important;
+}
+
+#container #botao-receber {
+    display: none !important;
+}
+
+#container #botao-voltar {
+    display: none !important;
+}
+
+#container #botao-relatorio {
+    display: none !important;
+}

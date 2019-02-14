@@ -1,0 +1,23 @@
+#botao-novo {
+	display: none !important;
+}
+
+#botao-salvar {
+	display: none !important;
+}
+
+#botao-excluir {
+	display: none !important;
+}
+
+#botao-pesquisar {
+	display: none !important;
+}
+
+#botao-tela-pesquisa {
+	display: none !important;
+}
+
+#ds_tabela {
+	height: 80px;
+}

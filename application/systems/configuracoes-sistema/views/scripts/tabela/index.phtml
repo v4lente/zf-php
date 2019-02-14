@@ -1,0 +1,97 @@
+<?php
+// Seta o título
+$this->headTitle("Tabelas Web - Pesquisa");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_pesquisar" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+	<fieldset>
+
+		<legend>Pesquisa</legend>
+
+		<div class="linha">
+			<div class="left">
+				<label class="label_esquerda" for="cd_tabela">Tabela:</label>
+				<?php echo $this->formText("cd_tabela", $this->form['cd_tabela'], array('class'=>'stru' ,'maxlength'=>'30'));?>
+			</div>
+
+			<div class="right">
+				<label class="label_direita" for="no_tabela">Descricao:</label>				
+                <?php echo $this->formText("no_tabela", $this->form['no_tabela'], array('class'=>'stru', 'maxlength'=>'50'));?>				
+			</div>
+		</div>
+		
+		<div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="fl_relatorio">Gerador de Relatórios:</label>
+                <?php 
+                	$fl_relatorio = "";
+                	if(! isset($this->form['fl_relatorio'])) $fl_relatorio = 2;
+                	echo $this->formSelect("fl_relatorio", $fl_relatorio, array(), $this->adicionaValorPadraoCombo(array("2"=>"sem texto/Em branco", "1"=>"Sim", "0"=>"Não")));
+                ?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="fl_cons_nao_estrut">Consultas Estruturadas:</label>
+                <?php
+                	$fl_cons_nao_estrut = "";
+                	if(! isset($this->form['fl_cons_nao_estrut'])) $fl_cons_nao_estrut = 2;
+                	echo $this->formSelect("fl_cons_nao_estrut", $fl_cons_nao_estrut, array(), $this->adicionaValorPadraoCombo(array("2"=>"sem texto/Em branco", "1"=>"Sim", "0"=>"Não")));
+                ?>
+            </div>
+        </div>
+        
+	</fieldset>
+	
+</form>
+
+<table class='tabela' id='tabelaConsulta'>
+<?php
+// Se a consulta foi feita mostra os dados
+if(count($this->paginator)) {
+?>
+    <thead>
+      <tr>
+          <th class='cd_tabela'    column='cd_tabela'>Código<div class='img_seta'></div></th>
+          <th class='no_tabela'    column='no_tabela'>Nome<div class='img_seta'></div></th>
+          <th class='ds_tabela'    column='ds_tabela'>Descrição<div class='img_seta'></div></th>                    
+          <th class='fl_relatorio' column='fl_relatorio'>Relatório<div class='img_seta'></div></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+          <td colspan='4'><?php echo $this->paginationControl($this->paginator, 'Sliding', 'controle_paginacao.phtml', array('extraParams' => $this->extraParams)); ?></td>
+      </tr>
+    </tfoot>
+    <tbody>
+    <?php
+    $i=0;
+    foreach($this->paginator as $linha)
+    {
+        $key = "cd_tabela/{$linha->CD_TABELA}";
+
+    ?>
+        <tr class='linha' key='<?php echo $key; ?>'>
+          <td class='cd_tabela stru'><?php echo $linha->CD_TABELA; ?></td>
+          <td class='no_tabela strl'><?php echo $linha->NO_TABELA; ?></td>          
+          <td class='ds_tabela strl'><?php echo $linha->DS_TABELA; ?></td>          
+          <td class='fl_relatorio stru'><?php echo $linha->getFlRelatorio(); ?></td>
+        </tr>
+   <?php
+        $i++;
+    }
+    ?>
+	</tbody>
+
+    <?php
+} else {
+   ?>
+    <tfoot>
+      <tr>
+          <td colspan='4' class='paginacaoLinhaTabela' style='padding: 5px;'>Nenhum registo encontrado.</td>
+      </tr>
+    </tfoot>
+<?php
+}
+?>
+</table>

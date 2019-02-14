@@ -1,0 +1,108 @@
+<?php 
+// Converte o resultado para array
+$resultado = $this->resConsulta->toArray();
+
+// Espaços para concatenação
+$espacos = "          ";
+
+$sistema   = 0;
+$transacao = 0;
+$usuario   = 0;
+$periodo   = 0;
+$linha     = 0;
+$i         = 0;
+$res       = array();
+
+// Necessário para manipular alguma coluna individualmente
+foreach($resultado as $indice => $valor) {
+    	
+	$resultado[$indice]['NO_SISTEMA']    = $resultado[$indice]['NO_SISTEMA']            . " | Ambiente: " . $resultado[$indice]['AMBIENTE'];
+    $resultado[$indice]['NO_USUARIO']    = $espacos . $resultado[$indice]['NO_USUARIO'] . " - "           . $resultado[$indice]['CD_USUARIO'];
+    	
+    if($resultado[$indice]['DT_ACESSO_FIM'] != "") {
+    	$resultado[$indice]['PERIODO'] = $resultado[$indice]['DT_ACESSO_INI'] . " à " . $resultado[$indice]['DT_ACESSO_FIM'];
+    } else {
+    	$resultado[$indice]['PERIODO'] = $resultado[$indice]['DT_ACESSO_INI'] . " à " . "----------------";
+    }
+    	
+    if($i == 0) {
+    		
+    	$sistema       = $resultado[$indice]['CD_SISTEMA'];
+	    $transacao     = $resultado[$indice]['CD_TRANSACAO'];
+	    $usuario       = $resultado[$indice]['CD_USUARIO'];
+	    $periodo       = $resultado[$indice]['PERIODO'];
+	    $no_acao       = $resultado[$indice]['NO_ACAO'];
+	    $no_sistema    = $resultado[$indice]['NO_SISTEMA'];    	
+	    $no_transacao  = $resultado[$indice]['NO_TRANSACAO'];
+	    $no_usuario    = $resultado[$indice]['NO_USUARIO'];
+    		
+    	$res[$linha]["NO_SISTEMA"]   = $no_sistema;
+    	$res[$linha]["NO_TRANSACAO"] = $no_transacao;
+    	$res[$linha]["NO_USUARIO"]   = $no_usuario;
+    	$res[$linha]["NO_ACAO"]      = $no_acao;
+    	$res[$linha]["PERIODO"]      = $periodo;
+    		    		
+    } elseif($sistema   == $resultado[$indice]['CD_SISTEMA']   && 
+    	     $transacao == $resultado[$indice]['CD_TRANSACAO'] &&
+    	     $usuario   == $resultado[$indice]['CD_USUARIO']   && 
+    	     $periodo   == $resultado[$indice]['PERIODO']) {
+
+    	$res[$linha]["NO_ACAO"] .= ", " . $resultado[$indice]["NO_ACAO"];
+    		
+    } else {
+		$linha++;
+    		
+    	$sistema       = $resultado[$indice]['CD_SISTEMA'];
+	    $transacao     = $resultado[$indice]['CD_TRANSACAO'];
+	    $usuario       = $resultado[$indice]['CD_USUARIO'];
+	    $periodo       = $resultado[$indice]['PERIODO'];
+	    $no_acao       = $resultado[$indice]['NO_ACAO'];
+	    $no_sistema    = $resultado[$indice]['NO_SISTEMA'];    	
+	    $no_transacao  = $resultado[$indice]['NO_TRANSACAO'];
+	    $no_usuario    = $resultado[$indice]['NO_USUARIO'];
+    		
+    	$res[$linha]["NO_SISTEMA"]   = $no_sistema;
+    	$res[$linha]["NO_TRANSACAO"] = $no_transacao;
+    	$res[$linha]["NO_USUARIO"]   = $no_usuario;
+    	$res[$linha]["NO_ACAO"]      = $no_acao;
+    	$res[$linha]["PERIODO"]      = $periodo;
+    		
+    }    	
+    $i++;
+}
+
+// Verifica o tipo de relatório
+if($this->agrupamento == "T") {
+    
+    // Define o título
+    $titulo = "Acesso Transação por Usuário";
+    
+    // Monta o array com os campos da consulta que serão mostrados no relatório. -> (Obrigatório)
+    // Total 190 mm somando todos os campos para A4 tipo Retrato (P: Portrait)
+    // ou 277 mm somando todos os campos para A4 tipo Paisagem (L: Landscape)
+	// No WIDTH colocar a porcentagem de cada campo, máximo 100% de todos os campos juntos.
+    $campos = array("NO_SISTEMA"   => array("width"=>00, "text-align"=>'left',   "title"=>"Sistema",   "group" => true),
+				    "NO_TRANSACAO" => array("width"=>00, "text-align"=>'left',   "title"=>"Transação", "group" => true),                
+				    "NO_USUARIO"   => array("width"=>40, "text-align"=>'left',   "title"=>"Usuário"),
+    				"NO_ACAO"      => array("width"=>40, "text-align"=>'left',   "title"=>"Ações"),
+                    "PERIODO"      => array("width"=>20, "text-align"=>'center', "title"=>"Período de Acesso"));
+} else {
+    
+    // Define o título
+    $titulo = "Acesso Usuários por Transação";
+    
+    // Monta o array com os campos da consulta que serão mostrados no relatório. -> (Obrigatório)
+    // Total 190 mm somando todos os campos para A4 tipo Retrato (P: Portrait)
+    // ou 277 mm somando todos os campos para A4 tipo Paisagem (L: Landscape)
+    // No WIDTH colocar a porcentagem de cada campo, máximo 100% de todos os campos juntos.
+    $campos = array("NO_USUARIO"   => array("width"=>00, "text-align"=>'left',   "title"=>"Usuário", "group" => true),
+    			    "NO_SISTEMA"   => array("width"=>00, "text-align"=>'left',   "title"=>"Sistema", "group" => true),
+    				"NO_TRANSACAO" => array("width"=>40, "text-align"=>'left',   "title"=>"Transação"),
+    				"NO_ACAO"      => array("width"=>40, "text-align"=>'left',   "title"=>"Ações"),
+                    "PERIODO"      => array("width"=>20, "text-align"=>'center', "title"=>"Período de Acesso"));
+    
+}
+
+// Chama o view helper que gerará o relatório
+$this->geraRelatorio($res, $titulo, $campos, $this->extraParams["_rel_metodo"]);
+?>

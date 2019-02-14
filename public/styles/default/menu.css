@@ -1,0 +1,37 @@
+#container {
+    height: 100%;
+    float: left;
+}
+
+#container #palhetaControle {
+    display: block;
+    margin-bottom: 0px !important;
+}
+
+#container #palhetaControle #palhetaDireita {
+    display: none;	
+}
+
+#container #lateral_esquerda {
+    width: 180px;
+    height: 100%;
+    border-right: 10px solid #f1f3f5;
+    margin-right: 5px;
+    float: left;
+}
+
+#container #menu_sistemas {
+    width: 300px;
+    min-height: 200px;
+    margin-top: 5px;
+    border: 0px solid #f44;
+    text-align: left;
+    float: left;
+    display: block;
+}
+/*
+#content {
+    background: #fff url('public/images/bg_suprg.jpg') no-repeat;
+    border: 0px solid #ff0;
+}
+*/

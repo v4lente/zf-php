@@ -1,0 +1,11 @@
+#botao-limpar {
+    display: none !important;
+}
+
+input {
+    width: 99%;
+}
+
+input.ui-autocomplete-input {
+    width: 82% !important;
+}

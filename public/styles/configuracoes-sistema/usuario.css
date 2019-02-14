@@ -1,0 +1,37 @@
+th.nr_matric {
+    width: 10%;
+    text-align: left;
+}
+
+th.no_usuario {
+    width: 45%;
+    text-align: left;
+}
+
+th.cd_usuario {
+    width: 15%;
+    text-align: left;
+}
+
+th.tp_usuario {
+    width: 10%;
+    text-align: left;
+}
+
+th.fl_super {
+    width: 10%;
+    text-align: left;
+}
+
+th.fl_acesso_intranet {
+    width: 10%;
+    text-align: left;
+}
+
+textarea {
+    height: 50px !important;
+}
+
+iframe {
+    height: 430px !important;
+}

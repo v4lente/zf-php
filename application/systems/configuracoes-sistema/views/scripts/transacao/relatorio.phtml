@@ -1,0 +1,35 @@
+<?php 
+
+// Define o título
+$titulo = "Cadastro de Transações";
+
+// Converte o resultado para array
+$resultado = $this->resConsulta->toArray();
+
+// Formatando os campos
+foreach($resultado as $indice => $valor) {
+    
+    $resultado[$indice]["AMB_DESENV"]    = $valor["AMB_DESENV"]    == "ZEND" ? "ZEND"     : "T.POWER"; 
+    $resultado[$indice]["FL_LOG_SESSAO"] = $valor["FL_LOG_SESSAO"] == "1"    ? "Sim"      : "Não"; 
+    $resultado[$indice]["FL_RELATORIO"]  = $valor["FL_RELATORIO"]  == "1"    ? "Sim"      : "Não"; 
+  
+}
+
+// Monta o array com os campos da consulta que serão mostrados no relatório. -> (Obrigatório)
+// Total 190 mm somando todos os campos para A4 tipo Retrato (P: Portrait)
+// ou 277 mm somando todos os campos para A4 tipo Paisagem (L: Landscape)
+// No WIDTH colocar a porcentagem de cada campo, máximo 100% de todos os campos juntos.
+$campos = array("CD_SISTEMA"    => array("width"=>8,  "text-align"=>"left", "title"=>"Cód. Sistema"),
+				"NO_SISTEMA"    => array("width"=>13, "text-align"=>"left", "title"=>"Nome Sistema"),
+                "CD_MENU"       => array("width"=>8,  "text-align"=>"left", "title"=>"Cód. Menu"),
+                "NO_MENU"       => array("width"=>13, "text-align"=>"left", "title"=>"Nome Menu"),
+                "CD_TRANSACAO"  => array("width"=>10,  "text-align"=>"left", "title"=>"Cód. Transação"),
+                "NO_TRANSACAO"  => array("width"=>20, "text-align"=>"left", "title"=>"Nome Transação"),
+                "AMB_DESENV"    => array("width"=>8,  "text-align"=>"left", "title"=>"Amb. Desenv."),
+                "FL_LOG_SESSAO" => array("width"=>7,  "text-align"=>"left", "title"=>"Ger. Log"),
+                "FL_RELATORIO"  => array("width"=>7,  "text-align"=>"left", "title"=>"É Relatóri"),
+                "ORD_TRANSACAO" => array("width"=>6,  "text-align"=>"left", "title"=>"Ordem"));
+
+// Chama o view helper que gerará o relatório
+$this->geraRelatorio($resultado, $titulo, $campos, $this->extraParams["_rel_metodo"]);
+?>

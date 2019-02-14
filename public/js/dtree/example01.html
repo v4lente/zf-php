@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+
+<head>
+	<title>Destroydrop &raquo; Javascripts &raquo; Tree</title>
+
+	<link rel="StyleSheet" href="dtree.css" type="text/css" />
+	<script type="text/javascript" src="dtree.js"></script>
+
+</head>
+
+<body>
+
+<h1><a href="/">Destroydrop</a> &raquo; <a href="/javascripts/">Javascripts</a> &raquo; <a href="/javascripts/tree/">Tree</a></h1>
+
+<h2>Example</h2>
+
+<div class="dtree">
+
+	<p><a href="javascript: d.openAll();">open all</a> | <a href="javascript: d.closeAll();">close all</a></p>
+
+	<script type="text/javascript">
+		<!--
+
+		d = new dTree('d');
+
+		d.add('PORmenu_aplicativos','-1','Sistema de Gestão Portuária','','Sistema de Gestão Portuária utilizado pelos Portos (Autoridades Portuárias) do Estado do Rio Grande do Sul.', '','','');
+			d.add('ACEace_menu_principal','PORmenu_aplicativos','Acessos','','Aplicativo de Acessos.', '','','');
+			d.add('ACEace_menu_tran','ACEace_menu_principal','Menu Transações','','Menu Transações', '','','');
+			d.add('ACEace_menu_usu','ACEace_menu_principal','Menu de Usuários','','Menu de Usuários', '','','');
+			d.add('ACEace_tran_cadastro','ACEace_menu_tran','Cadastro Transações','ace/cad_transacao','Cadastro Transações', '','','');
+			d.add('ACEace_tran_grupo','ACEace_menu_tran','Cadastro Grupos','ace/cad_grupo','Cadastro Grupos', '','','');
+			d.add('ACEace_tran_grupo_transacao','ACEace_menu_tran','Grupos X Transações','ace/cad_grupo_transacao','Grupos X Transações', '','','');
+			d.add('ACEace_usu_config','ACEace_menu_usu','Configuração de Usuário','ace/man_usu_config','Configuração de Usuário', '','','');
+			d.add('ARMarm_cad_armador','ARMarm_menu_cad','Cadastro Armadores','arm/cad_armador','Cadastro Armadores', '','','');
+			d.add('ARMarm_cad_eds','ARMarm_menu_cad','Cadastro EDS','info.php','Cadastro EDS', '','','');
+			d.add('ARMarm_cad_eds_cancel','ARMarm_menu_cad','Cancelamentos de EDS','     ','Cancelamentos de EDS', '','','');
+			d.add('ARMarm_cad_imp_exp','ARMarm_menu_cad','Cadastro Importador/Exportador','arm/cad_imp_exp','Cadastro Importador/Exportador', '','','');
+			d.add('ARMarm_cad_lloyd','ARMarm_menu_cad','Cadastro Lloyd Register','arm/cad_lloyd','Cadastro Lloyd Register', '','','');
+			d.add('ARMarm_cad_localizacao','ARMarm_menu_cad','Cadastro Localizações','arm/cad_loc','Cadastro Localizações', '','','');
+			d.add('ARMarm_cad_sigla_porto','ARMarm_menu_cad','Cadastro Siglas Portos','arm/cad_sigla_porto','Cadastro Siglas Portos', '','','');
+			d.add('ARMarm_menu_cad','ARMarm_menu_principal','Menu Cadastros','','Menu Cadastros', '','','');
+			d.add('ARMarm_menu_mov','ARMarm_menu_principal','Menu de Movimentações','','Menu de Movimentações', '','','');
+			d.add('ARMarm_menu_mov_imp','ARMarm_menu_mov','Menu de Importações','','Menu de Importações', '','','');
+			d.add('ARMarm_menu_principal','PORmenu_aplicativos','Armazenagem','','Aplicativo responsável pela carga e descarga de mercadorias das Embarcações.', '','','');
+			d.add('ARMarm_mov_imp_carga_geral','ARMarm_menu_mov_imp','Importação de Carga Geral','arm/mov_imp_carga_geral','Importação de Carga Geral', '','','');
+			d.add('ARMarm_mov_imp_conteiner','ARMarm_menu_mov_imp','Importação de Conteiner','arm/mov_imp_conteiner','Importação de Conteiner', '','','');
+			d.add('ARMarm_mov_imp_conteiner_planilha','ARMarm_menu_mov_imp','Importação Conteiner Planilha','arm/mov_imp_conteiner_planilha','Importação Conteiner Planilha', '','','');
+			d.add('ARMarm_mov_imp_granel','ARMarm_menu_mov_imp','Importação de Granel','arm/mov_imp_granel','Importação de Granel', '','','');
+			d.add('ARMarm_trans_adu','ARMarm_menu_principal','Menu Transito Aduaneiro','','Menu Transito Aduaneiro', '','','');
+			d.add('CONcon_menu_principal','PORmenu_aplicativos','Contratos','','Aplicativo de Contratos.', '','','');
+			d.add('PATpat_menu_principal','PORmenu_aplicativos','Patrimônio','','Aplicativo de Patrimônio.', '','','');
+		document.write(d);
+
+		//-->
+	</script>
+
+</div>
+
+<p><a href="mailto&#58;drop&#64;destroydrop&#46;com">&copy;2002-2003 Geir Landr&ouml;</a></p>
+
+</body>
+
+</html>

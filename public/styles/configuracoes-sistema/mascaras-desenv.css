@@ -1,0 +1,53 @@
+
+#orgao_rg {
+    float: left;	
+}
+
+label[for="orgao_rg"] {
+	width: 152px !important;
+	/*border: 1px solid red;*/
+	
+}
+
+label[for="dt_emis_rg"] {
+	width: 125px !important;
+}
+
+
+#sexo {
+    float: left;	
+}
+
+label[for="sexo"] {
+	width: 40px !important;
+}
+
+#div_motorista {
+	/* border: 1px solid red; */
+    text-align:right;
+	width: 500px;	
+}
+
+#categ_cnh {
+    float: left;	
+}
+
+label[for="valid_cnh"] {
+	width: 190px !important;
+}
+
+#container {
+   	border: 0px solid #c93;
+}
+
+#container #tituloForm {
+	display: block;
+}
+
+#container #palhetaControle {
+	display: block;
+}
+
+#fone1{
+    margin-right: 5px;    
+}

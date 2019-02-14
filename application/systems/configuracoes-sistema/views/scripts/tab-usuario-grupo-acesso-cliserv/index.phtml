@@ -1,0 +1,53 @@
+<?php
+// Seta o título
+$this->headTitle("Grupos - Pesquisa");
+?>
+
+<table class='tabela' id='tabelaConsulta'>
+<?php
+// Se a consulta foi feita mostra os dados
+if(count($this->paginator)) {
+?>
+    <thead>
+      <tr>
+          <th class='cd_grupo' column='g.cd_grupo'>Código<div class='img_seta'></div></th>
+          <th class='no_grupo' column='g.no_grupo'>Nome<div class='img_seta'></div></th>
+          <th class='dt_acesso_ini' column='gu.dt_acesso_ini' colspan='2'>Período de Acesso<div class='img_seta'></div></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+          <td colspan='4'><?php echo $this->paginationControl($this->paginator, 'Sliding', 'controle_paginacao.phtml', array('extraParams' => $this->extraParams)); ?></td>
+      </tr>
+    </tfoot>
+    <tbody>
+    <?php
+    $i=0;
+    foreach($this->paginator as $linha)
+    {
+        $key = "cd_grupo/{$linha->CD_GRUPO}";
+    ?>
+        <tr class='linha' key='<?php echo $key; ?>'>
+          <td><?php echo $linha->CD_GRUPO; ?></td>
+          <td><?php echo $linha->NO_GRUPO; ?></td>
+          <td class='dt_acesso_ini'><?php echo $linha->DT_ACESSO_INI; ?></td>
+          <td class='dt_acesso_fim'><?php echo $linha->DT_ACESSO_FIM; ?></td>
+        </tr>
+   <?php
+        $i++;
+    }
+    ?>
+	</tbody>
+
+    <?php
+} else {
+   ?>
+    <tfoot>
+      <tr>
+          <td colspan='4' class='paginacaoLinhaTabela' style='padding: 5px;'>Nenhum registo encontrado.</td>
+      </tr>
+    </tfoot>
+<?php
+}
+?>
+</table>

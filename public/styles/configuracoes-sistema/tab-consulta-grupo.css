@@ -1,0 +1,16 @@
+#container {
+   	border: 0px solid #c93;
+}
+
+#container #tituloForm {
+	display: block;
+}
+
+#container #palhetaControle {
+	display: block;
+}
+
+
+#botao-relatorio, #botao-pesquisar{
+	display: none !important;
+}

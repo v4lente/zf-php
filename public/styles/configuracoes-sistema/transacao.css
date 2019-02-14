@@ -1,0 +1,39 @@
+th.no_sistema {
+    width: 15%;
+}
+
+th.no_menu {
+    width: 15%;
+}
+
+th.no_transacao {
+    width: 15%;
+}
+
+th.amb_desenv {
+    width: 10%;
+}
+
+th.format_rel {
+    width: 10%;
+}
+
+th.fl_visivel {
+    width: 8%;
+}
+
+th.fl_visivel {
+    width: 10%;
+}
+
+th.fl_visivel {
+    width: 8%;
+}
+
+th.ord_transacao {
+    width: 10%;
+}
+
+textarea {
+    height: 50px !important;
+}

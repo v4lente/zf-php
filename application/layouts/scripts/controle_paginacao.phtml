@@ -1,0 +1,83 @@
+<!--
+Layout de Paginação das consultas
+See http://developer.yahoo.com/ypatterns/pattern.php?pattern=itempagination
+-->
+<?php if ($this->pageCount):
+
+$no_module     = Zend_Controller_Front::getInstance()->getRequest()->getModuleName();
+$no_controller = Zend_Controller_Front::getInstance()->getRequest()->getControllerName();
+$no_action     = Zend_Controller_Front::getInstance()->getRequest()->getActionName();
+
+// Utilizado para montar a paginação juntamente com os parametros de filtro
+$arrayExp = array();
+$arrayOpt = array("onclick" => "Base.mostraTelaCarregando();");
+
+if (isset($this->extraParams)){
+	if(count($this->extraParams) > 0 ){
+		$arrayExp = $this->extraParams;
+		unset($arrayExp["module"]);
+		unset($arrayExp["controller"]);
+		unset($arrayExp["action"]);
+		unset($arrayExp["pagina"]);
+	}
+}
+
+?>
+<div class="paginationControl">
+<?php echo $this->firstItemNumber; ?> a <?php echo $this->lastItemNumber; ?>
+ de <?php echo $this->totalItemCount; ?> registros
+<br />
+<!-- First page link -->
+<?php if (isset($this->previous)):
+	$array_first = array('pagina' => $this->first);
+	if(count($arrayExp) > 0 ){
+		$array_first = array_merge($array_first, $arrayExp);
+	}
+?>
+<?php echo $this->CriptAHref($no_module."/".$no_controller."/".$no_action, $array_first, "Primeira", $arrayOpt); ?>
+  |
+<?php else: ?>
+  <span class="disabled">Primeira</span> |
+<?php endif; ?>
+
+<!-- Previous page link -->
+<?php if (isset($this->previous)):
+	$array_previous = array('pagina' => $this->previous);
+	if(count($arrayExp) > 0 ){
+		$array_previous = array_merge($array_previous, $arrayExp);
+	}
+?>
+  <?php echo $this->CriptAHref($no_module."/".$no_controller."/".$no_action, $array_previous, "&lt; Anterior", $arrayOpt); ?>
+  |
+<?php else: ?>
+  <span class="disabled">&lt; Anterior</span> |
+<?php endif; ?>
+
+<!-- Next page link -->
+<?php if (isset($this->next)):
+	$array_next = array('pagina' => $this->next);
+	if(count($arrayExp) > 0 ){
+		$array_next = array_merge($array_next, $arrayExp);
+	}
+?>
+<?php echo $this->CriptAHref($no_module."/".$no_controller."/".$no_action, $array_next, "Pr&oacute;xima &gt;", $arrayOpt); ?>
+  |
+<?php else: ?>
+  <span class="disabled">Pr&oacute;xima &gt;</span> |
+<?php endif; ?>
+
+<!-- Last page link -->
+<?php if (isset($this->next)):
+	$array_last = array('pagina' => $this->last);
+	if(count($arrayExp) > 0 ){
+		$array_last = array_merge($array_last, $arrayExp);
+	}
+?>
+<?php echo $this->CriptAHref($no_module."/".$no_controller."/".$no_action, $array_last, "&Uacute;ltima", $arrayOpt); ?>
+
+<?php else: ?>
+  <span class="disabled">&Uacute;ltima</span>
+<?php endif; ?>
+
+</div>
+<?php endif; ?>

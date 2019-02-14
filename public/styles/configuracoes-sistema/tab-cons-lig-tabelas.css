@@ -1,0 +1,49 @@
+#botao-ajuda {
+   	display: none;
+}
+
+#botao-novo {
+   	display: none !important;
+}
+
+#botao-salvar {
+   	display: block !important;
+}
+
+.coluna_1 {
+    width: 38%;
+}
+
+.coluna_2 {
+    width: 38%;
+}
+
+.ligacao {
+    width: 20%;
+}
+
+.out {
+    width: 2%;
+    text-align: center;
+}
+
+.add, .dell {
+    width: 2%;
+    text-align: center;
+}
+
+.coluna_1 input {
+    width: 97%;
+}
+
+.coluna_2 input {
+    width: 97%;
+}
+
+.ligacao input {
+    width: 97%;
+}
+
+.add_lig_tabela, .del_lig_tabela {
+    cursor: pointer;
+}

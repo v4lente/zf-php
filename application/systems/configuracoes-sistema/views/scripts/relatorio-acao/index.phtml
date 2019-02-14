@@ -1,0 +1,53 @@
+<?php
+// Seta o título
+$this->headTitle("Relatório de Eventos - Pesquisa");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_pesquisar" method="post" accept-charset="ISO-8859-1" accept-submit="false" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Pesquisa</legend>
+		
+		<div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="usuario">Usuário:</label>
+                <?php echo $this->formText("usuario", $this->form['usuario'], array('class'=>'auto-complete-x', 'maxlength'=>'50'));?>
+                <?php echo $this->formHidden("cd_usuario", $this->form['cd_usuario'], array());?>
+            </div>
+        </div>
+		
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="dthr_operacao_ini_log">Período:</label>
+                <?php echo $this->formText("dthr_operacao_ini_log", $this->form['dthr_operacao_log'], array('class'=>'dthr', 'maxlength'=>'10',"style"=>"width: 8% !important;"));?>
+                <?php echo $this->formText("dthr_operacao_fim_log", $this->form['dthr_operacao_log'], array('class'=>'dthr', 'maxlength'=>'10',"style"=>"width: 8% !important; "));?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="no_tabela">Objeto do Banco:</label>
+                <?php echo $this->formText("no_tabela", $this->form['no_tabela'], array('class'=>'auto-complete-x', 'maxlength'=>'40'));?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="ds_tabela">&nbsp;</label>
+                <?php echo $this->formTextarea("ds_tabela", $this->form['ds_tabela'], array('readonly'=>'readonly', 'maxlength'=>'500'));?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="tp_operacao_log">Operação:</label>
+                <?php echo $this->formRadio("tp_operacao_log", "", array('class'=>'radio'), array(""  => "Todos",
+                                                                                                  "I" => "Inclusão",
+                                                                                                  "A" => "Alteração",
+                                                                                                  "D" => "Exclusão"), "");?>
+            </div>
+        </div>
+        
+    </fieldset>
+    
+</form>

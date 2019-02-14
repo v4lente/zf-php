@@ -1,0 +1,42 @@
+<?php
+// Seta o título
+$this->headTitle("Entrada Veículos Cisa - Index");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" enctype="multipart/form-data"  accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+	<fieldset>
+
+		<legend>Envio Arquivos de Entrada</legend>
+		
+		<?php echo $this->formHidden("selecionarArq", "1" ,array("class"=>"int", "readonly"=>"readonly"));?>
+
+		<div class="linha"> 
+			<div class="left">
+				<label class="label_esquerda" for="no_arquivo">Arquivo:</label>
+				<?php echo $this->formFile("no_arquivo_fake", array("class"=>"file", "title"=>"arquivo", "alt"=>"arquivo", "style"=>"height: 24px; margin: 0px 2px; position: absolute; width: 455px;"));?>
+				<?php echo $this->formText("no_arquivo", null, array("class"=>"required stru", "readonly"=>"readonly", "maxlength"=>"50"));?>
+				<input type="button" value="Selecionar" id="button_fake">
+			</div>
+
+			<div class="right">
+				<label class="label_esquerda" for="qtde_importar">Qtde de Chassis:</label>
+                <?php echo $this->formText("qtde_importar", null ,array("class"=>"stru", "readonly"=>"readonly"));?>
+			</div>
+		</div>
+
+		<div class="linha">
+			<div class="left">
+				<label class="label_esquerda" for="turno">Turno:</label>
+                <?php echo $this->formRadio("turno", $this->form["turno"], array("class"=>"required"), array("1"=>"08:00 - 13:45", "2"=>"13:45 - 10:30", "3"=>"19:30 - 01:15", "4"=>"01:15 - 06:00"), "");?>
+			</div>
+		</div>
+
+		<div class="linha">
+			<div class="full">
+				<label class="label_esquerda" for="obs">Observação:</label>
+                <?php echo $this->formText("obs", $this->form["obs"], array("class"=>"stru", "maxlength"=>"50"));?>
+			</div>
+		</div>
+	</fieldset>
+</form>

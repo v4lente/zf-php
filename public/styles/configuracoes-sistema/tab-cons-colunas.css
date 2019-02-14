@@ -1,0 +1,80 @@
+#botao-ajuda {
+   	display: none;
+}
+
+#botao-novo {
+   	display: none !important;
+}
+
+#botao-salvar {
+   	display: block !important;
+}
+
+.distinto {
+    width: 4%;
+    text-align: center !important;
+}
+
+.coluna {
+    width: 35%;
+    text-align: left !important;
+}
+
+.cabecalho {
+    width: 38%;
+    text-align: left !important;
+}
+
+.tamanho {
+    width: 6%;
+    text-align: left !important;
+}
+
+.total {
+    width: 7%;
+    text-align: left !important;
+}
+
+.sentido_coluna {
+    width: 8%;
+    text-align: left !important;
+}
+
+.add, .dell {
+    width: 2%;
+    text-align: center;
+}
+
+.distinto input {
+    text-align: center !important;
+}
+
+.coluna input {
+    width: 97%;
+    text-align: left;
+}
+
+.cabecalho input {
+    width: 97%;
+    text-align: left;
+}
+
+.tamanho input {
+    width: 97%;
+    text-align: left;
+}
+
+.total input {
+    width: 97%;
+    text-align: left;
+}
+
+.sentido_coluna input {
+    width: 97%;
+    text-align: left !important;
+}
+
+.add_col_tabela, .del_col_tabela {
+    text-align: center;
+    cursor: pointer;
+}

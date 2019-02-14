@@ -1,0 +1,48 @@
+<?php
+// Seta o título
+$this->headTitle("Transação/Ação - Editar");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Editar</legend>
+        
+        <?php echo $this->formHidden("cd_transacao", $this->form['cd_transacao']);?>
+        <?php echo $this->formHidden("cd_acao_origem", $this->form['cd_acao']);?>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="_cd_acao">Código da ação:</label>
+                <?php echo $this->formText("__cd_acao", $this->form['cd_acao'], array('readonly'=>'readonly'));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="_fl_menu">Ação da Barra de Tarefas:</label>
+                <?php echo $this->formHidden("fl_menu", $this->form['fl_menu']);?>
+                <?php echo $this->formText("_fl_menu", ($this->form['fl_menu'] == "1" ? "Sim" : "Não"), array('readonly'=>'readonly'));?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="no_acao">Nome da Ação:</label>
+                <?php echo $this->formSelect("cd_acao", $this->form['cd_acao'], array('readonly'=>'readonly'), $this->adicionaValorPadraoCombo($this->acoes));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="ord_acao">Ordem de Exibição:</label>
+                <?php echo $this->formText("ord_acao", $this->form['ord_acao'], array('class'=>'numero', 'maxlength'=>'2'));?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="ds_acao">Descrição da Ação:</label>
+                <?php echo $this->formTextarea("ds_acao", $this->form['ds_acao'], array('readonly'=>'readonly', 'maxlength'=>'300'));?>
+            </div>
+        </div>
+        
+    </fieldset>
+    
+</form>

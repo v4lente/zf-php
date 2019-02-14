@@ -1,0 +1,53 @@
+<?php 
+
+// Define o tipo de relatório que será gerado
+$_rel_metodo = $this->extraParams["_rel_metodo"] != "" ? $this->extraParams["_rel_metodo"] : "pdf";
+
+// Define o título
+$titulo = "Relação de Usuários";
+
+// Converte o resultado para array
+$resultado = $this->resConsulta->toArray();
+
+// Formatando os campos
+foreach($resultado as $indice => $valor) {
+    
+    // Formata o campo tipo de usuário
+    $resultado[$indice]["TP_USUARIO"] = $valor["TP_USUARIO"] == "C" ? "Cliente" : "Do Porto"; 
+    
+    // Formata o campo super usuário
+    $resultado[$indice]["FL_SUPER"] = $valor["FL_SUPER"] == "1" ? "Sim" : "Não";
+    
+    // Formata o campo acesso a intranet
+    $resultado[$indice]["FL_ACESSO_INTRANET"] = $valor["FL_ACESSO_INTRANET"] == "1" ? "Sim" : "Não";
+    
+}
+
+// Monta o array com os campos da consulta que serão mostrados no relatório. -> (Obrigatório)
+// Total 190 mm somando todos os campos para A4 tipo Retrato (P: Portrait)
+// ou 277 mm somando todos os campos para A4 tipo Paisagem (L: Landscape)
+$campos = array("NR_MATRIC"          => array("width"=>20, "text-align"=>'left',  "title"=>"Matrícula"),
+                "NO_USUARIO"         => array("width"=>87, "text-align"=>'left',  "title"=>"Nome"),
+                "CD_USUARIO"         => array("width"=>30, "text-align"=>'left',  "title"=>"Usuário/Username"),
+                "TP_USUARIO"         => array("width"=>15, "text-align"=>'left',  "title"=>"Tipo"),
+                "FL_SUPER"           => array("width"=>23, "text-align"=>'left', "title"=>"Super Usuário"),
+                "FL_ACESSO_INTRANET" => array("width"=>15, "text-align"=>'left', "title"=>"Intranet"));
+
+
+// Gera o relatório
+if(strtolower($_rel_metodo) == "pdf") {
+    // Chama o view helper que gerará o pdf pelo FPDF
+    $this->geraRelatorioPdf($resultado, $titulo, $campos);
+}
+elseif(strtolower($_rel_metodo) == "xls") {
+    
+    // Seta o cabeçalho do PHP para o XLS
+    header('Content-Type: application/vnd.ms-excel');
+    header('Content-Disposition: attachment;filename="relatorio.xls"');
+    header('Cache-Control: max-age=0');
+    
+    // Chama o view helper que gerará o xls pelo PHPExcel
+    $this->geraRelatorioXls($resultado, $titulo, $campos);
+}
+
+?>

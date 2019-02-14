@@ -1,0 +1,97 @@
+<?php
+// Seta o título
+$this->headTitle("Ações - Pesquisa");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_pesquisar" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Pesquisa</legend>
+
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="no_acao"><?php echo $this->traducao["LB_NOME"];?>:</label>
+                <?php echo $this->formText("no_acao", $this->form['no_acao'], array('maxlength'=>'35'));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="fl_menu"><?php echo $this->traducao["LB_ACAO_BARRA_TAREFA"];?>:</label>
+                <?php echo $this->formRadio("fl_menu",
+                                            $this->form['fl_menu'],
+                                            array("class" => "radio"),
+                                            array("1" => "Sim", "0" => "Não"), ""); //aspas para deixar na mesma linha 
+                
+                ?>
+            </div>
+        </div>
+
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="ds_acao"><?php echo $this->traducao["LB_DESCRICAO"];?>:</label>
+                <?php echo $this->formText("ds_acao", $this->form['ds_acao'], array('maxlength'=>'300'));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="fl_tipo_acao">Tipo de Ação:</label>
+                <?php echo $this->formSelect("fl_tipo_acao", $this->form['fl_tipo_acao'], array(), $this->adicionaValorPadraoCombo(array("M"=>"Mestre (Janela Principal)", "D"=>"Detalhe (Aba)", "C"=>"Comum (Ajax, Ambos)")));?>
+            </div>
+        </div>
+        
+    </fieldset>
+    
+</form>
+
+<table class='tabela' id='tabelaConsulta'>
+<?php
+// Se a consulta foi feita mostra os dados
+if(count($this->paginator)) {
+?>
+    <thead>
+      <tr>
+          <th class='cd_acao'  column='cd_acao'>Código<div class='img_seta'></div></th>
+          <th class='no_acao'  column='no_acao'>Nome<div class='img_seta'></div></th>
+          <th class='ds_acao'  column='ds_acao'>Descrição<div class='img_seta'></div></th>
+          <th class='fl_menu'  column='fl_menu'>Barra de Tarefas<div class='img_seta'></div></th>
+          <th class='ord_acao' column='ord_acao'>Ordenação<div class='img_seta'></div></th>
+          <th class='fl_perm'  column='fl_perm'>Permissão<div class='img_seta'></div></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+          <td colspan='6'><?php echo $this->paginationControl($this->paginator, 'Sliding', 'controle_paginacao.phtml', array('extraParams' => $this->extraParams)); ?></td>
+      </tr>
+    </tfoot>
+    <tbody>
+    <?php
+    $i=0;
+    foreach($this->paginator as $linha)
+    {
+        $key = "cd_acao/{$linha->CD_ACAO}";
+
+    ?>
+        <tr class='linha' key='<?php echo $key; ?>'>
+          <td class=''><?php echo $linha->CD_ACAO; ?></td>
+          <td class=''><?php echo $linha->NO_ACAO;?></td>
+          <td class=''><?php echo substr($linha->DS_ACAO, 0, 90); ?></td>
+          <td class=''><?php echo $linha->FL_MENU == 1 ? "Sim" : "Não";?></td>
+          <td class=''><?php echo $linha->ORD_ACAO; ?></td>
+          <td class=''><?php echo $linha->FL_PERMISSAO == "C" ? "Consulta" : "Manutenção";?></td>
+        </tr>
+   <?php
+        $i++;
+    }
+    ?>
+    </tbody>
+
+    <?php
+} else {
+   ?>
+    <tfoot>
+      <tr>
+          <td colspan='6' class='paginacaoLinhaTabela' style='padding: 5px;'>Nenhum registo encontrado.</td>
+      </tr>
+    </tfoot>
+<?php
+}
+?>
+</table>

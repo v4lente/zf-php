@@ -1,0 +1,55 @@
+<?php
+// Seta o título
+$this->headTitle("Tabelas - Pesquisa");
+?>
+
+<form name="f1">
+	<input type="hidden" value="<?php echo $this->controleSalvar; ?>" name="controleSalvar" id="controleSalvar" />
+</form>
+
+<table class='tabela' id='tabelaConsulta'>
+<?php
+// Se a consulta foi feita mostra os dados
+if(count($this->paginator)) {
+?>
+    <thead>
+      <tr>
+		  <th class='cd_tabela' column='tb.cd_tabela'>C&oacute;digo da Tabela (Nome BD)</th>
+          <th class='no_tabela' column='tb.no_tabela'>T&iacute;tulo da Tabela</th>
+          <th class='ds_tabela'	column='tb.ds_tabela'>Descri&ccedil;&atilde;o da Tabela</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+          <td colspan='3'><?php echo $this->paginationControl($this->paginator, 'Sliding', 'controle_paginacao.phtml', array('extraParams' => $this->extraParams)); ?></td>
+      </tr>
+    </tfoot>
+    <tbody>
+    <?php
+    $i=0;
+    foreach($this->paginator as $linha)
+    {
+        $key = "cd_consulta/{$linha->CD_CONSULTA}/cd_tabela/{$linha->CD_TABELA}/alias_tabela/{$linha->ALIAS_TABELA}";
+    ?>
+        <tr class='linha' key='<?php echo $key; ?>'>
+          <td><?php echo $linha->CD_TABELA . " (" . $linha->ALIAS_TABELA . ")"; ?></td>
+          <td><?php echo $linha->NO_TABELA; ?></td>
+          <td><?php echo $linha->DS_TABELA; ?></td>
+        </tr>
+   <?php
+        $i++;
+    }
+    ?>
+	</tbody>
+    <?php
+} else {
+   ?>
+    <tfoot>
+      <tr>
+          <td colspan='3' class='paginacaoLinhaTabela' style='padding: 5px;'>Nenhum registo encontrado.</td>
+      </tr>
+    </tfoot>
+<?php
+}
+?>
+</table>

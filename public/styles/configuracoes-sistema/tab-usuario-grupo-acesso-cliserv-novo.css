@@ -1,0 +1,15 @@
+th.cd_grupo {
+    width: 10%;
+}
+
+th.no_grupo {
+    width: 90%;
+}
+
+.i_cd_grupo {
+    width: 99%;
+}
+
+.ui-autocomplete-input {
+    width: 99% !important;
+}

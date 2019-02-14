@@ -1,0 +1,31 @@
+<?php
+// Seta o título
+$this->headTitle("Configurações Sistema - Cadastros - Usuários	");
+?>
+
+  <form id="form_base" method="post" accept-charset="ISO-8859-1" accept-submit="false" onsubmit="return true;" action="salvar">  
+  
+	<input type="hidden" id="cd_usuario" name="cd_usuario" size="3" value="" />
+	
+	<fieldset>
+		<legend>Importar Grupos de Acesso por Usuário</legend>
+
+		<div class="linha">
+            <div class="left">
+			<label class="label_esquerda" for="usuario_inicial">Usuário:</label>
+	            <?php echo $this->formText("usuario_inicial", null, array('maxlength'=>'100', 'class'=>'auto-complete-x stru'));?>
+			</div>
+             <div class="right">
+                <input type='hidden' value="importar" name="importar" id="importar" />
+			</div>
+        </div>
+        <div class="linha">
+            <div class="left">
+			<label class="label_esquerda" for="importar">&nbsp;</label>
+                <input type="button" value="Importar" id="bt-salvar" />
+			</div>
+        </div>
+
+    </fieldset> 
+
+</form>

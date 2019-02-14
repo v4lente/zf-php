@@ -1,0 +1,38 @@
+#container #palhetaControle {
+    display: block;
+}
+
+#container #palhetaControle #botao-novo {
+    display: none;
+}
+
+#container #palhetaControle #botao-salvar {
+    display: none;
+}
+
+#container #palhetaControle #botao-excluir {
+    display: none;
+}
+
+#container #palhetaControle #botao-tela-pesquisa {
+    display: none;
+}
+
+#container #palhetaControle #botao-voltar {
+    display: block !important;
+}
+
+#container #palhetaControle #botao-relatorio {
+    display: block;
+}
+
+#form_pesquisar label {
+    width: 200px;
+    float: left;
+    margin-right: 10px; 
+    text-align: right;
+}
+
+#form_pesquisar .left {
+    margin-bottom: 2px;
+}

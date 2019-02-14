@@ -1,0 +1,55 @@
+<?php
+//Inclui o cabeçalho antigo
+include("cabecalho_antigo.phtml");
+?>
+
+
+<form name="form_base" id="form_base"  method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <table class="table_form">
+        <tr>
+            <td class="lb_form">
+                <?=$this->formHidden("operacao", "novo");?>
+                <?=$this->cd_masc;?>:
+            </td>
+            <td class="cp_form" colspan="3">
+                <?=$this->formText("cd_mascara", "", array("class"=>"required textUpper ","style"=>"width:100px;margin:0px; padding:0px; text-align:center;","maxlenght"=>"6","title"=>"O campo $this->cd_masc obrigatoriamente deve ser preenchido"));?>
+            </td>
+        </tr>
+       
+        <tr>
+            <td class="lb_form">
+                <?=$this->ds_masc;?>:
+            </td>
+            <td class="cp_form" colspan="3">
+                <?=$this->formTextarea("ds_mascara", "", array("class"=>"required textUpper","maxlength"=>"1024","title"=>"O campo $this->ds_masc obrigatoriamente deve ser preenchido"));?>
+            </td>
+        </tr>
+         <tr>
+            <td class="lb_form">
+                <?=$this->tp_alinha;?>:
+            </td>
+            <td class="cp_form">
+                <?=$this->formSelect("tp_alinhamento", "", array("class"=>"required textUpper","style"=>" width:180px; margin:0px; padding:0px;","title"=>"O campo $this->tp_alinha obrigatoriamente deve ser preenchido"), $this->alinhamento);?>
+            </td>
+            <td class="lb_form">
+                <?=$this->exemplo;?>:
+            </td>
+            <td class="cp_form">
+                <?=$this->formText("exemplo", "", array("class"=>"required ","style"=>"width:200px; margin:0px; padding:0px;","maxlength"=>"30","title"=>"O campo $this->exemplo obrigatoriamente deve ser preenchido"));?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="lb_form">
+
+            </td>
+            <td class="cp_form" colspan="3">
+                <input type="button" id="salvar" name="salvar" value="Salvar" class="botoes_ant" /> &nbsp;
+                <input type="button" id="fechar" name="fechar" value="Fechar" class="botoes_ant" /> &nbsp;
+            </td>
+        </tr>
+    </table>
+</form>
+

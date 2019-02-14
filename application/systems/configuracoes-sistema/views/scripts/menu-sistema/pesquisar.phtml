@@ -1,0 +1,103 @@
+<?php
+// Seta o título
+$this->headTitle("Menu - Pesquisa");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_pesquisar" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Pesquisa</legend>
+
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="cd_menu"><?php echo $this->traducao["LB_COD_MENU"];?>:</label>
+                <?php echo $this->formText("cd_menu", $this->form['cd_menu'], array('maxlength'=>'5'));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="cd_sistema"><?php echo $this->traducao["LB_NO_SISTEMA"];?>:</label>
+                <?php echo $this->formSelect("cd_sistema", $this->form['cd_sistema'], array(), $this->adicionaValorPadraoCombo($this->sistemas));?>
+            </div>
+            
+            
+        </div>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="ord_menu"><?php echo $this->traducao["LB_ORDEM"];?>:</label>
+                <?php echo $this->formText("ord_menu", $this->form['ord_menu'], array('maxlength'=>'5'));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="no_menu"><?php echo $this->traducao["LB_NOME_NS"];?>:</label>
+                <?php echo $this->formText("no_menu", $this->form['no_menu'], array());?>
+            </div>
+            
+            
+        </div>
+
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="ds_menu"><?php echo $this->traducao["LB_DESCRICAO"];?>:</label>
+                <?php echo $this->formText("ds_menu", $this->form['ds_menu'], array());?>
+            </div>
+            
+            
+        </div>
+        
+    </fieldset>
+    
+</form>
+
+<table class='tabela' id='tabelaConsulta'>
+<?php
+// Se a consulta foi feita mostra os dados
+if(count($this->paginator)) {
+?>
+    <thead>
+      <tr>
+          <th class='cd_sistema' column='ws.cd_sistema'>Cód. Sistema<div class='img_seta'></div></th>
+          <th class='no_sistema' column='ws.no_sistema'>Nome Sistema<div class='img_seta'></div></th>
+          <th class='cd_menu' column='wm.cd_menu'>Cód. Menu<div class='img_seta'></div></th>
+          <th class='no_menu' column='wm.no_menu'>Nome Menu<div class='img_seta'></div></th>
+          <th class='ord_menu' column='wm.ord_menu'>Ordem<div class='img_seta'></div></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+          <td colspan='5'><?php echo $this->paginationControl($this->paginator, 'Sliding', 'controle_paginacao.phtml', array('extraParams' => $this->extraParams)); ?></td>
+      </tr>
+    </tfoot>
+    <tbody>
+    <?php
+    $i=0;
+    foreach($this->paginator as $linha)
+    {
+        $key = "cd_menu/{$linha->CD_MENU}";
+
+    ?>
+        <tr class='linha' key='<?php echo $key; ?>'>
+          <td class=''><?php echo $linha->CD_SISTEMA; ?></td>
+          <td class=''><?php echo $linha->NO_SISTEMA; ?></td>
+          <td class=''><?php echo $linha->CD_MENU;?></td>
+          <td class=''><?php echo $linha->NO_MENU;?></td>
+          <td class=''><?php echo $linha->ORD_MENU;?></td>
+        </tr>
+   <?php
+        $i++;
+    }
+    ?>
+    </tbody>
+
+    <?php
+} else {
+   ?>
+    <tfoot>
+      <tr>
+          <td colspan='5' class='paginacaoLinhaTabela' style='padding: 5px;'>Nenhum registo encontrado.</td>
+      </tr>
+    </tfoot>
+<?php
+}
+?>
+</table>

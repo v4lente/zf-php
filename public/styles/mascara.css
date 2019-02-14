@@ -1,0 +1,138 @@
+.ano {
+	text-align: right;
+}
+
+.cep {
+	text-align: right;
+}
+
+.cnpj {
+	text-align: left;
+}
+
+.codigo {
+	text-align: right;
+}
+
+.container {
+	text-align: left;
+	text-transform: uppercase;
+}
+.conteiner {
+	text-align: left;
+	text-transform: uppercase;
+}
+
+.cpf {
+	text-align: left;
+}
+
+input.data {
+	text-align: left;
+	width: 80px !important;
+}
+
+td.data {
+	text-align: center;
+}
+
+.dibl {
+	text-align: left;
+}
+
+input.dthr, input.datahora, input.datahoraminuto {
+	text-align: left;
+	width: 120px !important;
+}
+
+td.dthr, td.datahora, td.datahoraminuto {
+	text-align: center;
+}
+
+input.dthref, input.dtref {
+	text-align: left;
+}
+
+td.dthref, td.dtref {
+	text-align: center;
+}
+
+.fone {
+	text-align: left;
+}
+
+.int,.int_int, .numero, .tonelada {
+	text-align: right;
+}
+
+.int_c {
+	text-align: center;
+}
+
+.int_e {
+	text-align: left;
+}
+
+.item_contr {
+    text-align: left;
+}
+
+.mes {
+	text-align: right;
+}
+
+.moeda, .decimal, .dolar {
+	text-align: right;
+}
+
+.nr_proc {
+	text-align: left;
+}
+
+.pda {
+	text-align: left;
+}
+
+.peso {
+	text-align: right;
+}
+
+.peso-porto {
+	text-align: right;
+}
+
+input.pl_veic, input.placa, input.placa-estrangeira {
+	text-align: left;
+	width: 70px !important;
+	text-transform: uppercase;
+}
+
+td.pl_veic, td.placa {
+	text-align: left;
+	text-transform: uppercase;
+}
+
+.qtde {
+	text-align: right;
+}
+
+.rubrica {
+    text-align: left;
+}
+
+.str {
+	text-align: left;
+}
+
+.strl {
+    text-align: left;
+}
+
+.stru {
+	text-align: left;
+        text-transform:uppercase;
+}
+
+.versao_reg {
+    text-align: right;
+}

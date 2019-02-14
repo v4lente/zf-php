@@ -1,0 +1,35 @@
+th.cd_grupo {
+    width: 10%;
+}
+
+th.no_grupo {
+    width: 30%;
+}
+
+th.ds_grupo {
+    width: 40%;
+}
+
+th.dt_acesso_ini {
+    text-align: center;
+}
+
+.i_cd_grupo {
+    width: 99%;
+}
+
+.ui-autocomplete-input {
+    width: 85% !important;
+}
+
+.i_ds_grupo {
+    width: 99%;
+}
+
+.i_dt_acesso_ini {
+    width: 99%;
+}
+
+.i_dt_acesso_fim {
+    width: 99%;
+}

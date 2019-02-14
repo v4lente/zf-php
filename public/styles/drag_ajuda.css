@@ -1,0 +1,46 @@
+/*
+#header{
+	background:#aaf;
+	padding:20px
+}
+*/
+#drag_ajuda_editor{	display: none;
+	position:absolute;
+	top:0px;
+	left: 0px;
+	/*border:1px red dashed;
+	overflow:scroll;*/
+}
+
+.drag_ajuda_block{
+ z-index:999999;
+	border:1px solid #000;	
+	position:absolute;
+	background:#eee;
+	padding:0px;
+	border-collapse:collapse;
+	display: none;
+}
+
+.drag_ajuda_handle{	
+	height:20px;
+	background:blue;
+	color: white;
+	cursor:move;
+	/*border: 1px #000 dashed;*/
+}
+
+.drag_ajuda_titulo{
+	font-family: Arial;
+	font-weight: bold;
+	height:20px;
+	width: 100%;
+	background:blue;
+	color: white;	
+	text-align: center;
+}
+
+.drag_ajuda_close{
+	cursor: hand !important;
+	width: 16px;	
+}

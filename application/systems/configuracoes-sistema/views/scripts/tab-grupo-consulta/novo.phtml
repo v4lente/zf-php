@@ -1,0 +1,44 @@
+<?php
+// Seta o título
+$this->headTitle("Consultas - Novo");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Novo</legend>
+        
+        
+        
+        <table class='tabela nao-selecionavel'>                  
+            <thead>
+                <tr>
+                    <th class='cd_consulta' style="width:10%">Código</th>
+                    <th class='titulo' style="width:50%">Título</th>
+                    <th class='responsavel' style="width:20%">Responsável</th>
+                    <th class='dthr_cadastro' style="width:10%">Data Cadastro</th>
+                    <th class='fl_ativo' style="width:10%">Ativo</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <?php 
+                    for($i = 0; $i < 10; $i++) {
+						//define a cor da linha
+                        $classe = (($i%2)==0) ? "par" : "impar";
+                    ?>  
+                        <tr class='<?php echo $classe; ?>' indice='<?php echo $i; ?>'>
+                          <td><?php echo $this->formText("cd_consulta[]",    null, array('id'=>'cd_consulta_' . $i, 'class'=>'int_e i_cd_consulta', 'title'=>'Cód Consulta', 'maxlength'=>'9'));?></td>
+                          <td><?php echo $this->formText("titulo[]", null, array('id'=>'titulo_'. $i, 'class'=>'auto-complete-x stru i_titulo', 'maxlength'=>'200', 'code'=>'1', 'target'=>'registro', 'style'=>'width:100%'));?></td>
+                          <td><?php echo $this->formText("responsavel[]",    null, array('id'=>'responsavel_' . $i, 'class'=>'i_responsavel', 'title'=>'Responsável', 'readonly'=>'readonly', 'style'=>'width:100%'));?></td>
+						  <td><?php echo $this->formText("dthr_cadastro[]",    null, array('id'=>'dthr_cadastro_' . $i, 'class'=>'i_dthr_cadastro', 'title'=>'Data/Hora Cadastro', 'readonly'=>'readonly'));?></td>
+						  <td><?php echo $this->formText("fl_ativo[]",    null, array('id'=>'fl_ativo_' . $i, 'class'=>'i_fl_ativo', 'title'=>'Ativo', 'readonly'=>'readonly'));?></td>
+                        </tr>
+                    <?php
+                    }
+                ?>
+            </tbody>
+        </table>
+        
+    </fieldset>
+    
+</form>

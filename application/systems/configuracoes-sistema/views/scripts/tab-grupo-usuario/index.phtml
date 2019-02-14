@@ -1,0 +1,57 @@
+<?php
+// Seta o título
+$this->headTitle("Usuários - Pesquisa");
+?>
+
+<table class='tabela' id='tabelaConsulta'>
+<?php
+// Se a consulta foi feita mostra os dados
+if(count($this->paginator)) {
+?>
+    <thead>
+      <tr>
+          <th class='cd_usuario' column='wgu.cd_usuario'>Username<div class='img_seta'></div></th>
+          <th class='no_usuario' column='u.no_usuario'>Nome do Usuário<div class='img_seta'></div></th>
+          <th class='tp_usuario' column='u.tp_usuario'>Tipo de Usuário<div class='img_seta'></div></th>
+          <th class='dt_acesso_ini' column='wgu.dt_acesso_ini' colspan='2'>Período de Acesso<div class='img_seta'></div></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+          <td colspan='3'><?php echo $this->paginationControl($this->paginator, 'Sliding', 'controle_paginacao.phtml', array('extraParams' => $this->extraParams)); ?></td>
+      </tr>
+    </tfoot>
+    <tbody>
+    <?php
+    $i=0;
+    foreach($this->paginator as $linha)
+    {
+    	$data = str_replace("/", "_barra_", $linha->DT_ACESSO_INI);
+    	
+        $key = "cd_usuario/{$linha->CD_USUARIO}/dt_acesso_ini/$data";
+    ?>
+        <tr class='linha' key='<?php echo $key; ?>'>
+          <td><?php echo $linha->CD_USUARIO; ?></td>
+          <td><?php echo $linha->NO_USUARIO; ?></td>
+          <td><?php echo $linha->TP_USUARIO; ?></td>
+          <td class='dt_acesso_ini'><?php echo $linha->DT_ACESSO_INI; ?></td>
+          <td class='dt_acesso_fim'><?php echo $linha->DT_ACESSO_FIM; ?></td>
+        </tr>
+   <?php
+        $i++;
+    }
+    ?>
+	</tbody>
+
+    <?php
+} else {
+   ?>
+    <tfoot>
+      <tr>
+          <td colspan='3' class='paginacaoLinhaTabela' style='padding: 5px;'>Nenhum registo encontrado.</td>
+      </tr>
+    </tfoot>
+<?php
+}
+?>
+</table>

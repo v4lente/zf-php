@@ -1,0 +1,61 @@
+#container {
+    border: 0px solid #c93;
+}
+
+#container #tituloForm {
+    display: block;
+}
+
+#container #palhetaControle {
+    display: block;
+}
+
+.label_esquerda {
+    width: 45% !important;
+}
+
+#botao-salvar {
+    display: block !important;
+}
+
+#botao-pesquisar {
+    display: block !important;
+}
+
+#botao-novo {
+    display: none !important;
+}
+
+#botao-relatorio {
+    display: none !important;
+}
+
+#botao-tela-pesquisa {
+    display: none !important;
+}
+
+.seleciona {
+    width: 5%;
+    text-align: center;
+}
+
+.usuario {
+    width: 10%;
+}
+
+.estacao {
+    width: 30%;
+}
+
+.executavel {
+    width: 35%;
+}
+
+.hora_conexao {
+    width: 10%;
+    text-align: center;
+}
+
+.usuario_sistema {
+    width: 10%;
+}

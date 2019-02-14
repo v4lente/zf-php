@@ -1,0 +1,36 @@
+<?php
+// Seta o título
+$this->headTitle("Consulta - Novo");
+?>
+
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Novo</legend>
+		<?php echo $this->formHidden("cd_usuario", $this->cd_usuario);?>
+
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="cd_consulta">Código do Relatório:</label>
+                <?php echo $this->formText("cd_consulta", null, array('class'=>'int', 'readonly'=>'readonly', 'maxlength'=>'10'));?>
+            </div>
+
+            <div class="right">
+                <label class="label_direita" for="titulo">Título do Relatório:</label>
+                <?php echo $this->formText("titulo", null, array('class'=>'required stru','maxlength'=>'200'));?>
+            </div>
+        </div>
+
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="orientacao">Orientação:</label>
+                <?php echo $this->formSelect("orientacao", "R", array('class'=>'required'), $this->adicionaValorPadraoCombo(array("R"=>"RETRATO", "P"=>"PAISAGEM")));?>
+            </div>
+            <div class="right">
+                <label class="label_direita" for="fl_ativo">Relatório Ativo:</label>
+                <?php echo $this->formSelect("fl_ativo", 1, array('class'=>'required'), $this->adicionaValorPadraoCombo(array("1"=>"SIM", "0"=>"NÃO")));?>
+            </div>
+        </div>
+
+    </fieldset>
+
+</form>

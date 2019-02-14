@@ -1,0 +1,39 @@
+<?php
+// Carrega o estilo específico da página    
+echo $this->layout()->getView()->headLink()->appendStylesheet($this->baseUrl() . '/public/styles/default/exec-rel-selecionar.css');
+// Seta o título
+$this->headTitle("Execução de Relatórios - Parâmetros da Consulta");
+?>
+
+<form id="form_pesquisar" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <?php echo $this->formHidden("_cd_relatorio", $this->cd_relatorio, array()); ?>
+    <fieldset>
+        <legend>&nbsp;Parâmetros da Consulta (Relatório <?php echo $this->cd_relatorio; ?>)&nbsp;</legend>
+        
+        <div class="linha">
+            <?php 
+            if(count($this->campos) > 0) {
+                $i = 0;
+                foreach($this->campos as $campo) {
+            ?>
+                    <div class="left">
+                        <label class="label_esquerda" for="<?php echo $campo["NOME_CAMPO"]; ?>"><?php echo $campo["LABEL"]; ?>:</label>
+                        <?php echo $this->formText($campo["NOME_CAMPO"], $campo["VALOR_INICIAL"], array()); ?>
+                    </div>
+                    
+            <?php 
+                }
+            } else {
+            ?>
+                    <div class="left">
+                        <img src="<?php echo $this->baseUrl(); ?>/public/images/ie.gif" width="20" height="20" style="border: 0px solid #000; margin-left: 20px; margin-top: 5px;" />
+                        <span>Relatório sem parâmetros de consulta.</span>
+                    </div>
+                    
+            <?php
+            }
+            ?>
+        </div>
+        
+    </fieldset>
+</form>

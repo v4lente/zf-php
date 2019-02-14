@@ -1,0 +1,33 @@
+<?php
+// Seta o título
+$this->headTitle("Grupos - Manutenção");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+
+	<fieldset>
+		<legend>Manutenção</legend>
+
+		<?php echo $this->formHidden("cd_consulta", $this->form["cd_consulta"], array(""));?>
+		<div class="linha">
+			<div class="left">
+				<label class="label_esquerda" for="cd_consulta">Código do Grupo:</label>
+                <?php echo $this->formText("cd_grupo", $this->form["cd_grupo"], array( 'readonly'=>'readonly'));?>
+			</div>
+			<div class="right">
+				<label class="label_esquerda" for="titulo">Nome do Grupo:</label>
+                <?php echo $this->formText("no_grupo", $this->form["no_grupo"], array('readonly'=>'readonly'));?>
+			</div>
+		</div>	
+
+		<div class="linha">
+			<div class="full">
+				<label class="label_esquerda" for="cd_usuario">Descrição do Grupo:</label>
+                <?php echo $this->formText("ds_grupo", $this->form["ds_grupo"], array('readonly'=>'readonly'));?>
+			</div>
+		</div>
+
+	</fieldset>
+
+</form>

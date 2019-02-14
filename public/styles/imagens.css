@@ -1,0 +1,29 @@
+/*
+ * Estilo para imagens
+ */
+#tabs #tabs_ul li.ui-state-active {
+	background: url("../../js/jquery/jquery-ui/development-bundle/themes/marca/images/ui-bg_gloss-wave_55_4e639c_500x100.png") repeat-x scroll 50% 50% #4E639C !important;
+}
+
+.seta-baixo .img_seta {
+    background-image: url('../../images/seta_baixo.png');
+    background-repeat: no-repeat;
+}
+
+.seta-cima .img_seta {
+    background-image: url('../../images/seta_cima.png');
+    background-repeat: no-repeat;
+}
+
+.picklistDb {
+    background-image: url('../../images/lupa.gif');
+    background-repeat: no-repeat;
+    background-position: right;
+    padding-right: 20px;
+}
+
+.auto-complete-x {
+    background-image: url('../../images/lupa.gif');
+    background-repeat: no-repeat;
+    background-position: right;
+}

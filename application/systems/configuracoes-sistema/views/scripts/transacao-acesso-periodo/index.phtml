@@ -1,0 +1,62 @@
+<?php
+// Seta o título
+$this->headTitle("Relatório de Transações x Usuário por Período");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_pesquisar" method="post" accept-submit="false" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Pesquisa</legend>
+
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="cd_sistema">Sistema:</label>
+                <?php
+                echo "<select id='cd_sistema' name='cd_sistema'>";
+                echo "<option label=' -- Selecione -- ' value='_null_'> -- Selecione -- </option>"; 
+                foreach($this->sistemas as $sistema) {
+                    echo "<option label='{$sistema->NO_SISTEMA}' value='{$sistema->CD_SISTEMA}' ambiente='{$sistema->AMBIENTE}'>{$sistema->NO_SISTEMA}</option>";
+                }
+                echo "</select>";
+                ?>
+            </div>
+
+            <div class="right">
+                <label class="label_direita">Ambiente:</label>
+                <span id="ambiente"></span>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="cd_transacao">Transação:</label>
+                <?php echo $this->formSelect("cd_transacao", "", array('disabled'=>'disabled'), $this->adicionaValorPadraoCombo());?>                
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="usuario">Usuário:</label>
+                <?php echo $this->formText("no_usuario", "", array('class'=>'auto-complete-x'));?>                
+            </div>
+        </div>
+
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="dt_acesso_ini">Período:</label>
+                <?php echo $this->formText("dt_acesso_ini", "", array('class'=>'data', 'alt'=>'Período Inicial'));?> à 
+                <?php echo $this->formText("dt_acesso_fim", "", array('class'=>'data', 'alt'=>'Período Final'));?> 
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="agrupamento">Agrupamento:</label>
+                <?php echo $this->formRadio("agrupamento", "T", array("alt" => "Agrupamento"), array("T" => "Transação", 
+                													  							 	 "U" => "Usuário"), "");?> 
+            </div>
+        </div>
+        
+    </fieldset>
+    
+</form>

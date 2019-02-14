@@ -1,0 +1,35 @@
+<?php
+// Seta o título
+$this->headTitle("Relatório de Tabelas do Sistema - Pesquisa");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_pesquisar" method="post" accept-charset="ISO-8859-1" accept-submit="false" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Relatório de Tabelas do Sistema</legend>
+		
+		<div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="cd_tabela">Código:</label>
+                <?php echo $this->formText("cd_tabela", $this->form['cd_tabela'], array('class'=>'stru auto-complete-x', 'maxlength'=>'30'));?>                
+            </div>
+        </div>
+		
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="no_tabela">Descrição:</label>
+                <?php echo $this->formText("no_tabela", $this->form['no_tabela'], array('class'=>'strl auto-complete-x', 'maxlength'=>'50'));?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="cd_sistema">Sistema:</label>
+                <?php echo $this->formText("cd_sistema", $this->form['cd_sistema'], array('class'=>'stru auto-complete-x', 'style'=>'width:15%', 'maxlength'=>'3'));?>            
+                <?php echo $this->formText("no_sistema", $this->form['no_sistema'], array('class'=>'strl auto-complete-x', 'style'=>'width:65.2%', 'maxlength'=>'20'));?>
+            </div>
+        </div>
+                
+    </fieldset>
+    
+</form>

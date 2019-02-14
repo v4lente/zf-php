@@ -1,0 +1,77 @@
+<?php
+// Seta o título
+$this->headTitle('Login');
+
+// Caso o usuário esta com a conta expirada
+if ($this->contaExpirada == 1) {
+	echo $this->formHidden("contaExpirada", $this->contaExpirada);
+}
+?>
+
+<br />
+
+<div id="img_login" style="border:0px solid #f00;">
+	<img src="<?php echo $this->baseUrl();?>/public/images/logo_porto_web.png" title="Porto de Rio Grande" />
+</div>
+
+<br />
+
+<form id="form_base" method="post" accept-charset="iso-8859-1" onsubmit="return false;">
+	<fieldset style="border: 0px solid #fff; width: 400px !important; min-width: 400px !important;">	
+		<div class="linha">
+			<div class="left" style="width:400px;">
+				<label style="width:140px;" class="label_direita" for="cd_usuario" class="required">Usuário:</label>			
+			    <?php echo $this->formText("cd_usuario", $this->form['cd_usuario'], array('maxlength'=>'20', "class"=>"required"));?>
+			</div>
+		</div>
+
+		<div class="linha">
+			<div class="left" style="width:400px;">
+				<label style="width:140px;" class="label_direita" for="senha">Senha:</label>			
+			    <?php echo $this->formPassword("senha", "", array('maxlength'=>'20', "class"=>"required"));?>
+			</div>
+		</div>
+		
+		<div class="linha" style="margin-top:10px; border:0px solid #f00;">
+		
+			<div class="left" style="width:400px;">
+				<label style="width:140px;" class="label_direita" for="captcha[input]">Código de <br />segurança:</label>
+				<?php echo $this->formText("captcha[input]", "", array("class"=>"required numero", "maxlength"=>"4", "style"=>"font-size:25px; font-weight: bold;  float:left; width:85px; margin-right:5px; height:33px;"));?>			
+		    	
+				<?php 
+					// Gera o captcha na tela
+					$id = $this->captcha->generate();
+					echo $this->captcha->render($this);
+				?>
+			</div>
+			
+		   <input type="hidden" name="captcha[id]" value="<?php echo $id;?>"/>  
+		    
+		</div>
+
+		<div class="linha" style="margin-top:10px;">
+			<div class="left" style="width:400px;">
+				<label style="width:140px;" class="label_direita">&nbsp;</label>
+				<input type="button" name="conectar" id="conectar" value="CONECTAR" />
+			</div>			
+		</div>                    
+	</fieldset>
+</form>
+
+<br />
+
+<div>
+    <p align="justify" style="color: #FFFFFF; font-weight: bold; font-size: 13px;">Caso tenha esquecido sua senha, clique no link ao lado: <a style="color: yellow;" id="solicita" cd_usuario="<?php echo $this->form['cd_usuario']; ?>" href="#">Esqueci minha Senha</a></p>
+	<p align="justify" style="color: #FFFFFF; font-weight: bold; font-size: 13px;">Velocidade m&iacute;nima de conexão recomendada para uma utilização eficiente do Sistema Porto: 1MB</p>
+	<p align="justify" style="color: #FFFFFF; font-weight: bold; font-size: 13px;">Melhor visualizado em versões:</p> 
+	<table border="0">
+      <tr>
+        <td><img src="<?php echo $this->baseUrl();?>/public/images/Firefox.png" width="20" height="20" alt="firefox"></td>
+        <td><span style="color: #FFFFFF; font-weight: bold; font-size: 13px;">Mozilla Firefox 7.5+ </span></td>
+        <td><img src="<?php echo $this->baseUrl();?>/public/images/Chrome.png" width="20" height="20" alt="Chrome" style="margin-left: 15px;"></td>
+        <td><span style="color: #FFFFFF; font-weight: bold; font-size: 13px;">Google Chrome 10+</span></td>
+        <td><span style="color: #FFFFFF; font-weight: bold; font-size: 13px;"><img src="<?php echo $this->baseUrl();?>/public/images/IE.png" width="20" height="20" alt="IE" style="margin-left: 15px;"></span></td>
+        <td><span style="color: #FFFFFF; font-weight: bold; font-size: 13px;">Internet Explorer 8+</span></td>
+      </tr>
+    </table>	
+</div>

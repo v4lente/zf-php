@@ -1,0 +1,47 @@
+<?php
+// Seta o título
+$this->headTitle("Relatório de Eventos - Pesquisa");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_pesquisar" method="post" accept-charset="ISO-8859-1" accept-submit="false" onsubmit="return false;" action="">
+    <fieldset>
+		<legend>Pesquisa</legend>
+
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="no_sistema">Sistema:</label>
+                <?php echo $this->formText("no_sistema", $this->form['no_sistema'], array('class'=>'auto-complete-x', 'maxlength'=>'50'));?>
+                <?php echo $this->formHidden("cd_sistema", $this->form['cd_sistema'], array());?>
+                <?php echo $this->formHidden("nome_sistema", $this->form['nome_sistema'], array());?>
+            </div>
+        </div>
+
+		<div class="linha">
+			<div class="left">
+				<label class="label_esquerda" for="no_menu">Menu:</label>
+				<?php echo $this->formSelect("no_menu", $this->form["no_menu"], array("class"=>"stru", "readonly"=>"readonly"));?>
+			</div>
+
+            <div class="right">
+				<label class="label_esquerda" for="no_transacao">Transação:</label>
+				<?php echo $this->formSelect("no_transacao", $this->form["no_transacao"], array("class"=>"stru", "readonly"=>"readonly"));?>
+            </div>
+		</div>
+
+		<div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="no_grupo">Grupo:</label>
+                <?php echo $this->formText("no_grupo", $this->form['no_grupo'], array('class'=>'auto-complete-x', 'maxlength'=>'50'));?>
+                <?php echo $this->formHidden("cd_grupo", $this->form['cd_grupo'], array());?>
+            </div>
+        </div>
+
+		<div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="tp_relatorio">Agrupar por:</label>
+				<?php echo $this->formRadio("tp_relatorio", 'M',  array("class" => "radio"),  array("T" => "Transação", "G" => "Grupo"), ""); //aspas para deixar na mesma linha ?>
+            </div>
+        </div>
+    </fieldset>
+</form>

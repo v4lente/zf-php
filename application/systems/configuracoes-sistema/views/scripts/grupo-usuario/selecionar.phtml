@@ -1,0 +1,36 @@
+<?php
+// Seta o título
+$this->headTitle("Sistemas - Seleção");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+	<fieldset>
+		<legend>Grupo Usuário</legend>
+
+		<div class="linha">
+			<div class="left">
+				<label class="label_esquerda" for="cd_grupo"><?php echo $this->traducao["LB_CODIGO"];?>:</label>
+				<?php echo $this->formText("cd_grupo", $this->form['cd_grupo'], array('readonly'=>'readonly', 'maxlength'=>'5'));?>
+			</div>
+
+			<div class="right">
+				<label class="label_direita" for="no_grupo"><?php echo $this->traducao["LB_NOME_NS"];?>:</label>
+				<?php echo $this->formText("no_grupo", $this->form['no_grupo'], array());?>
+			</div>
+
+			<div class="clear"></div>
+		</div>
+
+		<div class="linha">
+			<div class="left_full">
+				<label class="label_esquerda" for="ds_grupo"><?php echo $this->traducao["LB_DESCRICAO"];?>:</label>
+				<?php echo $this->formTextarea("ds_grupo", $this->form['ds_grupo'], array());?>
+			</div>
+			
+            <div class="clear"></div>
+		</div>
+        
+	</fieldset>
+	
+</form>

@@ -1,0 +1,87 @@
+<?php
+
+// Seta o título
+//$this->headTitle("Painel Administrativo - Index");
+?>
+
+<div id="cabecalho_botoes">
+    <div>
+        <a onclick="Interna.telapesquisa();" id="pesquisar">
+            <div class="btn_pesq" style="background-image: url('<?=$this->baseUrl();?>/public/images/bt_consulta.jpg');" >&nbsp;</div>
+            <div class="btn_pesq_meio" style="background-image: url('<?=$this->baseUrl();?>/public/images/bt_p2_over.jpg');" ><p class="tit_botao">Pesquisa / Manutenção</p></div>
+            <div class="btn_pesq_ct" style="background-image: url('<?=$this->baseUrl();?>/public/images/bt_p3.jpg');" >&nbsp;</div>
+        </a>
+    </div>
+    <div>
+        <a onclick="Interna.novo();" id="novo">
+            <div class="btn_pesq" style="background-image: url('<?=$this->baseUrl();?>/public/images/bt_manutencao.jpg');" >&nbsp;</div>
+            <div class="btn_pesq_meio" style="background-image: url('<?=$this->baseUrl();?>/public/images/bt_p2_out.jpg');" ><p class="tit_botao">Novo registro</p></div>
+            <div class="btn_pesq_ct" style="background-image: url('<?=$this->baseUrl();?>/public/images/bt_p3.jpg');" >&nbsp;</div>
+        </a>
+    </div>
+    <div>
+         <a onclick="Interna.ajuda();" id="ajuda">
+            <div class="btn_pesq" style="background-image: url('<?=$this->baseUrl();?>/public/images/bt_ajuda.jpg');" >&nbsp;</div>
+            <div class="btn_pesq_meio" style="background-image: url('<?=$this->baseUrl();?>/public/images/bt_p2_out.jpg');" ><p class="tit_botao">Ajuda</p></div>
+            <div class="btn_pesq_ct" style="background-image: url('<?=$this->baseUrl();?>/public/images/bt_p3.jpg');" >&nbsp;</div>
+         </a>
+    </div>
+
+</div>
+
+<form name="form_base" id="form_base"  method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <table class="table_form">
+        <tr>
+            <td class="lb_form">
+                <?=$this->formHidden("operacao", "novo");?>
+                <?=$this->codigo;?>:
+            </td>
+            <td class="cp_form" colspan="3">
+                <?=$this->formText("cd_glossario", "", array("class"=>"numero","style"=>"width:100px;margin:0px; padding:0px;","readonly"=>"readonly","maxlength"=>"6"));?>
+            </td>
+        </tr>
+        <tr>
+            <td class="lb_form">
+                <?=$this->termo;?>:
+            </td>
+            <td class="cp_form" colspan="3">
+                <?=$this->formText("palavra", "", array("class"=>"required textUpper","maxlength"=>"60","style"=>"width:200px;margin:0px; padding:0px;"));?>
+            </td>
+        </tr>
+        <tr>
+            <td class="lb_form">
+                <?=$this->desc;?>:
+            </td>
+            <td class="cp_form" colspan="3">
+                <?=$this->formTextarea("ds_palavra", "", array("class"=>"required","maxlength"=>"2048"));?>
+            </td>
+        </tr>
+         <tr>
+            <td class="lb_form">
+                <?=$this->tabela;?>:
+            </td>
+            <td class="cp_form">
+                <?=$this->formText("no_tabela", "", array("class"=>"textUpper","style"=>"width:200px; margin:0px; padding:0px;","maxlength"=>"60"));?>
+            </td>
+            <td class="lb_form">
+                <?=$this->coluna;?>:
+            </td>
+            <td class="cp_form">
+                <?=$this->formText("no_coluna", "", array("class"=>"textUpper","style"=>"margin:0px; padding:0px;","maxlength"=>"60"));?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="lb_form">
+
+            </td>
+            <td class="cp_form" colspan="3">
+                <input type="button" id="salvar" name="salvar" value="Salvar" class="botoes_ant" /> &nbsp;
+                <input type="button" id="fechar" name="fechar" value="Fechar" class="botoes_ant" /> &nbsp;
+            </td>
+        </tr>
+    </table>
+</form>
+

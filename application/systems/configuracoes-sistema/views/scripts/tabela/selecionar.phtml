@@ -1,0 +1,107 @@
+<?php
+// Seta o título
+$this->headTitle("Tabelas Web - selecionar");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+    
+        <legend>Tabela</legend>
+
+        <div class="linha">
+        
+			<div class="left">
+				<label class="label_esquerda" for="cd_tabela">Código:</label>
+				<?php echo $this->formText("cd_tabela", $this->form['cd_tabela'], array('class'=>'required stru', 'disabled'=>'disabled', 'maxlength'=>'30'));?>
+			</div>
+			
+			<div class="right">
+				<label class="label_esquerda" for="sg_tabela">Sigla:</label>
+				<?php echo $this->formText("sg_tabela", $this->form['sg_tabela'], array('class'=>'required stru', 'maxlength'=>'5'));?>
+			</div>
+		</div>
+
+		<div class="linha">
+			<div class="left">
+				<label class="label_esquerda" for="no_tabela">Nome:</label>
+				<?php echo $this->formText("no_tabela", $this->form['no_tabela'], array('class'=>'required stru', 'maxlength'=>'50'));?>
+			</div>
+		</div>
+        
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="ds_tabela">Descrição:</label>
+                <?php echo $this->formTextarea("ds_tabela", $this->form['ds_tabela'], array('class'=>'required stru', 'height'=>'120px;' , 'maxlength'=>'500'));?>
+            </div>
+            
+            
+        </div>
+        
+        <div class="linha">			
+			<div class="left">
+				<label class="label_esquerda">&nbsp;</label>
+				<?php echo $this->formCheckbox('fl_completa',
+                        					   $this->form['fl_completa'],
+                         					   null,
+                         					   array('S', 'N')); 
+				
+				?>
+				<label for="fl_completa" style="margin-left:4px;">Completa</label>				
+			</div>
+		
+			<div class="right">
+				<label class="label_direita">&nbsp;</label>
+				<?php echo $this->formCheckbox('fl_reduzida',
+                        					   $this->form['fl_reduzida'],
+                         					   null,
+                         					   array('S', 'N')); 
+				
+				?>
+				<label for="fl_reduzida" style="margin-left:4px;">Reduzida</label>				
+			</div>
+		</div>
+		
+		<div class="linha">			
+			<div class="left">
+				<label class="label_esquerda">&nbsp;</label>
+				<?php echo $this->formCheckbox('fl_relatorio',
+                        					   $this->form['fl_relatorio'],
+                         					   null,
+                         					   array('1', '0')); 
+				
+				?>
+				<label for="fl_relatorio" style="margin-left:4px;">Utilizada pelo Gerador de Relatórios</label>				
+			</div>
+		
+			<div class="right">
+				<label class="label_direita">&nbsp;</label>
+				<?php echo $this->formCheckbox('fl_cons_nao_estrut',
+                        					   $this->form['fl_cons_nao_estrut'],
+                         					   null,
+                         					   array('1', '0')); 
+				
+				?>
+				<label for="fl_relatorio" style="margin-left:4px;">Utilizada para execução de consultas não estruturadas</label>				
+			</div>
+		</div>
+		
+    </fieldset>
+    
+</form>
+
+<!-- Insere as Abas -->
+<?php 
+    // Define o código do contrato da transação pai
+    $cd_grupo = "pai_cd_tabela/" . $this->form['cd_tabela'];
+
+    // Define os atributos de cada aba
+    $titulos        = array("Colunas", "Sistemas", "Tabelas Relacionadas");
+    $sistemas       = array("configuracoes-sistema", "configuracoes-sistema", "configuracoes-sistema");
+    $controladores  = array("tab-colunas", "tab-sistemas", "tab-tabelas-relacionadas");
+    $parametros     = array($cd_grupo, $cd_grupo, $cd_grupo);
+    $estilos        = array();
+    
+    // Gera as abas
+    echo $this->geraAbas($titulos, $sistemas, $controladores, $parametros, $estilos);
+?>

@@ -1,0 +1,65 @@
+p, h1, form, button{border:0; margin:0; padding:0;}
+
+div .formulario input:focus {	
+	background: #ffff80;
+	border:solid 2px #DEDEDE;
+}
+
+.spacer{clear:both; height:1px;}
+/* ----------- My Form ----------- */
+.formulario{
+	margin:10px auto;
+	padding:3px;
+	width:680px;		
+}
+.botao{
+	width:680px;
+	text-align:center;	
+}
+
+/* ----------- basic ----------- */
+div .formulario{
+	border:solid 2px #DEDEDE;
+}
+.formulario h1 {
+	font-size:14px;
+	font-weight:bold;
+	margin-bottom:8px;
+}
+.formulario p{
+	font-size:11px;
+	color:#666666;
+	margin-bottom:20px;
+	border-bottom:solid 1px #DEDEDE;
+	padding-bottom:10px;
+}
+.formulario label{
+	display:block;
+	font-weight:bold;
+	text-align:right;
+	width:120px;
+	float:left;
+}
+.formulario .small{
+	color:#666666;
+	display:block;
+	font-size:11px;
+	font-weight:normal;
+	text-align:right;
+	width:140px;
+}
+.formulario input{
+	float:left;
+	width:200px;
+	margin:0px;
+}
+.formulario button{ 
+	clear:both;
+	margin-left:10px;
+	background:888888;
+	color:#FFFFFF;
+	border:solid 1px #666666;
+	font-size:11px;
+	font-weight:bold;
+	padding:4px 6px;
+}

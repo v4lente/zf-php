@@ -1,0 +1,152 @@
+#container {
+    border: 0px solid #c93;
+}
+
+#botao-pesquisar {
+    display: none !important;
+}
+
+#botao-novo {
+    display: none !important;
+}
+
+#botao-limpar {
+    display: none !important;
+}
+
+#botao-salvar {
+    display: none !important;
+}
+
+#ajuda {
+    display: none;
+}
+
+div #cabecalho_botoes{
+    border: 0px solid #FF0000;
+    width: 95%;
+    height: 40px;
+    margin:0 auto;
+    padding-top: 10px;
+
+}
+
+.btn_pesq{
+    font-size: 12px;
+    height: 24px;
+    width: 38px;
+    border:0px solid #000000;
+    float: left;
+}
+
+.btn_pesq_meio{
+   
+    height: 24px;
+    width: 28%;
+    border:0px solid #FF0000;
+    float: left;
+    
+}
+.btn_pesq_ct{
+    font-size: 12px;
+    height: 24px;
+    width: 7px;
+    border:0px solid #FF0000;
+    float: left;
+}
+
+.tit_botao{
+    color:#ffffff;
+     font-size: 12px;
+     margin-top: 4px;
+     padding-left:120px;
+     font-weight: bold;
+     
+}
+
+.tit_coluna{
+    width: 145px;
+}
+.tit_coluna2{
+    width: 320px;
+}
+.tit_coluna3{
+    width: 135px;
+}
+.tit_coluna4{
+    width: 135px;
+}
+/* Estilo da tabela que será utilizada no formulario  */
+.table_form{
+    width:60%;
+    margin-right: 20%;
+    margin-left: 20%;
+    margin-top:5%;
+    border: 0px solid black;
+}
+/* Label que formata os campos do formulario*/
+.lb_form{
+    width:20%;
+    font-size:12px;
+    border:0px solid #FF0000;
+    text-align:right;
+}
+
+.cp_form{
+    font-size:12px;
+    text-align:left;
+    border:0px solid #FF0000;
+}
+
+.botoes_ant{
+    color: rgb(255, 255, 255);
+    background-color: #000000;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.textUpper{
+    text-transform: uppercase;
+     font-size: 12px;
+
+}
+
+
+div #formulario {
+    width: 680px;
+    margin: 15px auto;
+    border: 0px solid #449;
+    border-collapse: collapse;
+}
+
+div #formulario label{
+    width:100px;
+    float:left;
+    margin-right:10px;    
+}
+
+a{
+    cursor:pointer;
+}
+
+div #formulario input{
+    width:250px;        
+}
+
+
+div #pesquisa {
+    width: 680px;
+    margin: 15px auto;
+    border: 0px solid #449;
+    border-collapse: collapse;
+}
+
+div #pesquisa label{
+    width:85px;
+	float:left;
+	margin-right:10px;    
+}
+
+div #pesquisa input{
+    width:250px;    	
+}

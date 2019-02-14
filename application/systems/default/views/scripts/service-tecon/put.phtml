@@ -1,0 +1,89 @@
+<?php
+$site = Zend_Registry::get('site');
+?>
+
+<p class="heading1">PORTO DO RIO GRANDE</p>
+
+<br /><br />
+<p>Click <a href="<?php echo $site . '/default/service-tecon?methods';?>">here</a> for a complete list of operations.</p>
+<hr />
+<br />
+
+<h1>Method put</h1>
+<br />
+
+<p><b>Request Params</b></p>
+<pre>
+POST /put HTTP/1.1
+Host: portoriogrande.com.br
+Content-Type: text/xml; charset=utf-8
+Content-Length: length
+SOAPAction: "<?php echo $site . '/default/service-tecon?methods=put'; ?>"
+
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+  &lt;soap:Body&gt;
+    &lt;put xmlns="http://portoriogrande.com.br/"&gt;
+      &lt;credential&gt;
+        &lt;Login&gt;string&lt;/Login&gt;
+        &lt;Password&gt;string&lt;/Password&gt;
+      &lt;/credential&gt;
+      &lt;xmlDocument&gt;xml&lt;/xmlDocument&gt;
+    &lt;/put&gt;
+  &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;
+</pre>
+<br /><br />
+
+<p><b>Response Params</b></p>
+<pre>
+HTTP/1.1 200 OK
+Content-Type: text/xml; charset=utf-8
+Content-Length: length
+
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"&gt;
+  &lt;soap:Body&gt;
+    &lt;putResponse xmlns="http://portoriogrande.com.br/"&gt;
+      &lt;putResult&gt;&lt;Success&gt; or &lt;LoginFail&gt; or &lt;XsdLoadFail&gt; or &lt;XsdValidateFail&gt; or &lt;UnspecifiedError&gt;&lt;/PutDocumentResult&gt;
+    &lt;/putResponse&gt;
+  &lt;/soap:Body&gt;
+&lt;/soap:Envelope&gt;
+</pre>
+
+<style>
+html, body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    border: 0px solid #f00;
+}
+
+body {
+    overflow-x: hidden;
+    border: 0px solid #f00;
+    text-align: left;
+    font-family: Arial;
+    font-size: 12px;
+    background-color: #fff;
+    color: #444444;
+}
+
+.heading1 {
+    color: #ffffff;
+    font-family: Tahoma;
+    font-size: 26px;
+    font-weight: normal;
+    background-color: #003366;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 10px;
+    padding-bottom: 3px;
+    padding-left: 15px;
+    width: 100%;
+}
+
+p, pre, h1 {
+    padding-left: 30px;
+}
+</style>

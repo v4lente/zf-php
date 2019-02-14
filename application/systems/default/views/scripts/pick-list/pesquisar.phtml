@@ -1,0 +1,114 @@
+<?php
+// Seta o título
+$titulo = " PickList";
+if(isset($this->titulo))
+    $titulo = " " . $this->titulo;
+
+$this->headTitle($titulo);
+?>
+
+<?php echo $this->formulario; ?>
+
+<?php
+    
+    // Se a consulta foi feita mostra os dados
+    if(isset($this->paginator)) {
+        // Define o número total de títulos
+        $nr_titulos = count($this->tituloColunas);
+
+        echo "<table id='tabelaConsulta' class='tabela nao-selecionavel'>";
+        if(count($this->paginator)){
+        	echo "<thead>";
+            echo "	<tr>";
+            $x=0;
+            foreach($this->tituloColunas as $indice => $valor) {
+            	echo "<th class='tabelaTitulo' style='{$this->estiloColunas[$x]}' column='" . ($x+1) . "'>" . $valor . "<div class='img_seta'></div></th>";
+            	$x++;
+            }
+            echo "	</tr>";
+            echo "</thead>";
+            
+            echo "<tbody>";
+            
+            // Divide pela virgula todas referências passadas
+            $divRef = explode(",", $this->reference);
+            if(! is_array($divRef)) {
+                $divRef = array($divRef);
+            }
+            
+        	foreach($this->paginator as $linha) {
+        	    
+        	    // Zera as referências por linha percorrida
+	            $referencias = "";
+	            
+        	    // Pega cada referencia na ordem dos campos da consulta
+        	    for($i=0; $i < count($linha); $i++) {
+        	        // Captura o valor da coluna
+        	        $valorColuna = $linha[$i];
+        	         
+        	        // Pega o nome da coluna
+        	        $nomeColuna  = strtolower(trim($this->nomesColunas[$i]));
+        	         
+        	        // Passa por cada referência para ver se acha a coluna e assim
+        	        // poder pegar o valor retornado do banco
+        	        for($j=0; $j < count($divRef); $j++) {
+        	            // Captura o valor da referencia
+        	            $referencia = strtolower(trim($divRef[$j]));
+        	            
+            	        // Verifica se tem "seta(->)" de definição de campo do formulário
+                        // e caso possua retorna o nome do campo sql apenas
+                        $refTeste = $referencia;
+                        if(strpos($referencia, "->") !== false) {
+                            $divNomeRef = explode("->", $referencia);
+                            $refTeste   = trim($divNomeRef[0]);
+                        }
+                        
+        	            // Compara cada coluna com a referência passada
+        	            if(strpos($nomeColuna, $refTeste) !== false) {
+        	                if($referencias != "") {
+                                $referencias .= "&&";
+                            }
+                            
+                            // Recupera todas as referencias passadas
+                            $referencias .=  $referencia . ";;" . base64_encode(trim($valorColuna));
+                            
+        	            }
+        	        }
+        	         
+        	    }
+        	    
+	            /* Retorna para o documento pai o primeiro campo(Geralmente o Código do registro),
+	             * mais a referencia, que é o campo onde este código será jogado 
+	             */
+        		echo "	<tr style='cursor: pointer;' onclick='Interna.retornoPickList(\"{$referencias}\");'>";
+                
+        		// Limpa as referências
+        		$referencias = "";
+        		
+	            for($i=0; $i < count($linha); $i++) {
+		            $estilo = "";
+	            	if (! is_null($this->estiloColunas[$i])){
+	            		$estilo = $this->estiloColunas[$i];
+	            	}
+	            	echo "<td style='{$estilo}'>". $linha[$i] ."</td>";
+	            }
+	            echo "	</tr>";
+        	}
+        	echo "</tbody>";
+        	
+        	echo "<tfoot>";
+        	echo "	<tr>";
+            echo "		<td colspan='{$nr_titulos}' class='paginacaoLinhaTabela'>{$this->paginationControl($this->paginator, 'Sliding', 'controle_paginacao.phtml', array('extraParams' => $this->extraParams))}</td>";
+        	echo "	</tr>";
+        	echo "</tfoot>";
+
+        } else {
+        	echo "<tfoot>";
+        	echo "	<tr>";
+            echo "		<td colspan='{$nr_titulos}' class='paginacaoLinhaTabela'>Nenhum registo encontrado.</td>";
+            echo "	</tr>";
+            echo "</tfoot>";
+        }
+        echo "</table>";
+    }
+?>

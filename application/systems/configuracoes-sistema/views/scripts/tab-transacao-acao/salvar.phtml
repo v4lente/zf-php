@@ -1,0 +1,55 @@
+<?php
+// Seta o título
+$this->headTitle("Transação - Novo");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+	<fieldset>
+		<legend>Transação/Ação</legend>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="no_sistema"><?php echo $this->traducao["LB_NO_SISTEMA"];?>:</label>
+                <?php echo $this->formText("no_sistema", $this->form['no_sistema'], array('readonly'=>'readonly'));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="no_menu"><?php echo $this->traducao["LB_NO_MENU"];?>:</label>
+                <?php echo $this->formText("no_menu", $this->form['no_menu'], array('readonly'=>'readonly'));?>
+            </div>
+            
+            
+        </div>
+        
+		<div class="linha">
+			<div class="left">
+				<label class="label_esquerda" for="cd_transacao"><?php echo $this->traducao["LB_COD_TRANSACAO"];?>:</label>
+				<?php echo $this->formText("cd_transacao", $this->form['cd_transacao'], array('readonly'=>'readonly', 'class'=>'numero', 'maxlength'=>'5'));?>
+			</div>
+			
+			<div class="right">
+                <label class="label_direita" for="no_transacao"><?php echo $this->traducao["LB_NO_TRANSACAO"];?>:</label>
+                <?php echo $this->formText("no_transacao", $this->form['no_transacao'], array('readonly'=>'readonly'));?>
+            </div>
+            
+			
+		</div>
+		
+		<div class="linha">
+			<div class="left">
+				<label class="label_esquerda" for="cd_acao"><?php echo $this->traducao["LB_NO_ACAO"];?>:</label>
+				<?php echo $this->formSelect("cd_acao", "", array(), $this->adicionaValorPadraoCombo($this->acoes));?>
+			</div>
+			
+			<div class="right">
+                <label class="label_direita" for="ord_acao"><?php echo $this->traducao["LB_ORDEM"];?>:</label>
+                <?php echo $this->formText("ord_acao", "", array());?>
+            </div>
+			
+            
+		</div>
+		
+	</fieldset>
+	
+</form>

@@ -1,0 +1,23 @@
+<?php 
+
+// Define o título
+$titulo = "Tabelas do Sistema";
+
+// Converte o resultado para array
+$resultado = $this->resConsulta;
+
+// Monta o array com os campos da consulta que serão mostrados no relatório. -> (Obrigatório)
+// Total 190 mm somando todos os campos para A4 tipo Retrato (P: Portrait)
+// ou 277 mm somando todos os campos para A4 tipo Paisagem (L: Landscape)
+// No WIDTH colocar a porcentagem de cada campo, máximo 100% de todos os campos juntos.
+$campos = array("TABELA"     => array("width"=>00,  "text-align"=>"left",   "title"=>"Tabela",    "group" => true),
+				"CD_COLUNA"  => array("width"=>15,  "text-align"=>"left",   "title"=>"Coluna"),
+                "FL_PK"      => array("width"=>15,  "text-align"=>"center", "title"=>"Chave primária"),
+                "TP_COLUNA"  => array("width"=>10,  "text-align"=>"left",   "title"=>"Tipo"),
+                "TAMANHO"    => array("width"=>10,  "text-align"=>"right",  "title"=>"Tamanho"),
+				"FL_NULL"    => array("width"=>10,  "text-align"=>"left",   "title"=>"Nulo"),
+				"NO_COLUNA"  => array("width"=>40,  "text-align"=>"left",   "title"=>"Descrição"));
+
+// Chama o view helper que gerará o relatório
+$this->geraRelatorio($resultado, $titulo, $campos, $this->extraParams["_rel_metodo"]);
+?>

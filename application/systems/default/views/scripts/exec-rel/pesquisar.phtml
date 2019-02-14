@@ -1,0 +1,92 @@
+<?php
+// Seta o título
+$this->headTitle("Execução de Relatórios");
+?>
+
+<form id="form_pesquisar" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Execução de Relatórios</legend>
+        
+        <div class="linha">
+            <div class="left">
+                <?php //$this->traduz("LB_CODIGO"); ?>
+                <label class="label_esquerda" for="cd_relatorio">Código Relatório:</label>
+                <?php echo $this->formText("cd_relatorio", $this->form['cd_relatorio'], array());?>
+            </div>
+            
+
+            <div class="left">
+                <label class="label_esquerda" for="no_modulo">Módulo/Sistema:</label>
+                <?php echo $this->formText("no_modulo", $this->form['no_modulo'], array());?>
+            </div>
+            
+            
+            <div class="left">
+                <label class="label_esquerda" for="ds_grupo">Grupo:</label>
+                <?php echo $this->formText("ds_grupo", $this->form['ds_grupo'], array());?>
+            </div>
+            
+            
+            <div class="left">
+                <label class="label_esquerda" for="no_relatorio">Nome do Relatório:</label>
+                <?php echo $this->formText("no_relatorio", $this->form['no_relatorio'], array());?>
+            </div>
+            
+        </div>
+        
+    </fieldset>
+</form>
+    
+<br />
+    
+<table class='tabela' id='tabelaConsulta'>
+<?php
+if(count($this->paginator)){
+?>
+    <thead>
+        <tr>
+            <th class='cd_relatorio' column='cd_relatorio'>Código Relatório<div class='img_seta'></div></th>
+            <th class='no_modulo'    column='no_modulo'>Módulo/Sistema<div class='img_seta'></div></th>
+            <th class='ds_grupo'     column='ds_grupo'>Grupo<div class='img_seta'></div></th>
+            <th class='no_relatorio' column='no_relatorio'>Nome do Relatório<div class='img_seta'></div></th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php
+    $i=0;
+    foreach($this->paginator as $linha) {
+        $target = "";
+        // Se não possuir e-comercial é por que não tem tela de parâmetros
+        if(strpos($linha->TX_CONSIDERACOES_COL, "&") === false) {
+            $target = "blank";
+        }
+    ?>
+        <tr class='linha' target="<?php echo $target; ?>" key="<?php echo "cd_relatorio/" . $linha->CD_RELATORIO; ?>">
+            <td class=''><?=$linha->CD_RELATORIO;?></td>
+            <td class=''><?=$linha->NO_MODULO;?></td>
+            <td class=''><?=$linha->DS_GRUPO;?></td>
+            <td class=''><?=$linha->NO_RELATORIO;?></td>
+        </tr>
+<?php
+        $i++;
+    }
+?>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan='4'><?=$this->paginationControl($this->paginator, 'Sliding', 'controle_paginacao.phtml', array("extraParams" => $this->extraParams));?></td>
+        </tr>
+    </tfoot>
+<?php
+} else {
+?>
+    <tfoot>
+        <tr>
+            <td colspan='4' class='paginacaoLinhaTabela' style='padding: 5px;'>Nenhum registo encontrado.</td>
+        </tr>
+    </tfoot>
+<?php
+}
+?>
+</table>
+   

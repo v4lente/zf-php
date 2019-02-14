@@ -1,0 +1,75 @@
+<?php
+// Seta o título
+$this->headTitle("Mensagem - Editar");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+	<fieldset>
+		<legend>Mensagem</legend>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="cd_mensagem"><?php echo $this->traducao["LB_CODIGO"];?>:</label>
+                <?php echo $this->formText("cd_mensagem", $this->form['cd_mensagem'], array('readonly'=>'readonly', 'class'=>'numero', 'maxlength'=>'5'));?>
+            </div>
+        
+            <div class="right">
+                <label class="label_direita" for="titulo"><?php echo $this->traducao["LB_TITULO"];?>:</label>
+                <?php echo $this->formText("titulo", $this->form['titulo'], array());?>
+            </div>
+            
+            
+        </div>
+        
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="descricao"><?php echo $this->traducao["LB_DESCRICAO"];?>:</label>
+                <?php echo $this->formTextarea("descricao", $this->form['descricao'], array());?>
+            </div>
+            
+            
+        </div>
+        
+		<div class="linha">
+			<div class="left">
+				<label class="label_esquerda" for="dt_ini"><?php echo $this->traducao["LB_DT_INI"];?>:</label>
+				<?php echo $this->formText("dt_ini", $this->form['dt_ini'], array('class'=>'data'));?>
+			</div>
+			
+			<div class="right">
+                <label class="label_direita" for="dt_fim"><?php echo $this->traducao["LB_DT_FIM"];?>:</label>
+                <?php echo $this->formText("dt_fim", $this->form['dt_fim'], array('class'=>'data'));?>
+            </div>
+            
+			
+		</div>
+		
+		<div class="linha">
+			<div class="left">
+				<label class="label_esquerda" for="fl_urgente"><?php echo $this->traducao["LB_URGENTE"];?>:</label>
+				<?php echo $this->formRadio("fl_urgente", $this->form['fl_urgente'], array('class'=>'radio'), array("0"=>"Não", "1"=>"Sim"), "");?>
+			</div>
+			
+            
+		</div>
+        
+	</fieldset>
+	
+</form>
+
+<!-- Insere as Abas -->
+<?php 
+    // Define o código da mensagem pai
+    $cd_mensagem = "pai_cd_mensagem/" . $this->form['cd_mensagem'];
+
+    // Define os atributos de cada aba
+    $titulos        = array("Grupo Mensagem");
+    $sistemas       = array("configuracoes-sistema");
+    $controladores  = array("tab-grupo-mensagem");
+    $parametros     = array($cd_mensagem);
+    $estilos        = array();
+    
+    // Gera as abas
+    echo $this->geraAbas($titulos, $sistemas, $controladores, $parametros, $estilos); 
+?>

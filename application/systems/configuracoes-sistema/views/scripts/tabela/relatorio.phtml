@@ -1,0 +1,23 @@
+<?php 
+// Define o título
+$titulo = "Tabelas web";
+
+// Converte o resultado para array
+$resultado = $this->resConsulta;
+
+foreach ($resultado as $indice => $valor) {	
+	$resultado[$indice]['FL_RELATORIO'] = $valor->getFlRelatorio();
+}
+
+// Monta o array com os campos da consulta que serão mostrados no relatório. -> (Obrigatório)
+// Total 190 mm somando todos os campos para A4 tipo Retrato (P: Portrait)
+// ou 277 mm somando todos os campos para A4 tipo Paisagem (L: Landscape)
+// No WIDTH colocar a porcentagem de cada campo, máximo 100% de todos os campos juntos.
+$campos = array("CD_TABELA"    => array("width"=>10, "text-align"=>"left", "title"=>"Código"),
+				"NO_TABELA"    => array("width"=>30, "text-align"=>"left", "title"=>"Nome"),
+                "DS_TABELA"    => array("width"=>50, "text-align"=>"left", "title"=>"Descrição"),
+                "FL_RELATORIO" => array("width"=>10, "text-align"=>"left", "title"=>"Relatório"));
+
+// Chama o view helper que gerará o relatório
+$this->geraRelatorio($resultado, $titulo, $campos, $this->extraParams["_rel_metodo"]);
+?>

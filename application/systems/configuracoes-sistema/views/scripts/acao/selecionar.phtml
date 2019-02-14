@@ -1,0 +1,70 @@
+<?php
+// Seta o título
+$this->headTitle("Ações - Seleção");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+	<fieldset>
+		<legend>Ação</legend>
+
+		<div class="linha">
+			<div class="left">
+				<label class="label_esquerda" for="cd_acao"><?php echo $this->traducao["LB_CODIGO"];?>:</label>
+				<?php echo $this->formText("cd_acao", $this->form['cd_acao'], array('class'=>'required', 'readonly'=>'readonly', 'maxlength'=>'5'));?>
+			</div>
+			
+			<div class="right">
+                <label class="label_direita" for="fl_menu"><?php echo $this->traducao["LB_ACAO_BARRA_TAREFA"];?>:</label>
+                <?php echo $this->formRadio("fl_menu",
+                                            $this->form['fl_menu'],
+                                            array("class" => "radio required"),
+                                            array("1" => "Sim", "0" => "Não"), ""); //aspas para deixar na mesma linha 
+                
+                ?>
+            </div>
+		</div>
+		
+		<div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="no_acao"><?php echo $this->traducao["LB_NOME"];?>:</label>
+                <?php echo $this->formText("no_acao", $this->form['no_acao'], array('class'=>'required', 'maxlength'=>'35'));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="lnk_img_acao"><?php echo $this->traducao["LB_IMAGEM_ACAO"];?>:</label>
+                <?php echo $this->formText("lnk_img_acao", $this->form['lnk_img_acao'], array('maxlength'=>'300'));?>
+                <?php echo $this->formHidden("_lnk_img_acao", $this->form['lnk_img_acao'], array());?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="fl_permissao">Tipo de Acesso:</label>
+                <?php echo $this->formSelect("fl_permissao", "C", array(), $this->adicionaValorPadraoCombo(array("C"=>"Consulta", "M"=>"Manutenção")));?>
+            </div>
+            
+			<div class="right">
+                <label class="label_direita" for="fl_tipo_acao">Tipo de Ação:</label>
+                <?php echo $this->formSelect("fl_tipo_acao", $this->form['fl_tipo_acao'], array(), $this->adicionaValorPadraoCombo(array("M"=>"Mestre (Janela Principal)", "D"=>"Detalhe (Aba)", "C"=>"Comum (Ambos)", "A"=>"Ajax")));?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="ord_acao"><?php echo $this->traducao["LB_ORD_ACAO"];?>:</label>
+                <?php echo $this->formText("ord_acao", $this->form['ord_acao'], array('class'=>'numero', 'maxlength'=>'3'));?>
+                <?php echo $this->formHidden("_ord_acao", $this->form['ord_acao'], array());?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="ds_acao"><?php echo $this->traducao["LB_DESCRICAO"];?>:</label>
+                <?php echo $this->formTextarea("ds_acao", $this->form['ds_acao'], array('maxlength'=>'300'));?>
+            </div>
+        </div>
+        
+	</fieldset>
+	
+</form>

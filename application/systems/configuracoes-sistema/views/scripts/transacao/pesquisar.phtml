@@ -1,0 +1,152 @@
+<?php
+// Seta o título
+$this->headTitle("Transação - Pesquisa");
+?>
+
+<form id="form_pesquisar" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+	<fieldset>
+		<legend>Pesquisa</legend>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="no_sistema">Nome do Sistema:</label>
+                <?php echo $this->formText("no_sistema", $this->form['no_sistema'], array('maxlength'=>'25'));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="amb_desenv">Ambiente de desenvolvimento:</label>
+                <?php echo $this->formSelect("amb_desenv", $this->form['amb_desenv'], array(), $this->adicionaValorPadraoCombo(array("POWR"=>"TEMPLATE POWER", "ZEND"=>"ZEND FRAMEWORK")));?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="no_menu">Nome do Menu/Aba:</label>
+                <?php echo $this->formText("no_menu", $this->form['no_menu'], array('maxlength'=>'30'));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="format_rel">Impressão da Listagem:</label>
+                <?php echo $this->formSelect("format_rel", $this->form['format_rel'], array(), $this->adicionaValorPadraoCombo(array("P"=>"Paisagem", "R"=>"Retrato")));?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="no_transacao">Nome da Transação:</label>
+                <?php echo $this->formText("no_transacao", $this->form['no_transacao'], array('maxlength'=>'60'));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="fl_visivel">Disponível para Acesso:</label>
+                <?php echo $this->formSelect("fl_visivel", $this->form['fl_visivel'], array(), $this->adicionaValorPadraoCombo(array("1"=>"Sim", "0"=>"Não")));?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="ds_transacao">Descrição da Transação:</label>
+                <?php echo $this->formText("ds_transacao", $this->form['ds_transacao'], array('maxlength'=>'300'));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="fl_publico">Acesso Público:</label>
+                <?php echo $this->formSelect("fl_publico", $this->form['fl_publico'], array(), $this->adicionaValorPadraoCombo(array("1"=>"Sim", "0"=>"Não")));?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="ord_transacao">Ordem de Exibição:</label>
+                <?php echo $this->formText("ord_transacao", $this->form['ord_transacao'], array('maxlength'=>'2'));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="fl_nova_janela">Forma de Exibição:</label>
+                <?php echo $this->formSelect("fl_nova_janela", $this->form['fl_nova_janela'], array(), $this->adicionaValorPadraoCombo(array("1"=>"Janela/Aba Principal", "0"=>"Nova Janela/Aba")));?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="fl_log_sessao">Gera Log:</label>
+                <?php echo $this->formSelect("fl_log_sessao", $this->form['fl_log_sessao'], array(), $this->adicionaValorPadraoCombo(array("1"=>"Sim", "0"=>"Não")));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="fl_relatorio">É Relatório:</label>
+                <?php echo $this->formSelect("fl_relatorio", $this->form['fl_relatorio'], array(), $this->adicionaValorPadraoCombo(array("1"=>"Sim", "0"=>"Não")));?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="fl_tipo_transacao">Tipo de Transação:</label>
+                <?php echo $this->formSelect("fl_tipo_transacao", $this->form['fl_tipo_transacao'], array(), $this->adicionaValorPadraoCombo(array("M"=>"Mestre", "D"=>"Detalhe")));?>
+            </div>
+        </div>
+        
+	</fieldset>
+	
+</form>
+
+<table class='tabela' id='tabelaConsulta'>
+<?php
+// Se a consulta foi feita mostra os dados
+if(count($this->paginator)) {
+?>
+    <thead>
+      <tr>
+          <th class='no_sistema' column='ws.no_sistema'>Sistema<div class='img_seta'></div></th>
+          <th class='no_menu' column='wm.no_menu'>Menu/Aba<div class='img_seta'></div></th>
+          <th class='no_transacao' column='wt.no_transacao'>Transação<div class='img_seta'></div></th>
+          <th class='amb_desenv' column='wt.amb_desenv'>Amb.Desenv<div class='img_seta'></div></th>
+          <th class='format_rel' column='wt.format_rel'>Impressão<div class='img_seta'></div></th>
+          <th class='fl_visivel' column='wt.fl_visivel'>Disponível<div class='img_seta'></div></th>
+          <th class='fl_log_sessao' column='wt.fl_log_sessao'>Ger. Log<div class='img_seta'></div></th>
+          <th class='fl_visivel' column='wt.fl_visivel'>Relatório<div class='img_seta'></div></th>
+          <th class='fl_relatorio' column='wt.fl_relatorio'>Ord.Exibição<div class='img_seta'></div></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+          <td colspan='10'><?php echo $this->paginationControl($this->paginator, 'Sliding', 'controle_paginacao.phtml', array('extraParams' => $this->extraParams)); ?></td>
+      </tr>
+    </tfoot>
+    <tbody>
+    <?php
+    $i=0;
+    foreach($this->paginator as $linha)
+    {
+        $key = "cd_transacao/{$linha->CD_TRANSACAO}";
+
+    ?>
+        <tr class='linha' key='<?php echo $key; ?>'>
+          <td class=''><?php echo $linha->NO_SISTEMA; ?></td>
+          <td class=''><?php echo $linha->NO_MENU; ?></td>
+          <td class=''><?php echo $linha->NO_TRANSACAO;?></td>
+          <td class=''><?php echo $linha->AMB_DESENV    == "ZEND" ? "ZEND"     : "T.POWER";?></td>
+          <td class=''><?php echo $linha->FORMAT_REL    == "P"    ? "Paisagem" : "Retrato";?></td>
+          <td class=''><?php echo $linha->FL_VISIVEL    == "1"    ? "Sim"      : "Não";?></td>
+          <td class=''><?php echo $linha->FL_LOG_SESSAO == "1"    ? "Sim"      : "Não";?></td>
+          <td class=''><?php echo $linha->FL_RELATORIO  == "1"    ? "Sim"      : "Não";?></td>
+          <td class=''><?php echo $linha->ORD_TRANSACAO;?></td>
+        </tr>
+   <?php
+        $i++;
+    }
+    ?>
+	</tbody>
+
+    <?php
+} else {
+   ?>
+    <tfoot>
+      <tr>
+          <td colspan='10' class='paginacaoLinhaTabela' style='padding: 5px;'>Nenhum registo encontrado.</td>
+      </tr>
+    </tfoot>
+<?php
+}
+?>
+</table>

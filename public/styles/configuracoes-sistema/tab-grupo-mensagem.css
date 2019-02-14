@@ -1,0 +1,11 @@
+th {
+	text-align: left !important;
+}
+
+th.cd_grupo {
+	width: 20%;
+}
+
+th.no_grupo {
+	width: 80%;
+}

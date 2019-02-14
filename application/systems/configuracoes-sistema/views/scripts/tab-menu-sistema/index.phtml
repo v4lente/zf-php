@@ -1,0 +1,52 @@
+<?php
+// Seta o título
+$this->headTitle("Menu/Sistema - Pesquisa");
+?>
+
+<table class='tabela' id='tabelaConsulta'>
+<?php
+// Se a consulta foi feita mostra os dados
+if(count($this->paginator)) {
+?>
+    <thead>
+      <tr>
+          <th class='no_menu'  column='wm.no_menu'>Nome do Menu/Aba<div class='img_seta'></div></th>
+          <th class='ds_menu'  column='wm.ds_menu'>Descrição do Menu/Aba<div class='img_seta'></div></th>
+          <th class='ord_menu' column='wm.ord_menu'>Ordenação de Exibição<div class='img_seta'></div></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+          <td colspan='3'><?php echo $this->paginationControl($this->paginator, 'Sliding', 'controle_paginacao.phtml', array('extraParams' => $this->extraParams)); ?></td>
+      </tr>
+    </tfoot>
+    <tbody>
+    <?php
+    $i=0;
+    foreach($this->paginator as $linha)
+    {
+        $key = "cd_menu/{$linha->CD_MENU}";
+    ?>
+        <tr class='linha' key='<?php echo $key; ?>'>
+          <td><?php echo $linha->NO_MENU; ?></td>
+          <td><?php echo $linha->DS_MENU; ?></td>
+          <td><?php echo $linha->ORD_MENU; ?></td>
+        </tr>
+   <?php
+        $i++;
+    }
+    ?>
+	</tbody>
+
+    <?php
+} else {
+   ?>
+    <tfoot>
+      <tr>
+          <td colspan='3' class='paginacaoLinhaTabela' style='padding: 5px;'>Nenhum registo encontrado.</td>
+      </tr>
+    </tfoot>
+<?php
+}
+?>
+</table>

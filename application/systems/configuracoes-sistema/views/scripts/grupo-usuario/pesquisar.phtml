@@ -1,0 +1,83 @@
+<?php
+// Seta o título
+$this->headTitle("Configurações de Sistema - Pesquisa");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_pesquisar" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Pesquisa</legend>
+
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="cd_grupo"><?php echo $this->traducao["LB_CODIGO"];?>:</label>
+                <?php echo $this->formText("cd_grupo", $this->form['cd_grupo'], array('maxlength'=>'5'));?>
+            </div>
+
+            <div class="right">
+                <label class="label_direita" for="no_grupo"><?php echo $this->traducao["LB_NOME_NS"];?>:</label>
+                <?php echo $this->formText("no_grupo", $this->form['no_grupo'], array());?>
+            </div>
+
+            <div class="clear"></div>
+        </div>
+
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="ds_grupo"><?php echo $this->traducao["LB_DESCRICAO"];?>:</label>
+                <?php echo $this->formText("ds_grupo", $this->form['ds_grupo'], array());?>
+            </div>
+            
+            <div class="clear"></div>
+        </div>
+        
+    </fieldset>
+    
+</form>
+
+<table class='tabela' id='tabelaConsulta'>
+<?php
+// Se a consulta foi feita mostra os dados
+if(count($this->paginator)) {
+?>
+    <thead>
+      <tr>
+          <th class='cd_grupo' column='cd_grupo'>Código<div class='img_seta'></div></th>
+          <th class='no_grupo' column='no_grupo'>Nome<div class='img_seta'></div></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+          <td colspan='2'><?php echo $this->paginationControl($this->paginator, 'Sliding', 'controle_paginacao.phtml', array('extraParams' => $this->extraParams)); ?></td>
+      </tr>
+    </tfoot>
+    <tbody>
+    <?php
+    $i=0;
+    foreach($this->paginator as $linha)
+    {
+        $key = "cd_grupo/{$linha->CD_GRUPO}";
+
+    ?>
+        <tr class='linha' key='<?php echo $key; ?>'>
+          <td class=''><?php echo $linha->CD_GRUPO; ?></td>
+          <td class=''><?php echo $linha->NO_GRUPO;?></td>
+        </tr>
+   <?php
+        $i++;
+    }
+    ?>
+    </tbody>
+
+    <?php
+} else {
+   ?>
+    <tfoot>
+      <tr>
+          <td colspan='2' class='paginacaoLinhaTabela' style='padding: 5px;'>Nenhum registo encontrado.</td>
+      </tr>
+    </tfoot>
+<?php
+}
+?>
+</table>

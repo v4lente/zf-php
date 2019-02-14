@@ -1,0 +1,92 @@
+<?php
+// Seta o título
+$this->headTitle("Colunas - Novo");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+    
+        <legend>Coluna</legend>
+		
+		<div class="linha">
+			<div class="left">
+				<label class="label_esquerda" for="cd_coluna">Código:</label>
+				<?php echo $this->formText("cd_coluna", $this->form['cd_coluna'], array('class'=>'required stru', 'maxlength'=>'60'));?>
+			</div>
+		</div>
+
+        <div class="linha">        
+			<div class="left">
+				<label class="label_esquerda" for="no_coluna">Nome:</label>
+				<?php echo $this->formText("no_coluna", $this->form['no_coluna'], array('class'=>'required stru', 'maxlength'=>'60'));?>
+			</div>
+			
+			<div class="right">
+				<label class="label_esquerda" for="cd_coluna_ref">Coluna Ref:</label>
+				<?php echo $this->formText("cd_coluna_ref", $this->form['cd_coluna_ref'], array('class'=>'stru', 'maxlength'=>'60'));?>
+			</div>
+		</div>
+
+		<div class="linha">
+			<div class="full">
+				<label class="label_esquerda" for="ds_coluna">Descrição:</label>
+				<?php echo $this->formText("ds_coluna", $this->form['ds_coluna'], array('class'=>'stru', 'maxlength'=>'500'));?>
+			</div>
+		</div>
+        
+        <div class="linha">
+			<div class="left">
+            	<label class="label_esquerda" for="tp_coluna">Tipo:</label>
+                <?php echo $this->formSelect("tp_coluna", $this->form['tp_coluna'], array('class'=>'required stru'), 
+                						$this->adicionaValorPadraoCombo(array("B"=>"BLOB",
+                    														  "D"=>"DATE", 
+                    														  "N"=>"NUMBER",
+                    														  "C"=>"STRING")));?>
+			</div>
+                
+			<div class="right">	                
+				<label class="label_esquerda" for="tamanho">Tamanho:</label>
+				<?php echo $this->formText("tamanho", $this->form['tamanho'], array('class'=>'desc', 'readonly'=>'readonly', 'maxlength'=>'30'));?>	                    	                    
+			</div>
+		</div>
+                
+        <div class="linha">			
+			<div class="left">
+				<label class="label_esquerda">&nbsp;</label>
+				<?php echo $this->formCheckbox('fl_pk',
+                        					   $this->form['fl_pk'],
+                         					   null,
+                         					   array('1', '0')); 
+				
+				?>
+				<label for="fl_pk" style="margin-left:4px; margin-right:20px;">Chave Primária</label>				
+				
+				<?php echo $this->formCheckbox('fl_null',
+                        					   $this->form['fl_null'],
+                         					   null,
+                         					   array('1', '0')); 
+				
+				?>
+				<label for="fl_null" style="margin-left:4px;">Permite Nulo</label>				
+			</div>
+		</div>
+		
+		<div class="linha">
+			<div class="full">
+				<label class="label_esquerda" for="default_value">Valor Padrão:</label>
+				<?php echo $this->formText("default_value", $this->form['default_value'], array('class'=>'stru', 'readonly'=>'readonly', 'maxlength'=>'30'));?>
+			</div>
+		</div>
+		
+		<div class="linha">
+			<div class="full">
+				<label class="label_esquerda" for="check_constraint">Restrição:</label>
+				<?php echo $this->formText("check_constraint", $this->form['check_constraint'], array('class'=>'stru', 'maxlength'=>'150'));?>
+			</div>
+		</div>
+		
+		
+    </fieldset>
+    
+</form>

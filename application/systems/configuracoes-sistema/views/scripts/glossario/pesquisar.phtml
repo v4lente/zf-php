@@ -1,0 +1,138 @@
+<?php
+
+// Seta o título
+//$this->headTitle("Painel Administrativo - Index");
+?>
+
+<div id="cabecalho_botoes">
+    <a href="" id="pesquisar">
+        <div>
+            <a onclick="Interna.telapesquisa();" id="pesquisar">
+                <div class="btn_pesq" style="background-image: url('<?=$this->baseUrl();?>/public/images/bt_consulta.jpg');" >&nbsp;</div>
+                <div class="btn_pesq_meio" style="background-image: url('<?=$this->baseUrl();?>/public/images/bt_p2_over.jpg');" ><p class="tit_botao">Pesquisa / Manutenção</p></div>
+                <div class="btn_pesq_ct" style="background-image: url('<?=$this->baseUrl();?>/public/images/bt_p3.jpg');" >&nbsp;</div>
+            </a>
+        </div>
+    </a>
+     <a href="" id="novo">
+        <div>
+            <a onclick="Interna.novo();" id="novo">
+                <div class="btn_pesq" style="background-image: url('<?=$this->baseUrl();?>/public/images/bt_manutencao.jpg');" >&nbsp;</div>
+                <div class="btn_pesq_meio" style="background-image: url('<?=$this->baseUrl();?>/public/images/bt_p2_out.jpg');" ><p class="tit_botao">Novo registro</p></div>
+                <div class="btn_pesq_ct" style="background-image: url('<?=$this->baseUrl();?>/public/images/bt_p3.jpg');" >&nbsp;</div>
+            </a>
+        </div>
+     </a>
+    <div>
+         <a onclick="Interna.ajuda();" id="ajuda">
+            <div class="btn_pesq" style="background-image: url('<?=$this->baseUrl();?>/public/images/bt_ajuda.jpg');" >&nbsp;</div>
+            <div class="btn_pesq_meio" style="background-image: url('<?=$this->baseUrl();?>/public/images/bt_p2_out.jpg');" ><p class="tit_botao">Ajuda</p></div>
+            <div class="btn_pesq_ct" style="background-image: url('<?=$this->baseUrl();?>/public/images/bt_p3.jpg');" >&nbsp;</div>
+         </a>
+    </div>
+    
+</div>
+<form name="form_pesquisar" id="form_pesquisar" action="">
+    <table class="table_form">
+        <tr>
+            <td class="lb_form">
+                <?=$this->termo;?>:
+            </td>
+            <td class="cp_form" colspan="3">
+                <?=$this->formText("palavra", "", array("class"=>"textUpper","style"=>"width:200px;margin:0px; padding:0px;"));?>
+            </td>
+        </tr>
+        <tr>
+            <td class="lb_form">
+                <?=$this->desc;?>:
+            </td>
+            <td class="cp_form" colspan="3">
+                <?=$this->formTextarea("ds_palavra", "", array());?>
+            </td>
+        </tr>
+         <tr>
+            <td class="lb_form">
+                <?=$this->tabela;?>:
+            </td>
+            <td class="cp_form">
+                <?=$this->formText("no_tabela", "", array("class"=>"textUpper","style"=>"width:200px; margin:0px; padding:0px;"));?>
+            </td>
+            <td class="lb_form">
+                <?=$this->coluna;?>:
+            </td>
+            <td class="cp_form">
+                <?=$this->formText("no_coluna", "", array("class"=>"textUpper","style"=>"margin:0px; padding:0px;"));?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="lb_form">
+
+            </td>
+            <td class="cp_form" colspan="3">
+                <input type="button" id="buscar" name="buscar" value="Buscar" class="botoes_ant" /> &nbsp;
+                <input type="button" id="limpar" name="limpar" value="Limpar" class="botoes_ant" /> &nbsp;
+                <input type="button" id="imprime" name="imprime" value="Imprimir" class="botoes_ant" /> &nbsp;
+                <input type="button" id="fechar" name="fechar" value="Fechar" class="botoes_ant" /> &nbsp;
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+    <table class='tabelaConsulta' style="width:735px;" id='tabelaConsulta'>
+    <?php
+    if(count($this->paginator)){
+    ?>
+    	<thead>
+    		<tr>
+        		<td class='tit_coluna'>Palavra/Termo</td>
+        		<td class='tit_coluna2'>Descrição</td>
+        		<td class='tit_coluna3'>Tabela</td>
+        		<td class='tit_coluna4'>Coluna</td>
+        	</tr>
+        </thead>
+        <?php
+       
+            if(count($this->paginator) > 1){
+        ?>
+        <tfoot>
+	        <tr>
+	        	<td colspan='4'><?=$this->paginationControl($this->paginator, 'Sliding', 'controle_paginacao.phtml', array('extraParams' => $this->extraParams));?></td>
+	        </tr>
+        </tfoot>
+        <?php
+            }
+        ?>
+        <tbody>
+        <?php
+        $i=0;
+        foreach($this->paginator as $linha) {
+
+        	$key = "cd_glossario/{$linha->CD_GLOSSARIO}";
+        ?>
+	        <tr class='linha' key='<?=$key;?>'>
+	        	<td class='textUpper'><?=$linha->PALAVRA;?></td>
+	        	<td class=''><?=$linha->DS_PALAVRA;?></td>
+	        	<td class='textUpper'><?=$linha->NO_TABELA;?></td>
+	        	<td class='textUpper'><?=$linha->NO_COLUNA;?></td>
+	        </tr>
+    <?php
+            $i++;
+        }
+    ?>
+    	</tbody>
+    <?php
+    } else {
+    ?>
+    	<tfoot>
+    		<tr>
+        		<td colspan='2' class='paginacaoLinhaTabela' style='padding: 5px;'>Nenhum registo encontrado.</td>
+        	</tr>
+        </tfoot>
+    <?php
+    }
+    ?>
+    </table>

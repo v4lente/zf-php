@@ -1,0 +1,111 @@
+<?php
+// Seta o título
+$this->headTitle("Usuário - Pesquisa");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_pesquisar" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Pesquisa</legend>
+
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="nr_matric">Número Matrícula:</label>
+                <?php echo $this->formText("nr_matric", $this->form['nr_matric'], array('class'=>'numero', 'maxlength'=>'5'));?>
+            </div>
+
+            <div class="right">
+                <label class="label_direita" for="no_usuario">Nome:</label>
+                <?php echo $this->formText("no_usuario", $this->form['no_usuario'], array('maxlength'=>'40'));?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="cd_usuario">Usuário/Username:</label>
+                <?php echo $this->formText("cd_usuario", $this->form['cd_usuario'], array('maxlength'=>'20'));?>
+            </div>
+
+            <div class="right">
+                <label class="label_direita" for="tp_usuario">Tipo:</label>
+                <?php echo $this->formSelect("tp_usuario", $this->form['tp_usuario'], array(), $this->adicionaValorPadraoCombo(array("P"=>"Do Porto", "C"=>"Cliente")));?>
+            </div>
+        </div>
+
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="email">E-mail:</label>
+                <?php echo $this->formText("email", $this->form['email'], array('maxlength'=>'150'));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="fl_super">Super Usuário:</label>
+                <?php echo $this->formSelect("fl_super", $this->form['fl_super'], array(), $this->adicionaValorPadraoCombo(array("1"=>"Sim", "0"=>"Não")));?>
+            </div>            
+        </div>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="fl_acesso_intranet">Aplic. Web na Intranet:</label>
+                <?php echo $this->formSelect("fl_acesso_intranet", $this->form['fl_acesso_intranet'], array(), $this->adicionaValorPadraoCombo(array("1"=>"Sim", "0"=>"Não")));?>
+            </div>          
+        </div>
+        
+    </fieldset>
+    
+</form>
+
+<table class='tabela' id='tabelaConsulta'>
+<?php
+// Se a consulta foi feita mostra os dados
+if(count($this->paginator)) {
+?>
+    <thead>
+      <tr>
+          <th class='nr_matric'     	 column='nr_matric'>Matrícula<div class='img_seta'></div></th>
+          <th class='no_usuario'     	 column='no_usuario'>Nome<div class='img_seta'></div></th>
+          <th class='cd_usuario' 		 column='cd_usuario'>Usuário/Username<div class='img_seta'></div></th>
+          <th class='tp_usuario' 		 column='tp_usuario'>Tipo<div class='img_seta'></div></th>
+          <th class='fl_super'      	 column='fl_super'>Super Usuário<div class='img_seta'></div></th>
+          <th class='fl_acesso_intranet' column='fl_acesso_intranet'>Intranet<div class='img_seta'></div></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+          <td colspan='6'><?php echo $this->paginationControl($this->paginator, 'Sliding', 'controle_paginacao.phtml', array('extraParams' => $this->extraParams)); ?></td>
+      </tr>
+    </tfoot>
+    <tbody>
+    <?php
+    $i=0;
+    foreach($this->paginator as $linha)
+    {
+        $key = "cd_usuario/{$linha->CD_USUARIO}";
+
+    ?>
+        <tr class='linha' key='<?php echo $key; ?>'>
+          <td class=''><?php echo $linha->NR_MATRIC; ?></td>
+          <td class=''><?php echo $linha->NO_USUARIO;?></td>
+          <td class=''><?php echo $linha->CD_USUARIO; ?></td>
+          <td class=''><?php echo strtoupper($linha->TP_USUARIO) == "C" ? "Cliente" : "Do Porto"; ?></td>
+          <td class=''><?php echo $linha->FL_SUPER == 1 ? "Sim" : "Não"; ?></td>
+          <td class=''><?php echo $linha->FL_ACESSO_INTRANET == 1 ? "Sim" : "Não";?></td>
+        </tr>
+   <?php
+        $i++;
+    }
+    ?>
+    </tbody>
+
+    <?php
+} else {
+   ?>
+    <tfoot>
+      <tr>
+          <td colspan='6' class='paginacaoLinhaTabela' style='padding: 5px;'>Nenhum registo encontrado.</td>
+      </tr>
+    </tfoot>
+<?php
+}
+?>
+</table>

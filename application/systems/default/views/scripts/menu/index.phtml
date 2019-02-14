@@ -1,0 +1,62 @@
+<?php
+// Seta o título
+$this->headTitle('Menu Sistema');
+?>
+
+<?php
+if(isset($this->iSrc) && $this->iSrc != "") {
+?>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	if ($("#iMenu").size()) {
+		$("#iMenu").attr("src", '<?php echo $this->iSrc;?>');
+        $("#aviso-mensagem-sistema").hide();
+	}
+
+	$("#calendario").datepicker();
+    
+    var botaoAjuda = "<img alt='Ajuda do Sistema' src='<?php echo $this->baseUrl(); ?>/images/botoes/ajuda.png' class='palhetaBotoes' id='botao-ajuda'>";
+    $("#palhetaDireita").css("display", "block")
+                        .append(botaoAjuda)
+                        .bind("click", function() {
+                            Base.ajuda();
+                        });
+    
+});
+</script>
+
+<iframe name="iMenu" id="iMenu" style="border:0px solid #f00; width: 100%; min-height:480px; display: none;"></iframe>
+<?php 
+} elseif(isset($this->mensagensWeb) && count($this->mensagensWeb) > 0) {
+?>
+
+<?php
+    // Joga na tela as mensagens do sistema para os usuários
+    echo "<div id='mensSis'>";
+    echo " 	<div class='portlet'>";
+    echo "  	<div id='overflow'>";
+    echo "      	<div class='portlet-header'>Mensagens do Sistema</div>";
+    $totalMensagens = count($this->mensagensWeb);
+    $conta          = 1;
+    foreach($this->mensagensWeb as $mensagem) {
+        $estilo = "color: #444;";
+        if($mensagem->FL_URGENTE == 1) {
+            $estilo = "color: #c00;";
+        }
+?>
+        <span style="margin-left: 10px;"><strong><?php echo $mensagem->TITULO; ?></strong></span><br />
+        <span style="margin-left: 10px; <?php echo $estilo; ?>"><?php echo $mensagem->DESCRICAO; ?></span><br /><br />
+<?php
+		if($totalMensagens > $conta) {
+			echo "<hr /><br />";
+		}
+		 
+		$conta++;
+    }
+    echo "      	</div>";
+    echo "  	</div>";
+    echo "  </div>";
+    echo "</div>";
+}
+?>

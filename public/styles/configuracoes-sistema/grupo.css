@@ -1,0 +1,27 @@
+th.cd_grupo {
+    width: 8%;
+}
+
+th.no_grupo {
+    width: 25%;
+}
+
+th.cd_transacao {
+    width: 12%;
+}
+
+th.no_transacao {
+    width: 25%;
+}
+
+th.no_sistema {
+    width: 15%;
+}
+
+th.no_menu {
+    width: 15%;
+}
+
+textarea {
+    height: 50px !important;
+}

@@ -1,0 +1,57 @@
+<?php
+$site = Zend_Registry::get('site');
+?>
+
+<p class="heading1">PORTO DO RIO GRANDE</p>
+
+<br /><br />
+<p><b>Methods</b></p>
+<hr />
+<br />
+
+<p>The following operations are supported, please review the WSDL <a href="<?php echo $site . '/default/service-tecon?wsdl';?>">Service Description.</a></p>
+<br />
+
+<ul>
+    <li>
+        <a href="<?php echo $site . '/default/service-tecon?methods=put';?>">put</a>
+    </li>
+</ul>
+<br />
+
+<style>
+html, body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    border: 0px solid #f00;
+}
+
+body {
+    overflow-x: hidden;
+    border: 0px solid #f00;
+    text-align: left;
+    font-family: Arial;
+    font-size: 12px;
+    background-color: #fff;
+    color: #444444;
+}
+
+.heading1 {
+    color: #ffffff;
+    font-family: Tahoma;
+    font-size: 26px;
+    font-weight: normal;
+    background-color: #003366;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 10px;
+    padding-bottom: 3px;
+    padding-left: 15px;
+    width: 100%;
+}
+
+p, pre {
+    padding-left: 30px;
+}
+</style>

@@ -1,0 +1,22 @@
+<?php
+// Seta o título
+$this->headTitle("GRUPO - Novo");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Grupo/Mensagem</legend>
+        
+        <?php echo $this->formHidden("cd_mensagem", $this->form['cd_mensagem']);?>
+        
+        <div class="linha">
+			<div class="full">
+				<label class="label_esquerda" for="cd_grupo">Grupo:</label>               
+				<?php echo $this->formSelect("cd_grupo", "", array("class"=>"required"), $this->adicionaValorPadraoCombo($this->grupos));?>		
+			</div>
+		</div>
+        
+    </fieldset>
+    
+</form>

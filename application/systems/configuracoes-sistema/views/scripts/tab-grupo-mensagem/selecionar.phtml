@@ -1,0 +1,27 @@
+<?php
+// Seta o título
+$this->headTitle("GRUPO - Editar");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Grupo/Mensagem</legend>
+        
+        <?php echo $this->formHidden("cd_mensagem", $this->form['cd_mensagem']); ?>
+        
+        <div class="linha">
+			<div class="left">
+				<label class="label_esquerda" for="cd_grupo">Código Grupo:</label>               
+				<?php echo $this->formText("cd_grupo", $this->form['cd_grupo'], array("readonly"=>"readonly"));?>		
+			</div>
+			
+			<div class="right">
+                <label class="label_direita" for="no_grupo">Nome do Grupo:</label>
+                <?php echo $this->formText("no_grupo", $this->form['no_grupo'], array("readonly"=>"readonly"));?>
+            </div>
+		</div>
+        
+    </fieldset>
+    
+</form>

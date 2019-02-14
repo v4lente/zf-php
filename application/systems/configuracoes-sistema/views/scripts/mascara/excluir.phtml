@@ -1,0 +1,94 @@
+<?php
+    //Inclui o cabeçalho antigo
+    include("cabecalho_antigo.phtml");
+?>
+
+<form name="form_pesquisar" id="form_pesquisar" action="">
+    <table class="table_form">
+        <tr>
+            <td class="lb_form">
+                <?=$this->cd_masc;?>:
+            </td>
+            <td class="cp_form" colspan="3">
+                <?=$this->formText("cd_mascara", "", array("class"=>"required textUpper","style"=>"width:100px;margin:0px; padding:0px;", "maxlength"=>"6"));?>
+            </td>
+        </tr>
+        <tr>
+            <td class="lb_form">
+                <?=$this->ds_masc;?>:
+            </td>
+            <td class="cp_form" colspan="3">
+                <?=$this->formTextarea("ds_mascara", "", array("class"=>"required","maxlength"=>"1024"));?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="lb_form">
+
+            </td>
+            <td class="cp_form" colspan="3">
+                <input type="button" id="buscar" name="buscar" value="Buscar" class="botoes_ant" /> &nbsp;
+                <input type="button" id="limpar" name="limpar" value="Limpar" class="botoes_ant" /> &nbsp;
+                <input type="button" id="imprime" name="imprime" value="Imprimir" class="botoes_ant" /> &nbsp;
+                <input type="button" id="fechar" name="fechar" value="Fechar" class="botoes_ant" /> &nbsp;
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+    <table class='tabelaConsulta' id='tabelaConsulta'>
+    <?php
+    if(count($this->paginator)){
+    ?>
+    	<thead>
+    		<tr>
+        		<td class='tit_coluna'>Código</td>
+        		<td class='tit_coluna2'>Descrição</td>
+        		<td class='tit_coluna3'>Alinhamento</td>
+        		<td class='tit_coluna4'>Exemplo</td>
+        	</tr>
+        </thead>
+        <?php
+            if(count($this->paginator) > 0){
+        ?>
+        <tfoot>
+	        <tr>
+	        	<td colspan='4'><?=$this->paginationControl($this->paginator, 'Sliding', 'controle_paginacao.phtml', array('extraParams' => $this->extraParams));?></td>
+	        </tr>
+        </tfoot>
+        <?php
+            }
+        ?>
+        <tbody>
+        <?php
+        $i=0;
+        foreach($this->paginator as $linha) {
+
+        	$key = "cd_mascara/{$linha->CD_MASCARA}";
+        ?>
+	        <tr class='linha' key='<?=$key;?>'>
+	        	<td class='textUpper'><?=$linha->CD_MASCARA;?></td>
+	        	<td class=''><?=$linha->DS_MASCARA;?></td>
+	        	<td class='textUpper'><?=$linha->TP_ALINHAMENTO;?></td>
+	        	<td class=''><?=$linha->EXEMPLO;?></td>
+	        </tr>
+    <?php
+            $i++;
+        }
+    ?>
+    	</tbody>
+    <?php
+    } else {
+    ?>
+    	<tfoot>
+    		<tr>
+        		<td colspan='2' class='paginacaoLinhaTabela' style='padding: 5px;'>Nenhum registo encontrado.</td>
+        	</tr>
+        </tfoot>
+    <?php
+    }
+    ?>
+    </table>

@@ -1,0 +1,89 @@
+<?php
+// Seta o título
+$this->headTitle("Grupo de Acessos - Pesquisa");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_pesquisar" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Pesquisa</legend>
+
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="cd_grupo">Código do Grupo:</label>
+                <?php echo $this->formText("cd_grupo", $this->form['cd_grupo'], array('class'=>'numero', 'maxlength'=>'5'));?>
+            </div>
+
+            <div class="right">
+                <label class="label_direita" for="no_grupo">Nome do Grupo:</label>
+                <?php echo $this->formText("no_grupo", $this->form['no_grupo'], array('maxlength'=>'25'));?>
+            </div>
+         </div>    
+        <div class="linha"> 
+            <div class="full">
+				<label class="label_esquerda">&nbsp;</label>			
+				<?php echo $this->formCheckbox('ativo',
+                        					   $this->form['ativo'],
+                         					   array('checked' => false, 'class'=>'checkbox'),
+                         					   array('1', '0')); 				
+					 
+				?> Ativo				
+	       </div>
+            
+            
+        </div>
+        
+        
+        
+    </fieldset>
+    
+</form>
+
+<table class='tabela' id='tabelaConsulta'>
+<?php
+// Se a consulta foi feita mostra os dados
+if(count($this->paginator)) {
+?>
+    <thead>
+      <tr>
+          <th class='cd_grupo' column='cd_grupo'>Cód.Grupo<div class='img_seta'></div></th>
+          <th class='no_grupo' column='no_grupo'>Nome do Grupo<div class='img_seta'></div></th>
+          <th class='ds_grupo' column='ds_transacao'>Descrição do Grupo<div class='img_seta'></div></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+          <td colspan='3'><?php echo $this->paginationControl($this->paginator, 'Sliding', 'controle_paginacao.phtml', array('extraParams' => $this->extraParams)); ?></td>
+      </tr>
+    </tfoot>
+    <tbody>
+    <?php
+    $i=0;
+    foreach($this->paginator as $linha)
+    {
+        $key = "cd_grupo/{$linha->CD_GRUPO}";
+
+    ?>
+        <tr class='linha' key='<?php echo $key; ?>'>
+          <td class=''><?php echo $linha->CD_GRUPO; ?></td>
+          <td class=''><?php echo $linha->NO_GRUPO;?></td>
+          <td class=''><?php echo $linha->DS_GRUPO; ?></td>
+        </tr>
+   <?php
+        $i++;
+    }
+    ?>
+    </tbody>
+
+    <?php
+} else {
+   ?>
+    <tfoot>
+      <tr>
+          <td colspan='3' class='paginacaoLinhaTabela' style='padding: 5px;'>Nenhum registo encontrado.</td>
+      </tr>
+    </tfoot>
+<?php
+}
+?>
+</table>

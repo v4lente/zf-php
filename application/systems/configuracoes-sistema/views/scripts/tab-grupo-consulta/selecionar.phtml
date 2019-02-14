@@ -1,0 +1,45 @@
+<?php
+// Seta o título
+$this->headTitle("Colunas - Manutenção");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+
+	<fieldset>
+		<legend>Manutenção</legend>
+		
+		<?php echo $this->formHidden("cd_consulta", $this->form["cd_consulta"], array(""));?>
+		<div class="linha">
+			<div class="left">
+				<label class="label_esquerda" for="cd_consulta">Código:</label>
+                <?php echo $this->formText("cd_consulta", $this->form["cd_consulta"], array('class'=>'stru', 'readonly'=>'readonly'));?>
+			</div>
+			<div class="right">
+				<label class="label_esquerda" for="titulo">Título:</label>
+                <?php echo $this->formText("titulo", $this->form["titulo"], array('class'=>'stru', 'readonly'=>'readonly'));?>
+			</div>
+		</div>	
+		
+		<div class="linha">
+			<div class="left">
+				<label class="label_esquerda" for="cd_usuario">Responsável:</label>
+                <?php echo $this->formText("cd_usuario", $this->form["cd_usuario"], array('class'=>'stru', 'readonly'=>'readonly'));?>
+			</div>
+			<div class="right">
+				<label class="label_esquerda" for="dthr_cadastro">Data Cadastro:</label>
+                <?php echo $this->formText("dthr_cadastro", $this->form["dthr_cadastro"], array('class'=>'stru', 'readonly'=>'readonly'));?>
+			</div>
+		</div>
+		
+		<div class="linha">
+			<div class="left">
+				<label class="label_esquerda" for="fl_ativo">Ativo:</label>
+                <?php echo $this->formText("fl_ativo", $this->form["fl_ativo"], array('class'=>'stru', 'readonly'=>'readonly'));?>
+			</div>
+		</div>
+		
+		
+	</fieldset>
+
+</form>

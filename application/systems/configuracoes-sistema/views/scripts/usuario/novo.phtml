@@ -1,0 +1,73 @@
+<?php
+// Seta o título
+$this->headTitle("Usuário - Novo");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Novo Usuário</legend>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="cd_usuario">Código do Usuário:</label>
+                <?php echo $this->formText("cd_usuario", $this->form['cd_usuario'], array('class'=>'required', 'maxlength'=>'20'));?>
+            </div>
+
+            <div class="right">
+                <label class="label_direita" for="no_usuario">Nome Completo:</label>
+                <?php echo $this->formText("no_usuario", $this->form['no_usuario'], array('class'=>'required', 'maxlength'=>'40'));?>
+            </div>
+        </div>
+
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="nr_matric">Número Matrícula:</label>
+                <?php echo $this->formText("nr_matric", $this->form['nr_matric'], array('class'=>'numero', 'maxlength'=>'5'));?>
+            </div>
+
+            <div class="right">
+                <label class="label_direita" for="no_func">Nome:</label>
+                <?php echo $this->formText("no_func", $this->form['no_func'], array('readonly'=>'readonly', 'maxlength'=>'40'));?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="tp_usuario">Tipo:</label>
+                <?php echo $this->formSelect("tp_usuario", $this->form['tp_usuario'], array('class'=>'required'), $this->adicionaValorPadraoCombo(array("P"=>"Do Porto", "C"=>"Cliente")));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="email">E-mail:</label>
+                <?php echo $this->formText("email", $this->form['email'], array('maxlength'=>'150'));?>
+            </div>
+        </div>
+
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="fl_super">Super Usuário:</label>
+                <?php echo $this->formSelect("fl_super", $this->form['fl_super'], array('class'=>'required'), $this->adicionaValorPadraoCombo(array("1"=>"Sim", "0"=>"Não")));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="cd_sistema_padrao">Sistema Padrão:</label>
+                <?php echo $this->formSelect("cd_sistema_padrao", $this->form['cd_sistema_padrao'], array('class'=>'required'), $this->adicionaValorPadraoCombo($this->sistemas));?>
+            </div>
+        </div>
+        
+        <div class="linha">
+        	<div class="left">
+                <label class="label_esquerda" for="fl_estacao">Multiplas Estações:</label>
+                <?php echo $this->formSelect("fl_estacao", $this->form['fl_estacao'], array('class'=>'required'), $this->adicionaValorPadraoCombo(array("1"=>"Sim", "0"=>"Não")));?>
+            </div>
+        
+            <div class="right">
+                <label class="label_direita" for="fl_acesso_intranet">Aplic. Web na Intranet:</label>
+                <?php echo $this->formSelect("fl_acesso_intranet", $this->form['fl_acesso_intranet'], array('class'=>'required'), $this->adicionaValorPadraoCombo(array("1"=>"Sim", "0"=>"Não")));?>
+            </div>          
+        </div>
+        
+    </fieldset>
+    
+</form>

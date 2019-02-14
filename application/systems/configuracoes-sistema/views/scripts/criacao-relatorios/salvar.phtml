@@ -1,0 +1,59 @@
+<?php
+// Seta o título
+$this->headTitle("Relatório - Seleção");
+?>
+
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Relatório</legend>
+		<?php echo $this->formHidden("cd_usuario", $this->form['cd_usuario']);?>
+		<?php echo $this->formHidden("dthr_cadastro", $this->form['dthr_cadastro']);?>
+		<?php echo $this->formHidden("possuiTabsVinculadas", $this->possuiTabsVinculadas);?>
+		<?php echo $this->formHidden("nome", $this->nome);?>
+		<?php echo $this->formHidden("sistema", $this->sistema);?>
+		<?php echo $this->formHidden("ambiente", $this->ambiente);?>
+
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="cd_consulta">Código do Relatório:</label>
+                <?php echo $this->formText("cd_consulta", $this->form['cd_consulta'], array('class'=>'int', 'readonly'=>'readonly', 'maxlength'=>'10'));?>
+            </div>
+
+            <div class="right">
+                <label class="label_direita" for="titulo">Título do Relatório:</label>
+                <?php echo $this->formText("titulo", $this->form['titulo'], array('class'=>'required stru','maxlength'=>'200'));?>
+            </div>
+        </div>
+
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="orientacao">Orientação:</label>
+                <?php echo $this->formSelect("orientacao", $this->form['orientacao'], array('class'=>'required'), $this->adicionaValorPadraoCombo(array("R"=>"RETRATO", "P"=>"PAISAGEM")));?>
+            </div>
+            <div class="right">
+                <label class="label_direita" for="fl_ativo">Relatório Ativo:</label>
+                <?php echo $this->formSelect("fl_ativo", $this->form['fl_ativo'], array('class'=>'required'), $this->adicionaValorPadraoCombo(array("1"=>"SIM", "0"=>"NÃO")));?>
+            </div>
+        </div>
+
+    </fieldset>
+
+</form>
+
+<!-- Insere as Abas -->
+<?php 
+
+    // Define o código da consulta da transação pai
+    $cd_consulta = "pai_cd_consulta/" . $this->form['cd_consulta'];
+
+    // Define os atributos de cada aba
+    $titulos        = array("Tabelas","Grupos");
+    $sistemas       = array("configuracoes-sistema", "configuracoes-sistema");
+	$controladores  = array("tab-consulta-tabelas", "tab-consulta-grupo");
+    $parametros     = array($cd_consulta, $cd_consulta);
+    $estilos        = array("height:600px !important;");
+
+    // Gera as abas
+    echo $this->geraAbas($titulos, $sistemas, $controladores, $parametros, $estilos);
+
+?>

@@ -1,0 +1,43 @@
+#botao-novo {
+	display: none !important;
+}
+
+#botao-salvar {
+	display: none !important;
+}
+
+#botao-excluir {
+	display: none !important;
+}
+
+#botao-relatorio{
+	display: none !important;
+}
+
+#botao-voltar{
+	display: none !important;
+}
+
+input {
+	width: 100px;
+}
+
+th {
+    text-align: left !important;
+}
+
+th.cd_consulta {
+    width: 10%;
+}
+
+th.titulo {
+    width: 60%;
+}
+
+th.dthr_cadastro {
+    width: 20%;
+}
+
+th.fl_ativo {
+    width: 10%;
+}

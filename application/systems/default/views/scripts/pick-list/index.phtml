@@ -1,0 +1,15 @@
+<?php
+// Carrega o estilo específico da página
+echo $this->layout()->getView()->headLink()->appendStylesheet($this->baseUrl() . '/public/styles/default/pick-list.css');
+// Carrega o script específico da página
+echo $this->headScript()->appendFile($this->baseUrl() . '/public/js/default/pick-list.js');
+
+// Seta o título
+$titulo = " PickList";
+if(isset($this->titulo))
+    $titulo = " " . $this->titulo;
+
+$this->headTitle($titulo);
+?>
+
+<?php echo $this->formulario; ?>

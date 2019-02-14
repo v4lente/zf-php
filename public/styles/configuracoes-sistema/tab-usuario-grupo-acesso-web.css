@@ -1,0 +1,42 @@
+#botao-ajuda {
+   	display: none;
+}
+
+#botao-importar {
+    display: block !important;
+}
+
+#botao-limpar {
+   	display: none !important;
+}
+
+th.cd_grupo {
+    width: 10%;
+}
+
+th.no_grupo {
+    width: 30%;
+}
+
+th.ds_grupo {
+    width: 48%;
+}
+
+th.dt_acesso_ini {
+	width: 12%;
+    text-align: center;
+}
+
+td.dt_acesso_ini {
+    width: 6%;
+    text-align: center;
+}
+
+td.dt_acesso_fim {
+    width: 6%;
+    text-align: center;
+}
+
+textarea {
+    height: 50px !important;
+}

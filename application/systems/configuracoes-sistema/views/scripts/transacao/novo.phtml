@@ -1,0 +1,103 @@
+<?php
+// Seta o título
+$this->headTitle("Transação - Novo");
+?>
+
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Transação</legend>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="cd_sistema">Nome do Sistema:</label>
+                <?php echo $this->formSelect("cd_sistema", null, array('class'=>'required'), $this->adicionaValorPadraoCombo($this->sistemas));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="cd_menu">Nome do Menu/Aba:</label>
+                <?php echo $this->formSelect("cd_menu", null, array('class'=>'required', 'readonly'=>'readonly'));?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="no_transacao">Nome da Transação:</label>
+                <?php echo $this->formText("no_transacao", null, array('class'=>'required', 'maxlength'=>'60'));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="amb_desenv">Ambiente de desenvolvimento:</label>
+                <?php echo $this->formSelect("amb_desenv", null, array('class'=>'required'), $this->adicionaValorPadraoCombo(array("POWR"=>"TEMPLATE POWER", "ZEND"=>"ZEND FRAMEWORK")));?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="obj_executado">Objeto Executado:</label>
+                <?php echo $this->formText("obj_executado", null, array('class'=>'required', 'maxlength'=>'200'));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="ord_transacao">Ordem de Exibição:</label>
+                <?php echo $this->formText("ord_transacao", null, array('maxlength'=>'2'));?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="fl_visivel">Disponível para Acesso:</label>
+                <?php echo $this->formSelect("fl_visivel", "1", array(), $this->adicionaValorPadraoCombo(array("1"=>"Sim", "0"=>"Não")));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="fl_publico">Acesso Público:</label>
+                <?php echo $this->formSelect("fl_publico", "0", array(), $this->adicionaValorPadraoCombo(array("1"=>"Sim", "0"=>"Não")));?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="format_rel">Impressão da Listagem:</label>
+                <?php echo $this->formSelect("format_rel", "P", array(), $this->adicionaValorPadraoCombo(array("P"=>"Paisagem", "R"=>"Retrato")));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="fl_nova_janela">Forma de Exibição:</label>
+                <?php echo $this->formSelect("fl_nova_janela", "0", array(), $this->adicionaValorPadraoCombo(array("0"=>"Janela/Aba Principal", "1"=>"Nova Janela/Aba")));?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="fl_log_sessao">Gera Log:</label>
+                <?php echo $this->formSelect("fl_log_sessao", "1", array(), $this->adicionaValorPadraoCombo(array("1"=>"Sim", "0"=>"Não")));?>
+            </div>
+            
+            <div class="right">
+                <label class="label_direita" for="fl_relatorio">É Relatório:</label>
+                <?php echo $this->formSelect("fl_relatorio", "0", array(), $this->adicionaValorPadraoCombo(array("1"=>"Sim", "0"=>"Não")));?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="left">
+                <label class="label_esquerda" for="fl_tipo_transacao">Tipo de Transação:</label>
+                <?php echo $this->formSelect("fl_tipo_transacao", "M", array(), $this->adicionaValorPadraoCombo(array("M"=>"Mestre", "D"=>"Detalhe")));?>
+            </div>
+			
+			<div class="right">
+                <label class="label_esquerda" for="no_arq_ajuda">Nome do Arquivo de Ajuda:</label>
+                <?php echo $this->formText("no_arq_ajuda", null, array('maxlength'=>'200'));?>
+            </div>
+        </div>
+        
+        <div class="linha">
+            <div class="full">
+                <label class="label_esquerda" for="ds_transacao">Descrição da Transação:</label>
+                <?php echo $this->formTextarea("ds_transacao", null, array('maxlength'=>'300'));?>
+            </div>
+        </div>
+                
+    </fieldset>
+    
+</form>

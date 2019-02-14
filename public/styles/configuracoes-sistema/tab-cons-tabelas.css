@@ -1,0 +1,43 @@
+#botao-ajuda {
+   	display: none;
+}
+
+#botao-novo {
+   	display: none !important;
+}
+
+#botao-salvar {
+   	display: block !important;
+}
+
+th.no_tabela {
+    width: 90%;
+}
+.no_tabela {
+    text-align: left !important;
+}
+
+th.sg_tabela {
+    width: 10%;
+}
+
+.sg_tabela {
+    text-align: left !important;
+}
+
+.sel_no_tabela {
+    width: 98%;
+}
+
+.imp_sg_tabela {
+    width: 40%;
+    text-transform: uppercase;
+}
+
+.no_tabela input {
+    width: 97%;
+}
+
+.add_tabela, .del_tabela {
+    cursor: pointer;
+}

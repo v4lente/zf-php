@@ -1,0 +1,47 @@
+<?php
+// Seta o título
+$this->headTitle("Grupo - Novo");
+?>
+
+<!-- Formulario de cadastro -->
+<form id="form_base" method="post" accept-charset="ISO-8859-1" onsubmit="return false;" action="">
+    <fieldset>
+        <legend>Novo</legend>
+        
+        <?php echo $this->formHidden("cd_usuario", $this->pai_cd_usuario);?>
+        
+        <table class='tabela nao-selecionavel'>                  
+            <thead>
+                <tr>
+                    <th class='cd_cliente'>Código</th>
+                    <th class='razao_social'>Número Documento/Razão Social</th>
+                    <th class='fl_principal'>Cliente Principal</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <?php 
+                    // Captura o valor da ordem de ação
+                    $ultimaOrdemAcao = $this->ultimaOrdemAcao;
+                    for($i = 0; $i < 10; $i++) {
+                        // Joga no campo ord_acao os valores que 
+                        // estão liberados para cadastro
+                        if($i > 0) {
+                            $ultimaOrdemAcao += 1;
+                        }
+                        
+                        $classe = (($i%2)==0) ? "par" : "impar";
+                    ?>  
+                        <tr class='<?php echo $classe; ?>' indice='<?php echo $i; ?>'>
+                          <td><?php echo $this->formText("cd_cliente[]",     null, array('id'=>'cd_cliente_' . $i,  'class'=>'i_cd_cliente', 'title'=>'Código'));?></td>
+                          <td><?php echo $this->formText("razao_social[]",     null, array('id'=>'razao_social_' . $i, 'class'=>'i_razao_social auto-complete-x', 'title'=>'Número Documento/Razão Social'));?></td>
+                          <td><?php echo $this->formSelect("fl_principal[]", null, array('id'=>'fl_principal_' . $i, 'class'=>'i_fl_principal', 'title'=>'Cliente Principal'), $this->adicionaValorPadraoCombo(array("1"=>"Sim", "0"=>"Não")));?></td>
+                        </tr>
+                    <?php
+                    }
+                ?>
+            </tbody>
+        </table>
+        
+    </fieldset>
+    
+</form>

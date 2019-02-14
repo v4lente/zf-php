@@ -1,0 +1,54 @@
+<?php
+// Seta o título
+$this->headTitle("Transação/Ação - Pesquisa");
+?>
+
+<table class='tabela' id='tabelaConsulta'>
+<?php
+// Se a consulta foi feita mostra os dados
+if(count($this->paginator)) {
+?>
+    <thead>
+      <tr>
+          <th class='no_acao'  column='wa.no_acao'>Nome da Ação<div class='img_seta'></div></th>
+          <th class='ds_acao'  column='wa.ds_acao'>Descrição da Ação<div class='img_seta'></div></th>
+          <th class='fl_menu'  column='wa.fl_menu'>Barra de Tarefas<div class='img_seta'></div></th>
+          <th class='ord_acao' column='wta.ord_acao'>Ordem de Exibição<div class='img_seta'></div></th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+          <td colspan='4'><?php echo $this->paginationControl($this->paginator, 'Sliding', 'controle_paginacao.phtml', array('extraParams' => $this->extraParams)); ?></td>
+      </tr>
+    </tfoot>
+    <tbody>
+    <?php
+    $i=0;
+    foreach($this->paginator as $linha)
+    {
+        $key = "cd_transacao/{$linha->CD_TRANSACAO}/cd_acao/{$linha->CD_ACAO}";
+    ?>
+        <tr class='linha' key='<?php echo $key; ?>'>
+          <td><?php echo $linha->NO_ACAO; ?></td>
+          <td><?php echo $linha->DS_ACAO; ?></td>
+          <td><?php echo $linha->FL_MENU == "1" ? "Sim" : "Não"; ?></td>
+          <td><?php echo $linha->ORD_ACAO; ?></td>
+        </tr>
+   <?php
+        $i++;
+    }
+    ?>
+	</tbody>
+
+    <?php
+} else {
+   ?>
+    <tfoot>
+      <tr>
+          <td colspan='4' class='paginacaoLinhaTabela' style='padding: 5px;'>Nenhum registo encontrado.</td>
+      </tr>
+    </tfoot>
+<?php
+}
+?>
+</table>
